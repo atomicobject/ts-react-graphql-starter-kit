@@ -159,7 +159,7 @@ const bundleStaticAssets = [
 ]
 module.exports = {
   entry: {
-    app: ['./client/src/index.tsx']
+    app: ['./entry/client.tsx']
   },
 
   plugins: [
@@ -174,7 +174,7 @@ module.exports = {
 
     // Process index.html and insert script and stylesheet tags for us.
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './modules/client/index.html',
       inject: 'body',
     }),
 
