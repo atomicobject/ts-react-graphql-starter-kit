@@ -1,4 +1,4 @@
-const config = require('../config');
+const config = require('config');
 const path = require("path");
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -174,7 +174,7 @@ module.exports = {
 
     // Process index.html and insert script and stylesheet tags for us.
     new HtmlWebpackPlugin({
-      template: './modules/client/index.html',
+      template: './entry/index.html',
       inject: 'body',
     }),
 

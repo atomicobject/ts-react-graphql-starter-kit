@@ -8,13 +8,12 @@ module.exports = {
     hot: true,
     inline: true,
     noInfo: true,
-    apiProxyHost: "localhost:3001",
   },
   server: {
     port: (process.env.PORT || 3001),
-    publicHost: "localhost:3000",
-    requireAuth: (process.env.REQUIRE_AUTH !== 'false'),
-    authorizedUserString: process.env.AUTHORIZED_USERS || 'admin: cody-brant-dandruff;',
+    apiHost: (process.env.API_HOST || "localhost:3001"),
+
+    publicHost: (process.env.PUBLIC_HOST || "localhost:3000"),
     requireSsl: (process.env.REQUIRE_SSL !== 'false'),
   },
 };

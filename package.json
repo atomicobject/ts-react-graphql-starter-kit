@@ -27,7 +27,7 @@
     "before:commit": "yarn ba && yarn lint && yarn test:all",
     "bcom": "yarn before:commit",
     "db:create:dev": "createdb msl-dev",
-    "db:create:test": "createdb msl-test",
+    "db:create:test": "createdb msl-test"
   },
   "dependencies": {
     "@types/config": "^0.0.32",
@@ -44,6 +44,7 @@
     "@types/redux": "^3.6.0",
     "awesome-typescript-loader": "^3.1.2",
     "concurrently": "^3.4.0",
+    "config": "^1.25.1",
     "cross-env": "^3.2.4",
     "css-loader": "^0.28.0",
     "cssnano": "^3.10.0",
@@ -77,8 +78,8 @@
     "webpack-split-by-path": "^2.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0",
     "jest": "^19.0.2",
+    "nodemon": "^1.11.0",
     "webpack-dev-server": "^2.4.2"
   }
 }
