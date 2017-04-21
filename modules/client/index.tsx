@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route,Link} from 'react-router-dom'
 
+import {RedBox} from './components/red-box';
+
 function Home() {
   return <div>
     <div>Home</div>
@@ -17,7 +19,7 @@ function Foo() {
 
 class App extends React.Component<{},{}> {
   render() {
-    return <div>{this.props.children}</div>;
+    return <RedBox>{this.props.children}</RedBox>;
   }
 }
 
