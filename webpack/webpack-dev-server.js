@@ -40,7 +40,8 @@ const startDevServer = () => {
       noInfo: noInfo,
       stats: 'errors-only',
       proxy: {
-        '/api/*': `http://${PROXY_HOST}`
+        '/graphql/*': `http://${PROXY_HOST}`,
+        '/graphiql/*': `http://${PROXY_HOST}`
       },
     });
 

@@ -15,5 +15,7 @@ module.exports = {
 
     publicHost: (process.env.PUBLIC_HOST || "localhost:3000"),
     requireSsl: (process.env.REQUIRE_SSL !== 'false'),
+
+    graphiql: false
   },
 };

@@ -6,8 +6,6 @@
     "allowJs": true,
     "noImplicitAny": true,
     "sourceMap": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
     "outDir": "./dist/stuff/",

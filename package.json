@@ -12,7 +12,7 @@
     "bs": "yarn bundle:server",
     "ba": "yarn bundle:all",
     "dev": "concurrently 'yarn dev:server' 'yarn dev:client'",
-    "dev:server": "nodemon -e js,ts,tsx --use_strict --inspect=9229 modules/server/index.ts --exec ts-node",
+    "dev:server": "nodemon -e js,ts,tsx --use_strict --inspect=9229 entry/server --exec ts-node",
     "dev:client": "node -e 'require(\"./webpack/webpack-dev-server\").startDevServer()'",
     "lint": "tslint -c ./tslint.json './modules/**/*.ts*'",
     "migrate:up": "PG_DEV_URL=\"postgres://dev:dev@localhost:5433/msl-dev\" knex migrate:latest",
@@ -44,7 +44,9 @@
     }
   },
   "dependencies": {
+    "@types/body-parser": "^1.16.3",
     "@types/config": "^0.0.32",
+    "@types/cors": "^2.8.1",
     "@types/dotenv": "^2.0.20",
     "@types/enzyme": "^2.7.6",
     "@types/express": "^4.0.35",
@@ -59,8 +61,10 @@
     "@types/react-router-redux": "^5.0.0",
     "@types/redux": "^3.6.0",
     "awesome-typescript-loader": "^3.1.2",
+    "body-parser": "^1.17.1",
     "concurrently": "^3.4.0",
     "config": "^1.25.1",
+    "cors": "^2.8.3",
     "cross-env": "^3.2.4",
     "css-loader": "^0.28.0",
     "cssnano": "^3.10.0",
@@ -69,6 +73,9 @@
     "express": "^4.15.2",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
+    "graphql": "^0.9.3",
+    "graphql-server-express": "^0.7.1",
+    "graphql-tools": "^0.11.0",
     "html-webpack-plugin": "^2.28.0",
     "identity-obj-proxy": "^3.0.0",
     "lodash": "^4.17.4",
@@ -100,10 +107,10 @@
   },
   "devDependencies": {
     "@types/jest": "^19.2.2",
-    "ts-jest": "^19.0.10",
     "jest": "^19.0.2",
     "jest-environment-node-debug": "^2.0.0",
     "nodemon": "^1.11.0",
+    "ts-jest": "^19.0.10",
     "webpack-dev-server": "^2.4.2"
   }
 }
