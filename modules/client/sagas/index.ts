@@ -6,7 +6,7 @@ export function foo(x:number) : string {
 }
 
 export function* callAFunctionSaga() : SagaIterator {
-  const x : string = yield call(foo, 3);
+  const x: string = yield call(foo, 3);
 }
 
 export function* rootSaga() : SagaIterator {

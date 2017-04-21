@@ -1,8 +1,11 @@
 import {foo, callAFunctionSaga} from './index'
 import {call} from 'redux-saga/effects';
 
-it('adds 1 + 4 to equal 3 in TScript', ()=> {
-  let generator = callAFunctionSaga();
+describe("a saga", () => {
+  it('adds 1 + 4 to equal 3 in TScript', () => {
+    let generator = callAFunctionSaga();
 
-  expect(generator.next().value).toEqual(call(foo, 3))
-});
+    expect(generator.next().value).toEqual(call(foo, 3))
+    expect(generator.next().done).toBeTruthy();
+  });
+})
