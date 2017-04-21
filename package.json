@@ -19,22 +19,35 @@
     "migrate:down": "PG_DEV_URL=\"postgres://dev:dev@localhost:5433/msl-dev\" knex migrate:rollback",
     "test:c": "NODE_ENV=test mocha --compilers ts:ts-node/register,tsx:ts-node/register --recursive client/tests",
     "test:s": "NODE_ENV=test mocha --compilers ts:ts-node/register --recursive server/tests",
-    "tc": "yarn test:c",
-    "ts": "yarn test:s",
-    "test": "yarn test:c && yarn test:s",
-    "test:all": "yarn test",
+    "test": "jest",
+    "test:debug": "node --debug-brk ./node_modules/.bin/jest --runInBand",
     "ta": "yarn test:all",
     "before:commit": "yarn ba && yarn lint && yarn test:all",
     "bcom": "yarn before:commit",
     "db:create:dev": "createdb msl-dev",
     "db:create:test": "createdb msl-test"
   },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss)$": "identity-obj-proxy",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+    }
+  },
   "dependencies": {
     "@types/config": "^0.0.32",
     "@types/dotenv": "^2.0.20",
     "@types/enzyme": "^2.7.6",
     "@types/express": "^4.0.35",
-    "@types/jest": "^1,9.2.2",
     "@types/lodash": "^4.14.61",
     "@types/node": "^7.0.8",
     "@types/react": "^15.0.21",
@@ -57,6 +70,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "html-webpack-plugin": "^2.28.0",
+    "identity-obj-proxy": "^3.0.0",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.2",
     "pg": "^6.1.5",
@@ -85,7 +99,10 @@
     "webpack-split-by-path": "^2.0.0"
   },
   "devDependencies": {
+    "@types/jest": "^19.2.2",
+    "ts-jest": "^19.0.10",
     "jest": "^19.0.2",
+    "jest-environment-node-debug": "^2.0.0",
     "nodemon": "^1.11.0",
     "webpack-dev-server": "^2.4.2"
   }
