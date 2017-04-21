@@ -6,5 +6,5 @@ function foo(x:number) : string {
 }
 
 export function* rootSaga() : SagaIterator {
-  const x : string = yield call(foo, 3)
+  const x : string = yield call(foo, 3);
 }
