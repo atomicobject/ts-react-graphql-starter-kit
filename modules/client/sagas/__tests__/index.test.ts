@@ -1,6 +1,6 @@
-import {foo, callAFunctionSaga} from './index'
+import {foo, callAFunctionSaga} from '../index'
 import {call, put} from 'redux-saga/effects';
-import {delay} from 'redux-saga';
+import {delay} from 'redux-saga'
 
 describe("a saga", () => {
   it('adds 1 + 4 to equal 3 in TScript', () => {

@@ -2,8 +2,9 @@ import {SagaIterator} from 'redux-saga';
 import {call, put} from 'redux-saga/effects';
 import {delay} from 'redux-saga'
 
-export function foo(x:number) : string {
-  return null as any;
+export async function foo(x:number) : Promise<string> {
+  console.log("called me")
+  return "Howdy!";
 }
 
 export function* callAFunctionSaga() : SagaIterator {
