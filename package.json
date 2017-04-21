@@ -65,6 +65,7 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
+    "redux-saga": "https://github.com/dcolthorp/redux-saga.git#update-typings",
     "sass-loader": "^6.0.3",
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.16.1",

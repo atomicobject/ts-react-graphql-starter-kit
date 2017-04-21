@@ -1,0 +1,1 @@
+- [ ] Check for updated type definitions to redux-saga. Uninstall the bundled branch and get back to regular redux-saga master.

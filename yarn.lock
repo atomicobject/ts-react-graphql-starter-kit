@@ -4388,6 +4388,10 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
+"redux-saga@https://github.com/dcolthorp/redux-saga.git#update-typings":
+  version "0.14.3"
+  resolved "https://github.com/dcolthorp/redux-saga.git#06f7d545bd395129db355217bc4c5c308a60810f"
+
 redux@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.6.0.tgz#887c2b3d0b9bd86eca2be70571c27654c19e188d"
