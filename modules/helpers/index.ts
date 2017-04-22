@@ -1,1 +1,1 @@
-export {updateIn, update} from './update-in';
+export {updateIn, derive} from './update-in';

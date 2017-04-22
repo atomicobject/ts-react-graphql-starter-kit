@@ -1,4 +1,4 @@
-import {updateIn, update} from "../update-in";
+import {updateIn, derive} from "../update-in";
 
 describe("updateIn", () => {
   it("creates a copy with an update and 1 key", () => {
@@ -30,7 +30,6 @@ describe("updateIn", () => {
     const f2 = updateIn(f, 'foo', 'bar', 'baz', 'qux', 'quux', 'y');
     expect(f2).toEqual({foo: {bar: {baz: {qux: {quux: "y"}}}}});
   })
-
 })
 
 describe("update", () => {
@@ -40,14 +39,14 @@ describe("update", () => {
       bar: {baz: 2}
     };
 
-    const updated = update(original)
+    const updated = derive(original)
       .with("foo", 10)
-      .with("bar", "baz", 25)
+      .update("bar", "baz", n => n*15)
       .valueOf();
     
     expect(updated).toEqual({
       foo: 10,
-      bar: {baz: 25}
+      bar: {baz: 30}
     })
   })
 })

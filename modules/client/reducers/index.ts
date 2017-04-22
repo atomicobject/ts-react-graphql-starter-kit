@@ -1,6 +1,6 @@
 import {State} from '../state';
 import {Action} from 'redux';
-import {update} from '../../helpers'
+import {derive} from '../../helpers'
 
 const defaultState : State = {
   lastNumber: 0,
@@ -9,7 +9,7 @@ const defaultState : State = {
 
 export function rootReducer(state:State=defaultState, action: Action): State {
   const guess = state.currentGuess.length + 1;
-  return update(state)
+  return derive(state)
     .with('lastNumber', guess)
     .with('currentGuess', [...state.currentGuess, guess])
     .valueOf();
