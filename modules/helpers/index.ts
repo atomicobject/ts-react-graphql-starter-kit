@@ -1,0 +1,1 @@
+export {updateIn, update} from './update-in';
