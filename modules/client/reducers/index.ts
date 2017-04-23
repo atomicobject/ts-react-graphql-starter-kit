@@ -1,5 +1,6 @@
 import {State} from '../state';
 import {Action} from 'redux';
+import {Arrays} from '../../helpers';
 
 const defaultState : State = {
   lastNumber: 0,
@@ -15,7 +16,7 @@ export function addNewEntry(state:State) {
   // copy.
   return flow(
     State.lastNumber.set(guess),
-    State.currentGuess.set([...state.currentGuess, guess])
+    State.currentGuess.update(a => Arrays.push(a, guess))
   )(state);
 }
 
