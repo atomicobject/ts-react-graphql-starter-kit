@@ -1,5 +1,9 @@
-import { updateIn } from './update-in';
 import { flow } from 'lodash';
+
+/** Given an object, a sequence of keys, and a value, deep update that value by recursively copying. Type safe. */
+export const updateIn: SafeUpdate = function(o: any, ...args: any[]) {
+  return performUpdate(o, (_) => args[args.length - 1], args, 0, args.length-2);
+}
 
 /** Core lens shape. Used to construct Lens and can be passed to higher-order functions, such as Lens.comp */
 export interface ILens<T, V> {
@@ -49,32 +53,6 @@ export type Isomorphism<T, V> = {
   from: (v: V) => T;
 };
 
-class LensFactory<O> {
-  /** Creates lenses that access/update substructure via a keypath. */
-  prop<K extends keyof O>(k: K): Lens<O, O[K]>;
-  /** Creates lenses that access/update substructure via a keypath. */
-  prop<K extends keyof O, K2 extends keyof O[K]>(k: K, k2: K2): Lens<O, O[K][K2]>;
-  /** Creates lenses that access/update substructure via a keypath. */
-  prop<K extends keyof O,
-    K2 extends keyof O[K],
-    K3 extends keyof O[K][K2]>(k: K, k2: K2, k3: K3): Lens<O, O[K][K2][K3]>;
-  /** Creates lenses that access/update substructure via a keypath. */
-  prop<K extends keyof O,
-    K2 extends keyof O[K],
-    K3 extends keyof O[K][K2],
-    K4 extends keyof O[K][K2][K3]>(k: K, k2: K2, k3: K3, k4: K4): Lens<O, O[K][K2][K3][K4]>;
-  prop(...ks: string[]): Lens<any, any> {
-    return Lens.of({
-      get(o: O) {
-        return ks.reduce((x, k) => (x as any)[k], o);
-      },
-      set(o: O, v: any) {
-        return (updateIn as any)(o, ...ks, v);
-      }
-    });
-  }
-}
-
 /** Core module for creating and using prisms, which are get/set proxies that gracefully handle undefined. */
 export namespace Prism {
   export function of<T,V>(spec: IPrism<T,V>) {
@@ -111,11 +89,10 @@ export namespace Prism {
 
   export function forArrayIndex<T>(n: number): Prism<T[], T> {
     function index(a: T[], n: number) {
-      const l = a.length;
-      if (l <= n) {
+      if (n < 0 || n >= a.length) {
         return undefined;
       }
-      return mod(n, l);
+      return n;
     }
 
     return Prism.of<T[], T>({
@@ -191,6 +168,24 @@ export namespace Lens {
   }
 }
 
+interface SafeUpdate {
+  <O, K1 extends keyof O>(o: O, k: K1, v: O[K1]): O;
+  <O, K1 extends keyof O,
+      K2 extends keyof O[K1]>(o: O, k: K1, k2: K2, v: O[K1][K2]): O;
+  <O, K1 extends keyof O,
+      K2 extends keyof O[K1],
+      K3 extends keyof O[K1][K2]>(o: O, k: K1, k2: K2, k3: K3, v: O[K1][K2][K3]): O;
+  <O, K1 extends keyof O,
+      K2 extends keyof O[K1],
+      K3 extends keyof O[K1][K2],
+      K4 extends keyof O[K1][K2][K3]>(o: O, k: K1, k2: K2, k3: K3, k4: K4, v: O[K1][K2][K3][K4]): O;
+  <O, K1 extends keyof O,
+      K2 extends keyof O[K1],
+      K3 extends keyof O[K1][K2],
+      K4 extends keyof O[K1][K2][K3],
+      K5 extends keyof O[K1][K2][K3][K4]>(o: O, k: K1, k2: K2, k3: K3, k4: K4, k5: K5, v: O[K1][K2][K3][K4][K5]): O;
+}
+
 function performComposedSet(o: any, v: any, lenses: ILens<any, any>[], index: number): any {
   if (index == lenses.length - 1) {
     return lenses[index].set(o, v);
@@ -204,10 +199,39 @@ function performComposedSet(o: any, v: any, lenses: ILens<any, any>[], index: nu
   }
 }
 
-function mod(n: number, l: number): number {
-  let i = n % l;
-  if (i < 0) {
-    i += l;
+function performUpdate(o: any, fn: (x:any) => any, keys: string[], idx: number, last: number): any {
+  const copy = Object.assign({}, o);
+  if (idx == last) {
+    copy[keys[idx]] = fn(o[keys[idx]]);
+    return copy;
+  } else {
+    copy[keys[idx]] = performUpdate(o[keys[idx]], fn, keys, idx+1, last);
+    return copy;
   }
-  return i;
+}
+
+class LensFactory<O> {
+  /** Creates lenses that access/update substructure via a keypath. */
+  prop<K extends keyof O>(k: K): Lens<O, O[K]>;
+  /** Creates lenses that access/update substructure via a keypath. */
+  prop<K extends keyof O, K2 extends keyof O[K]>(k: K, k2: K2): Lens<O, O[K][K2]>;
+  /** Creates lenses that access/update substructure via a keypath. */
+  prop<K extends keyof O,
+    K2 extends keyof O[K],
+    K3 extends keyof O[K][K2]>(k: K, k2: K2, k3: K3): Lens<O, O[K][K2][K3]>;
+  /** Creates lenses that access/update substructure via a keypath. */
+  prop<K extends keyof O,
+    K2 extends keyof O[K],
+    K3 extends keyof O[K][K2],
+    K4 extends keyof O[K][K2][K3]>(k: K, k2: K2, k3: K3, k4: K4): Lens<O, O[K][K2][K3][K4]>;
+  prop(...ks: string[]): Lens<any, any> {
+    return Lens.of({
+      get(o: O) {
+        return ks.reduce((x, k) => (x as any)[k], o);
+      },
+      set(o: O, v: any) {
+        return (updateIn as any)(o, ...ks, v);
+      }
+    });
+  }
 }

@@ -1,4 +1,4 @@
-import {Lens} from '../../helpers/lenses';
+import {Lens} from '../../helpers';
 
 export interface State {
   readonly currentGuess: number[],

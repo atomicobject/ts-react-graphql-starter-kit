@@ -1,1 +1,1 @@
-export {updateIn, derive} from './update-in';
+export {updateIn, Lens, Prism} from './lenses';
