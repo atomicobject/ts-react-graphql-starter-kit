@@ -87,31 +87,6 @@ export namespace Prism {
     return func;
   }
 
-  export function forArrayIndex<T>(n: number): Prism<T[], T> {
-    function index(a: T[], n: number) {
-      if (n < 0 || n >= a.length) {
-        return undefined;
-      }
-      return n;
-    }
-
-    return Prism.of<T[], T>({
-      get(a) {
-        const i = index(a, n)
-        return i !== undefined ? a[i] : undefined;
-      },
-      set(a, v) {
-        const i = index(a, n);
-        if (i === undefined) {
-          return a;
-        }
-        const copy = a.slice();
-        copy[i] = v;
-        return copy;
-      }
-    });
-  }
-
   type Prismish<T,U> = ILens<T,U> | IPrism<T,U>
 
   export function comp<T, U, V>(l1: Prismish<T, U>, l2: Prismish<U, V>): Prism<T, V>;
