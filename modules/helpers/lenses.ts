@@ -153,9 +153,13 @@ export namespace Lens {
 
   /** Compose together lenses for updating nested structures. */
   export function comp<T, U, V>(l1: ILens<T, U>, l2: ILens<U, V>): Lens<T, V>;
+  /** Compose together lenses for updating nested structures. */
   export function comp<T, U1, U2, V>(l1: ILens<T, U1>, l2: ILens<U1, U2>, l3: ILens<U2, V>): Lens<T, V>;
+  /** Compose together lenses for updating nested structures. */
   export function comp<T, U1, U2, U3, V>(l1: ILens<T, U1>, l2: ILens<U1, U2>, l3: ILens<U2, U3>, l4: ILens<U3, V>): Lens<T, V>;
+  /** Compose together lenses for updating nested structures. */
   export function comp<T, U1, U2, U3, U4, V>(l1: ILens<T, U1>, l2: ILens<U1, U2>, l3: ILens<U2, U3>, l4: ILens<U3, U4>, l5: ILens<U4, V>): Lens<T, V>;
+  /** Compose together lenses for updating nested structures. */
   export function comp(...lenses: ILens<any, any>[]): Lens<any, any> {
     return Lens.of({
       get(o: any) {
