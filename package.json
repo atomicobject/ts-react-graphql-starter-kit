@@ -19,6 +19,7 @@
     "migrate:down": "PG_DEV_URL=\"postgres://dev:dev@localhost:5433/msl-dev\" knex migrate:rollback",
     "test:c": "NODE_ENV=test mocha --compilers ts:ts-node/register,tsx:ts-node/register --recursive client/tests",
     "test:s": "NODE_ENV=test mocha --compilers ts:ts-node/register --recursive server/tests",
+    "pretest": "yarn lint",
     "test": "jest",
     "test:debug": "node --debug-brk ./node_modules/.bin/jest --runInBand",
     "ta": "yarn test:all",

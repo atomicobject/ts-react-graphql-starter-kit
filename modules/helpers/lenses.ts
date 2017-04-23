@@ -1,5 +1,3 @@
-import { flow } from 'lodash';
-
 /** Given an object, a sequence of keys, and a value, deep update that value by recursively copying. Type safe. */
 export const updateIn: SafeUpdate = function(o: any, ...args: any[]) {
   return performUpdate(o, (_) => args[args.length - 1], args, 0, args.length-2);
@@ -55,7 +53,7 @@ export type Isomorphism<T, V> = {
 
 /** Core module for creating and using prisms, which are get/set proxies that gracefully handle undefined. */
 export namespace Prism {
-  export function of<T,V>(spec: IPrism<T,V>) {
+  export function of<T,V>(spec: IPrism<T,V>): Prism<T,V> {
     var func = <Prism<T,V>>function (o: T) {
       return spec.get(o);
     };
@@ -71,8 +69,7 @@ export namespace Prism {
 
     (func as any).update = (tOrFn: T|Function, f?: Function) => {
       if (f === undefined) {
-        const fn = <Function>tOrFn;
-        return (t:T) => func.update(t, <any>fn);
+        return (t:T) => func.update(t, <any>tOrFn);
       } else {
         const t = <T>tOrFn;
         const v = spec.get(t);
@@ -84,7 +81,7 @@ export namespace Prism {
       }
     }
 
-    return func;
+    return <Prism<T,V>>func;
   }
 
   type Prismish<T,U> = ILens<T,U> | IPrism<T,U>
@@ -96,7 +93,7 @@ export namespace Prism {
   export function comp(...prisms: Prismish<any, any>[]): Prism<any, any> {
     return Prism.of({
       get(o: any) {
-        return prisms.reduce((o, l) => o && l.get(o), o);
+        return prisms.reduce((o, l) => o === undefined ? o : l.get(o), o);
       },
       set(o: any, v: any) {
         return performComposedSet(o, v, prisms, 0);
@@ -105,6 +102,7 @@ export namespace Prism {
   }
 }
 
+/** Core module for dealing with lenses. Lenses are objects that make it easy to get and update nested structure in a composable, functional way. */
 export namespace Lens {
   /** Returns a builder which can be used to create a lens that updates a simple object value or nested value */
   export function from<T>() {
@@ -112,14 +110,14 @@ export namespace Lens {
   }
 
   /** Creates a Lens from a simple get/set specification. */
-  export function of<T,V>(spec: ILens<T,V>) {
+  export function of<T,V>(spec: ILens<T,V>): Lens<T,V> {
     return (Prism.of as any)(spec);
   }
 
   /** Given a lens and a way to map that lens type to/from another (an isomorphism), returns a lens that can operate on the other type. */
   export function map<T, U, V>(l: ILens<T, U>, f: Isomorphism<U, V>): Lens<T, V> {
     return Lens.of({
-      get: flow(l.get, f.to),
+      get: (o: T) => f.to(l.get(o)),
       set(o, v) {
         return l.set(o, f.from(v));
       }

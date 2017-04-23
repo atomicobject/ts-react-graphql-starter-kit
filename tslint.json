@@ -15,8 +15,7 @@
     "no-consecutive-blank-lines": true,
     "no-constant-condition": true,
     "no-irregular-whitespace": true,
-    "ter-indent": ["error", 2],
-    "no-unused-variable": [true, "react"]
+    "ter-indent": ["error", 2]
   },
   "jsRules": {
     "curly": true

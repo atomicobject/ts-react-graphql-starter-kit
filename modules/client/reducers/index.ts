@@ -7,10 +7,18 @@ const defaultState : State = {
 }
 
 import {flow} from 'lodash';
-export function rootReducer(state:State=defaultState, action: Action): State {
-  const guess = state.currentGuess.length + 1;
+export function addNewEntry(state:State) {
+  // Add 1 to the current 'guess' length to derive a number
+  const guess = State.currentGuess(state).length + 1;
+
+  // Update the lastNumber and currentGuess and return the updated
+  // copy.
   return flow(
     State.lastNumber.set(guess),
     State.currentGuess.set([...state.currentGuess, guess])
   )(state);
+}
+
+export function rootReducer(state:State=defaultState, action: Action): State {
+  return addNewEntry(state);
 }
