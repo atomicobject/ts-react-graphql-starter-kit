@@ -27,16 +27,8 @@ describe('Arrays', () => {
     it('works on some examples', () => {
       const splice = Arrays.splice;
 
-      const splice1 = [1,2,4]
-      splice1.splice(0, 0, 3);
-      expect(splice1).toEqual([3,1,2,4]);
-
       const a = [1,2,4];
       expect(splice(a, 0, 0, 3)).toEqual([3,1,2,4]);
-
-      const splice2 = [1,2,4];
-      splice2.splice(2,1,3);
-      expect(splice2).toEqual([1,2,3]);
       expect(splice(a, 2, 1, 3)).toEqual([1, 2,3]);
 
       //more examples
