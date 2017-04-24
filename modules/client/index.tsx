@@ -3,6 +3,7 @@ import {ConnectedRouter} from 'react-router-redux';
 import { Route,Link} from 'react-router-dom'
 
 import {RedBox} from './components/red-box';
+import {GuessingGame} from './components/guessing-game';
 import {History} from 'history';
 
 function Home() {
@@ -21,9 +22,10 @@ function Foo() {
 
 class App extends React.Component<{},{}> {
   render() {
-    return <RedBox>{this.props.children}
-      {this.props.children}
-    </RedBox>;
+    return <div>
+      <RedBox> {this.props.children}</RedBox>
+      <GuessingGame>{this.props.children}</GuessingGame>
+    </div>
     
   }
 }
