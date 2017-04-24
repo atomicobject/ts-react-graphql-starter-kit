@@ -1,25 +1,27 @@
 import {State} from '../state';
 import {Action} from 'redux';
 import {Arrays} from '../../helpers';
+import {ActionTypes} from '../actions';
 
 const defaultState : State = {
-  lastGuess: 0,
-  currentGuess: []
+  lastGuess: undefined,
+  guessSequence: [],
 }
 
 import {flow} from 'lodash';
-export function addNewEntry(state:State) {
-  // Add 1 to the current 'guess' length to derive a number
-  const guess = State.currentGuess(state).length + 1;
-
-  // Update the lastNumber and currentGuess and return the updated
-  // copy.
-  return flow(
-    State.lastGuess.set(guess),
-    State.currentGuess.update(a => Arrays.push(a, guess))
-  )(state);
+export function gameReducer(state: State, action: ActionTypes) {
+  switch (action.type) {
+  case ActionTypes.USER_GUESS:
+    return flow(
+      State.lastGuess.set(undefined),
+      State.guessSequence.update(a => Arrays.push(a, action.value))
+    )(state)
+  
+  default: 
+    return state;
+  } 
 }
 
-export function rootReducer(state:State=defaultState, action: Action): State {
-  return addNewEntry(state);
+export function rootReducer(state: State=defaultState, action: Action): State {
+  return gameReducer(state, <Action>action);
 }
