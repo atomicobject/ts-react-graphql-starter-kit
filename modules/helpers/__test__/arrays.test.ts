@@ -46,7 +46,7 @@ describe('Arrays', () => {
           return isEqual(nativeResult, ourResult);
         });
 
-        jsv.check(prop, {tests: 100})
+      jsv.check(prop, {tests: 100})
     });
   });
 

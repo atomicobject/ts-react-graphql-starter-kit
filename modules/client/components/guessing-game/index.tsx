@@ -26,9 +26,9 @@ export class GuessingGame extends React.Component<Props,{}> {
     const lastGuessDisplay = this.props.lastGuess ? presentLastGuess(this.props.lastGuess) : <p>No guess yet</p>;
     return <div className="blue-box">
         <p> Take a guess! </p>
-        <button onClick={partial(this.props.onGuess, 1)}> 1 </button>
-        <button onClick={partial(this.props.onGuess, 2)}> 2 </button>
-        <button> 3 </button>
+        <button onClick={partial(onGuess, 1)}> 1 </button>
+        <button onClick={partial(onGuess, 2)}> 2 </button>
+        <button onClick={partial(onGuess, 3)}> 3 </button>
         {lastGuessDisplay}        
         <p> Current guess is: {this.props.currentGuess.join(", ")}</p>
         {this.props.children}
