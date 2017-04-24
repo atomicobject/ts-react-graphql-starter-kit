@@ -1,11 +1,16 @@
 import {Lens} from '../../helpers';
+import {strEnum} from '../../helpers';
 
 export interface State {
   readonly currentGuess: number[],
-  readonly lastNumber?: number
+  readonly lastGuess?: number
 }
 
 export namespace State {
-  export const lastNumber = Lens.from<State>().prop('lastNumber');
+  export const lastGuess = Lens.from<State>().prop('lastGuess');
   export const currentGuess = Lens.from<State>().prop('currentGuess');
 }
+
+export const GuessResult = strEnum(["CORRECT", "INCORRECT"]);
+export type GuessResult = keyof typeof GuessResult;
+export interface Guess {status: GuessResult, value: number};

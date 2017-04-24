@@ -3,7 +3,7 @@ import {ConnectedRouter} from 'react-router-redux';
 import { Route,Link} from 'react-router-dom'
 
 import {RedBox} from './components/red-box';
-import {GuessingGame, Props as GameProps} from './components/guessing-game';
+import {GuessingGame} from './containers/guessing-game';
 import {History} from 'history';
 
 function Home() {
@@ -22,13 +22,8 @@ function Foo() {
 }
 
 function Game() {
-  const props: GameProps = {
-    currentGuess: [1, 3],
-    lastGuess: {status: "CORRECT", value: 2},
-    onGuess: (n: number) => alert(`hello ${n}`),
-  }
   return <div>
-    <GuessingGame {...props}></GuessingGame>
+    <GuessingGame/>
     <Link to="/">Go Home</Link>
   </div>;
 }

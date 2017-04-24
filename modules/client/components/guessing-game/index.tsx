@@ -1,18 +1,19 @@
 import * as React from 'react';
-import {strEnum} from '../../../helpers';
 import {partial} from 'lodash';
+import {Guess, GuessResult} from '../../state'
 
 require('./styles.scss');
 
-const GuessResult = strEnum(["CORRECT", "INCORRECT"]);
-type GuessResult = keyof typeof GuessResult;
-interface Guess {status: GuessResult, value: number};
-
-export interface Props {
+export interface StateProps {
   currentGuess: number[],
   lastGuess?: Guess, 
+}
+
+export interface DispatchProps {
   onGuess: (n: number) => void,
 }
+
+export interface Props extends StateProps, DispatchProps{ }
 
 function presentLastGuess(guess: Guess) {
   const correctnessDescription = guess.status === GuessResult.CORRECT ? "RIGHT" : "WRONG"
