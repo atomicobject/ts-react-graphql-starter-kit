@@ -8,11 +8,11 @@
     "indent": [true, "spaces"],
     "interface-name": [false],
     "ordered-imports": [false],
-    "object-literal-sort-keys": [false],
+    "object-literal-sort-keys": false,
     "no-console": [false],
     "no-var-requires": false,
     "no-multi-spaces": true,
-    "no-consecutive-blank-lines": true,
+    "no-consecutive-blank-lines": [true],
     "no-constant-condition": true,
     "no-irregular-whitespace": true,
     "ter-indent": ["error", 2]

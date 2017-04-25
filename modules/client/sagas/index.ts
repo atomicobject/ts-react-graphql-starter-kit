@@ -3,9 +3,9 @@ import {call, put, takeLatest, take, spawn, fork} from 'redux-saga/effects';
 import {delay} from 'redux-saga'
 import {ActionTypes,
         GuessSubmittedAction, 
-        makeGoodGuessOccurredAction, 
-        makeBadGuessOccurredAction, 
-        makeGameWonAction} from '../actions'
+        goodGuessOccurred, 
+        badGuessOccurred, 
+        gameWon} from '../actions'
 
 export async function foo(x:number) : Promise<string> {
   console.log("called me")
@@ -26,14 +26,14 @@ export function* gameSaga() : SagaIterator {
     for(; currentGuess < rightAnswer.length; currentGuess++) {
       const guess: GuessSubmittedAction = yield take(ActionTypes.GUESS_SUBMITTED);
       if (guess.value === rightAnswer[currentGuess]) {
-        yield put(makeGoodGuessOccurredAction(guess.value));
+        yield put(goodGuessOccurred(guess.value));
       } else {
-        yield put(makeBadGuessOccurredAction(guess.value));
+        yield put(badGuessOccurred(guess.value));
         break;;
       } 
     }
     if (currentGuess === rightAnswer.length) {
-      yield put(makeGameWonAction(rightAnswer));
+      yield put(gameWon(rightAnswer));
     }
 
     // wait for another guess.

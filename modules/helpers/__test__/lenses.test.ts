@@ -93,6 +93,25 @@ describe('Lens', () => {
         foo: { bar: 10 }
       });
     });
+
+    it("can be used fluently", () => {
+      interface Bar { bar: number; }
+      let bar: Bar = { bar: 1 };
+      interface Foo { foo: Bar; }
+      let o: Foo = { foo: bar };
+      let l1 = Lens.from<Foo>().prop('foo');
+      let l2 = Lens.from<Bar>().prop('bar');
+
+      let composed = l1.comp(l2);
+      expect(composed(o)).toBe(1);
+      expect(composed.get(o)).toBe(1);
+      expect(composed.set(o, 10)).toEqual({
+        foo: { bar: 10 }
+      });
+      expect(composed.set(10)(o)).toEqual({
+        foo: { bar: 10 }
+      });
+    });
   });
 
   describe('map', () => {

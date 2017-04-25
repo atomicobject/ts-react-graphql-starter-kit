@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import {Dispatch} from 'redux'
 import {StateProps, DispatchProps, GuessingGame as GuessingGameComponent} from '../components/guessing-game'
 import {Guess, GuessResult, State} from '../state'
-import {makeGuessSubmittedAction} from '../actions'
+import {guessSubmitted} from '../actions'
 
 function mapStateToProps(state: State): StateProps {
   return {
@@ -14,7 +14,7 @@ function mapStateToProps(state: State): StateProps {
 
 function mapDispatchToProps(dispatch: Dispatch<any>): DispatchProps {
   return {
-    onGuess: (n: number) => dispatch(makeGuessSubmittedAction(n)),
+    onGuess: (n: number) => dispatch(guessSubmitted(n)),
   }
 }
 

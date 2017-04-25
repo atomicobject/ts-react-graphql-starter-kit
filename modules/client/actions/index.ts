@@ -19,7 +19,7 @@ export type GuessSubmittedAction = {
   readonly value: number,
 }
 
-export function makeGuessSubmittedAction(guess: number): GuessSubmittedAction {
+export function guessSubmitted(guess: number): GuessSubmittedAction {
   return { type: ActionTypes.GUESS_SUBMITTED, value: guess }
 }
 
@@ -28,7 +28,7 @@ export type GoodGuessOccurredAction = {
   readonly value: number, 
 }
 
-export function makeGoodGuessOccurredAction(guess: number): GoodGuessOccurredAction {
+export function goodGuessOccurred(guess: number): GoodGuessOccurredAction {
   return { type: ActionTypes.GOOD_GUESS_OCCURRED, value: guess }
 }
 
@@ -37,7 +37,7 @@ export type BadGuessOccurredAction = {
   readonly value: number, 
 }
 
-export function makeBadGuessOccurredAction(guess: number): BadGuessOccurredAction {
+export function badGuessOccurred(guess: number): BadGuessOccurredAction {
   return { type: ActionTypes.BAD_GUESS_OCCURRED, value: guess }
 }
 
@@ -46,7 +46,7 @@ export type GameWonAction = {
   readonly correctAnswer: number[], 
 }
 
-export function makeGameWonAction(correctAnswer: number[]) {
+export function gameWon(correctAnswer: number[]) {
   return { type: ActionTypes.GAME_WON, correctAnswer }
 }
 

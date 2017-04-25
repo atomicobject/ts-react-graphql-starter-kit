@@ -4,10 +4,9 @@
     "module": "commonjs",
     "target": "es5",
     "allowJs": true,
-    "noImplicitAny": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "strictNullChecks": true,
+    "strict": true,
     "outDir": "./dist/stuff/",
     "lib": [
       "dom",

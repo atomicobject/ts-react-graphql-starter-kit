@@ -28,7 +28,7 @@ export namespace Arrays {
   }
 
   /** Like Array#splice but returns a copy */
-  export function splice<T>(a:T[], i: number, del: number, ...add: T[]) {
+  export function splice<T>(a: T[], i: number, del: number, ...add: T[]) {
     return [
       ...a.slice(0, i),
       ...add,
