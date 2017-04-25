@@ -34,6 +34,8 @@ export function gameReducer(state: State, action: ActionTypes) {
       State.guessSequence.set([])
     )(state)
   
+  // case winning numbers changed
+  
   default: 
     return state;
   } 

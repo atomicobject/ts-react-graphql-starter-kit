@@ -1,11 +1,17 @@
 import {SagaIterator} from 'redux-saga';
-import {call, put, takeLatest, take, spawn, fork} from 'redux-saga/effects';
+import {call, put, takeLatest, take, fork, select} from 'redux-saga/effects';
 import {delay} from 'redux-saga'
 import {ActionTypes,
         GuessSubmittedAction, 
         goodGuessOccurred, 
         badGuessOccurred, 
         gameWon} from '../actions'
+import { State } from '../state'
+
+import { graphqlClient } from '../graphql-client';
+import gql from 'graphql-tag';
+
+import { Answer } from '../../graphql/types';
 
 export async function foo(x:number) : Promise<string> {
   console.log("called me")
@@ -18,11 +24,25 @@ export function* callAFunctionSaga() : SagaIterator {
   yield put({type: 'gotResult', value: x});
 }
 
+export async function fetchAnswers(): Promise<number[]> {
+  const result = await graphqlClient.query<{ answer: Answer }>({
+    query: gql`{ answer }`,
+  });
+
+  return result.data.answer
+}
+
 export function* gameSaga() : SagaIterator {
-  const rightAnswer = [2,3,1];
   let guessedRight = false;  
+
+  // const newAnswer = yield call(fetchAnswers)
+  // yield put(answerChanged(newAnswer))
+
   while(!guessedRight) {
     let currentGuess = 0; 
+
+    const rightAnswer = [2, 3, 1];
+    // const rightAnswer: number[] = yield select(State.winningNumber)
     for(; currentGuess < rightAnswer.length; currentGuess++) {
       const guess: GuessSubmittedAction = yield take(ActionTypes.GUESS_SUBMITTED);
       if (guess.value === rightAnswer[currentGuess]) {
@@ -34,17 +54,10 @@ export function* gameSaga() : SagaIterator {
     }
     if (currentGuess === rightAnswer.length) {
       yield put(gameWon(rightAnswer));
+
+      // const newAnswer = yield call(fetchAnswers)
+      // yield put(answerChanged(newAnswer))
     }
-
-    // wait for another guess.
-    // if guessed wrong, put(bad guess) restart loop;
-    // if guesed right, put(good guess!)
-
-    // wait for another guess.
-    // if guessed wrong, put(bad guess) restart loop;
-    // if guesed right, put(good guess!)
-
-    // guessedRight = true;
   }
 }
 

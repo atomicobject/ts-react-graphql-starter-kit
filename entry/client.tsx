@@ -15,6 +15,8 @@ import '../modules/client/styles/main.scss';
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory';
 
+import gql from 'graphql-tag';
+
 const history = createHistory()
 
 const sagaMiddleware = createSagaMiddleware();

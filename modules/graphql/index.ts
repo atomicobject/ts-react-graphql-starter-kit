@@ -1,3 +1,4 @@
+import {Answer} from './types';
 
 export const schema = `
   type Retailer {
@@ -15,7 +16,8 @@ export const schema = `
   }
 
   type Query {
-    retailers: [Retailer]
+    retailers: [Retailer],
+    answer: [Int]
   }
 `;
 
@@ -30,6 +32,10 @@ export const resolvers = {
         id: 2,
         name: "bar",
       },
-    ]
+    ],
+
+    answer(): Answer {
+      return [2,3,1];
+    }
   }
 }

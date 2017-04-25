@@ -1,0 +1,11 @@
+
+User->Button: User makes a guess
+Button->Dispatch: A guess happened!
+Dispatch->Reducer: A guess happened!
+Reducer->Reducer: I don't care
+Dispatch->Saga: A guess happened!
+Saga->Saga: Cool man. Was it right?
+Saga->Harness: Hey. Please put this new GoodGuess action
+Harness->Dispatch: OK. Here's action. Do something with it. 
+Dispatch->Reducer: A good guess happened
+Reducer->State: Oh hey. Here's a new last guess and sequence. 
