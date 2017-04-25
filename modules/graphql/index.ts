@@ -1,4 +1,5 @@
 import {Answer} from './types';
+import {shuffle, slice} from 'lodash';
 
 export const schema = `
   type Retailer {
@@ -35,7 +36,7 @@ export const resolvers = {
     ],
 
     answer(): Answer {
-      return [2,3,1];
+      return shuffle([1,2,3]) as Answer;
     }
   }
 }

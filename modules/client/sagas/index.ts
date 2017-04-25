@@ -3,6 +3,7 @@ import {call, put, takeLatest, take, fork, select} from 'redux-saga/effects';
 import {delay} from 'redux-saga'
 import {ActionTypes,
         GuessSubmittedAction, 
+        answerChanged,
         goodGuessOccurred, 
         badGuessOccurred, 
         gameWon} from '../actions'
@@ -24,39 +25,40 @@ export function* callAFunctionSaga() : SagaIterator {
   yield put({type: 'gotResult', value: x});
 }
 
-export async function fetchAnswers(): Promise<number[]> {
+export async function fetchAnswers(): Promise<Answer> {
   const result = await graphqlClient.query<{ answer: Answer }>({
     query: gql`{ answer }`,
   });
 
-  return result.data.answer
+  return result.data.answer;
 }
 
 export function* gameSaga() : SagaIterator {
   let guessedRight = false;  
 
-  // const newAnswer = yield call(fetchAnswers)
-  // yield put(answerChanged(newAnswer))
+  const newAnswer = yield call(fetchAnswers)
+  yield put(answerChanged(newAnswer))
+  console.log(newAnswer);
 
   while(!guessedRight) {
     let currentGuess = 0; 
 
-    const rightAnswer = [2, 3, 1];
-    // const rightAnswer: number[] = yield select(State.winningNumber)
+    const rightAnswer: Answer = yield select(State.answerSequence);
     for(; currentGuess < rightAnswer.length; currentGuess++) {
       const guess: GuessSubmittedAction = yield take(ActionTypes.GUESS_SUBMITTED);
       if (guess.value === rightAnswer[currentGuess]) {
         yield put(goodGuessOccurred(guess.value));
       } else {
         yield put(badGuessOccurred(guess.value));
-        break;;
+        break;
       } 
     }
     if (currentGuess === rightAnswer.length) {
       yield put(gameWon(rightAnswer));
-
-      // const newAnswer = yield call(fetchAnswers)
-      // yield put(answerChanged(newAnswer))
+      guessedRight = true;
+      // yield put(beginGame())
+      // CALLOUT: Should we loop back to 39 here OR
+      // end and restart the saga?
     }
   }
 }

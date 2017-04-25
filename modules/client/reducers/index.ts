@@ -5,6 +5,7 @@ import {ActionTypes} from '../actions';
 import {GuessResult} from '../state';
 
 const defaultState : State = {
+  answerSequence: [1,2,3],
   gameWon: false,
   lastGuess: undefined,
   guessSequence: [],
@@ -13,6 +14,12 @@ const defaultState : State = {
 import {flow} from 'lodash';
 export function gameReducer(state: State, action: ActionTypes) {
   switch (action.type) {
+
+  case ActionTypes.ANSWER_CHANGED:
+    return flow(
+      State.answerSequence.set(action.answer),
+    )(state)
+
   case ActionTypes.GOOD_GUESS_OCCURRED:
     return flow(
       State.gameWon.set(false),
@@ -33,8 +40,6 @@ export function gameReducer(state: State, action: ActionTypes) {
       State.lastGuess.set(undefined),
       State.guessSequence.set([])
     )(state)
-  
-  // case winning numbers changed
   
   default: 
     return state;

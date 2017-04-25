@@ -1,6 +1,8 @@
 import {strEnum} from '../../helpers'
+import {Answer} from '../../graphql/types'
 
 export const ActionTypes = strEnum([
+  'ANSWER_CHANGED',
   'GUESS_SUBMITTED',
   'GOOD_GUESS_OCCURRED',
   'BAD_GUESS_OCCURRED',
@@ -8,11 +10,21 @@ export const ActionTypes = strEnum([
 ])
 
 export type ActionTypes = 
-  GuessSubmittedAction
+  AnswerChangedAction
+  | GuessSubmittedAction
   | GoodGuessOccurredAction
   | BadGuessOccurredAction
   | GameWonAction
   | OtherAction;
+
+export type AnswerChangedAction = {
+  readonly type: typeof ActionTypes.ANSWER_CHANGED,
+  readonly answer: Answer,
+}
+
+export function answerChanged(newAnswer: Answer): AnswerChangedAction {
+  return { type: ActionTypes.ANSWER_CHANGED, answer: newAnswer}
+}
 
 export type GuessSubmittedAction = {
   readonly type: typeof ActionTypes.GUESS_SUBMITTED,
