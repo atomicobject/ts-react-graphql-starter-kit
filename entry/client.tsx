@@ -4,7 +4,6 @@ import createSagaMiddleware from "redux-saga";
 
 import App from "../modules/client";
 
-import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 
 import { rootSaga } from "../modules/client/sagas";
@@ -16,6 +15,9 @@ import { routerReducer, routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory';
 
 import gql from 'graphql-tag';
+
+import {graphqlClient} from '../modules/client/graphql-client'
+import {ApolloProvider} from 'react-apollo';
 
 const history = createHistory()
 
@@ -40,8 +42,8 @@ let store = createStore(
 sagaMiddleware.run(rootSaga);
 
 ReactDom.render(
-  <Provider store={store}>
-     <App history={history}/>
-  </Provider>,
+  <ApolloProvider client={graphqlClient} store={store}>
+     <App history={history} />
+  </ApolloProvider>,
   document.getElementById("msl-app"),
 );
