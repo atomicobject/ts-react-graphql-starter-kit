@@ -1,5 +1,26 @@
 @import '../../styles/bourbon/_bourbon';
+@import '../../styles/neat/neat';
 
-.blue-box {
-  border: solid 1pt tint(blue, 50%);
+$game-button-grid: (
+  columns: 3,
+  gutter: 20px,
+  // media: 1200px,
+  // color: rgba(#00d4ff, 0.25),
+  // direction: ltr,
+);
+
+.guessing-game {
+  margin: 300px auto;
+  width: 600px;
+}
+
+.guessing-game-buttons {
+  @include grid-container;
+  margin-bottom: 3em;
+}
+
+.btn.guess {
+  @include grid-column(1);
+  padding: 2em;
+  text-align: center;
 }

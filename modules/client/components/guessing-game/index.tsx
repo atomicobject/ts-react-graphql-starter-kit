@@ -30,12 +30,17 @@ export class GuessingGame extends React.Component<Props,{}> {
       <h1>Congratulations! You won!</h1> :
       "";
         
-    return <div className="blue-box">
+    return <div className="guessing-game">
         {congratsDisplay}
-        <p> Take a guess! </p>
-        <button onClick={partial(onGuess, 1)}> 1 </button>
-        <button onClick={partial(onGuess, 2)}> 2 </button>
-        <button onClick={partial(onGuess, 3)}> 3 </button>
+
+        <h2> Take a guess! </h2>
+
+        <div className="guessing-game-buttons">
+          <button className="btn guess" onClick={partial(onGuess, 1)}> 1 </button>
+          <button className="btn guess" onClick={partial(onGuess, 2)}> 2 </button>
+          <button className="btn guess" onClick={partial(onGuess, 3)}> 3 </button>
+        </div>
+
         {lastGuessDisplay}        
         <p> Current guess is: {this.props.currentGuess.join(", ")}</p>
         {this.props.children}
