@@ -1,6 +1,6 @@
 /** Given an object, a sequence of keys, and a value, deep update that value by recursively copying. Type safe. */
 export const updateIn: SafeUpdate = function(o: any, ...args: any[]) {
-  return performUpdate(o, (_) => args[args.length - 1], args, 0, args.length-2);
+  return performUpdate(o, args[args.length - 1], args, 0, args.length-2);
 }
 
 /** Core lens shape. Used to construct Lens and can be passed to higher-order functions, such as Lens.comp */
@@ -176,13 +176,13 @@ function performComposedSet(o: any, v: any, lenses: ILens<any, any>[], index: nu
   }
 }
 
-function performUpdate(o: any, fn: (x:any) => any, keys: string[], idx: number, last: number): any {
+function performUpdate(o: any, v: any, keys: string[], idx: number, last: number): any {
   const copy = Object.assign({}, o);
   if (idx == last) {
-    copy[keys[idx]] = fn(o[keys[idx]]);
+    copy[keys[idx]] = v;
     return copy;
   } else {
-    copy[keys[idx]] = performUpdate(o[keys[idx]], fn, keys, idx+1, last);
+    copy[keys[idx]] = performUpdate(o[keys[idx]], v, keys, idx+1, last);
     return copy;
   }
 }
@@ -207,7 +207,7 @@ class LensFactory<O> {
         return ks.reduce((x, k) => (x as any)[k], o);
       },
       set(o: O, v: any) {
-        return (updateIn as any)(o, ...ks, v);
+        return performUpdate(o, v, ks, 0, ks.length - 1);
       }
     });
   }
