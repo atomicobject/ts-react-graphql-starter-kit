@@ -1,14 +1,16 @@
 import {connect} from 'react-redux'
 import {Dispatch} from 'redux'
 import {StateProps, DispatchProps, GuessingGame as GuessingGameComponent} from '../components/guessing-game'
-import {Guess, GuessResult, State} from '../state'
+import {State, Guess, GuessResult, GameState} from '../state'
+import {Lens} from '../../helpers';
 import {guessSubmitted} from '../actions'
+import {flow} from 'lodash';
 
-function mapStateToProps(state: State): StateProps {
+function mapStateToProps(state: GameState): StateProps {
   return {
-    showCongratulations: State.gameWon(state),
-    currentGuess: State.guessSequence(state),
-    lastGuess: State.lastGuess(state),
+    showCongratulations: GameState.gameWon(state),
+    currentGuess: GameState.guessSequence(state),
+    lastGuess: GameState.lastGuess(state),
   }
 }
 
@@ -19,6 +21,6 @@ function mapDispatchToProps(dispatch: Dispatch<any>): DispatchProps {
 }
 
 export const GuessingGame = connect(
-  mapStateToProps,
+  flow(State.gameState,mapStateToProps),
   mapDispatchToProps
 )(GuessingGameComponent)

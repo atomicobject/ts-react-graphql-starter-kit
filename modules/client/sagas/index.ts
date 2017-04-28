@@ -9,7 +9,7 @@ import {
   badGuessOccurred,
   gameWon
 } from '../actions'
-import { State } from '../state'
+import { State,GameState } from '../state'
 
 import { graphqlClient } from '../graphql-client';
 import gql from 'graphql-tag';
@@ -37,6 +37,7 @@ export async function fetchAnswers(): Promise<Answer> {
 }
 
 export function* gameSaga(): SagaIterator {
+  const getAnswer = State.gameState.comp(GameState.answerSequence)
   while (true) {
     let guessedRight = false;
     const newAnswer = yield call(fetchAnswers)
@@ -45,7 +46,7 @@ export function* gameSaga(): SagaIterator {
     while (!guessedRight) {
       let currentGuess = 0;
 
-      const rightAnswer: Answer = yield select(State.answerSequence);
+      const rightAnswer: Answer = yield select<State>(getAnswer);
       for (; currentGuess < rightAnswer.length; currentGuess++) {
         const guess: GuessSubmittedAction = yield take(ActionTypes.GUESS_SUBMITTED);
         if (guess.value === rightAnswer[currentGuess]) {
