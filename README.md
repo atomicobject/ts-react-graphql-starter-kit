@@ -51,6 +51,16 @@ There are a few key directories:
 * `config` contains configuration files for our various environments. The default config is set up as a twelve-factor app to be hosted in heroku. Most variables can be controlled via the environment – see `config/default.js`.
 * `dist` is where webpack stores compiled slices of the app.
 
+## Setup
+
+* Install Docker.app. Our database and other services are configured to run in docker.
+* Copy `.env.example` to `.env`. You can set any environment variables you want here to influence the application.
+* Start postgres with: `docker-compose up`. This will set up a postgres docker image and start it.
+* Run `yarn db:create` to create development and test databases.
+
+
+Note: Start `docker-compose up` and leave it running any time you want to run the app/tests.
+
 ## Running locally
 Run `yarn dev` to start up both the server and client at the same time. You can use `yarn dev:server` and `yarn dev:client` to run them in separate terminal windows.
 
@@ -148,3 +158,21 @@ For example, it is better to have one `btn` class that has a different `mod-foo`
 
 See the Trello CSS guide for more info.
 
+
+## DB
+
+The database is postgres and is preconfigured to run in Docker.
+
+To connect via a postgres client:
+* Host: 127.0.0.1
+* Port: 5432
+* Username: root
+* No Password 
+
+Database names:
+* `development`
+* `test`
+
+* To start: `docker-compose up` and leave running
+* To create dev/test databases: `yarn db:create`
+* To run psql shell against development DB: `yarn db:run -- development`

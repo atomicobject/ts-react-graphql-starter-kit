@@ -1,5 +1,5 @@
 module.exports = {
-    databaseUrl: process.env.PG_TEST_URL || 'postgres://localhost/msl-test',
+    databaseUrl: process.env.TEST_DATABASE_URL || process.env.DATABASE_URL,
     server: {
         requireAuth: false,
         requireSsl: false,
