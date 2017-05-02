@@ -1,5 +1,5 @@
 import {Answer} from './types';
-import {shuffle, slice} from 'lodash';
+import {shuffle} from 'lodash';
 
 export const schema = `
   type Retailer {

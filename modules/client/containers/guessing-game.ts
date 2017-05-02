@@ -1,8 +1,8 @@
 import {connect} from 'react-redux'
 import {Dispatch} from 'redux'
 import {StateProps, DispatchProps, GuessingGame as GuessingGameComponent} from '../components/guessing-game'
-import {State, Guess, GuessResult, GameState} from '../state'
-import {Lens} from '../../helpers';
+import {State, GameState} from '../state'
+
 import {guessSubmitted} from '../actions'
 import {flow} from 'lodash';
 

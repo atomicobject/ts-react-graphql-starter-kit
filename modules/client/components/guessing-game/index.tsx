@@ -24,7 +24,6 @@ function presentLastGuess(guess: Guess) {
 export class GuessingGame extends React.Component<Props,{}> {
   render() {
     const onGuess = this.props.onGuess;
-    const lastGuess = this.props.lastGuess;
     const lastGuessDisplay = this.props.lastGuess ? presentLastGuess(this.props.lastGuess) : <p>No guess yet</p>;
     const congratsDisplay = this.props.showCongratulations ? 
       <h1>Congratulations! You won!</h1> :

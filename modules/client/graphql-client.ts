@@ -5,4 +5,6 @@ const networkInterface = createBatchingNetworkInterface({
   batchInterval: 10
 });
 
-export const graphqlClient = new ApolloClient();
+export const graphqlClient = new ApolloClient({
+  networkInterface: networkInterface
+});
