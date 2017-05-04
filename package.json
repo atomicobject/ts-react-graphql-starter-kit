@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "heroku:postbuild": "yarn ba",
-    "start": "node --optimize_for_size ./dist/server.js",
+    "start": "node --optimize_for_size --gc_interval=100 ./dist/server.js",
     "build:client": "webpack --config ./webpack/client.config.js",
     "build:server": "webpack --config ./webpack/server.config.js",
     "build": "concurrently -p index 'yarn build:client' 'yarn build:server'",
