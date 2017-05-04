@@ -4,10 +4,11 @@ import createSagaMiddleware from "redux-saga";
 
 import App from "../modules/client";
 
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 
 import { rootSaga } from "../modules/client/sagas";
 import { rootReducer } from "../modules/client/reducers";
+import { State } from "../modules/client/state";
 
 import '../modules/client/styles/main.scss';
 
@@ -17,26 +18,34 @@ import createHistory from 'history/createBrowserHistory';
 import gql from 'graphql-tag';
 
 import {graphqlClient} from '../modules/client/graphql-client'
-import {ApolloProvider} from 'react-apollo';
+import {ApolloProvider, createApolloReducer} from 'react-apollo';
 
 const history = createHistory()
 
 const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ as typeof compose
       || compose;
+
 const enhancer = composeEnhancers(
-  applyMiddleware(sagaMiddleware),
-  applyMiddleware(routerMiddleware(history))
+  applyMiddleware(
+    sagaMiddleware,
+    routerMiddleware(history),
+    graphqlClient.middleware()
+  )
 );
 
-let routingReducer = (s:any, e:any) => {
+const apolloReducer = graphqlClient.reducer();
+function enhancedReducer(s:any, e:any): State {
   let state = rootReducer(s,e);
-  return {...state, router: routerReducer(s && s.router, e)};
+  return {...state, 
+    router: routerReducer(s && s.router, e),
+    apollo: apolloReducer(s && s.apollo, e)
+  };
 }
 
 let store = createStore(
-  routingReducer,
-  enhancer
+  enhancedReducer,
+  enhancer,
 );
 
 sagaMiddleware.run(rootSaga);

@@ -2,6 +2,9 @@ import {Lens} from '../../helpers';
 import {strEnum} from '../../helpers';
 import {Answer} from '../../graphql/types';
 
+import {RouterState} from 'react-router-redux'
+import {Store as ApolloStore} from 'apollo-client/store';
+
 export interface GameState {
   readonly gameWon: boolean,
   readonly lastGuess?: Guess,
@@ -11,6 +14,8 @@ export interface GameState {
 
 export interface State {
   gameState: GameState;
+  router: RouterState;
+  apollo: ApolloStore
 }
 
 export namespace GameState {

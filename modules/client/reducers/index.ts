@@ -10,8 +10,10 @@ const defaultState : State = {
     gameWon: false,
     lastGuess: undefined,
     guessSequence: [],
-  }
-};
+  },
+  router: undefined, // provided at startup
+  apollo: undefined // provided at startup
+} as any;
 
 import {flow} from 'lodash';
 export function gameReducer(state: GameState, action: ActionTypes): GameState {
