@@ -1,5 +1,7 @@
 require("dotenv").config({ silent: false });
 
+const CONCURRENCY = parseInt(process.env.WEB_CONCURRENCY, 10) || 1
+
 module.exports = {
   environment: process.env.NODE_ENV,
   databaseUrl: process.env.DATABASE_URL,
@@ -17,6 +19,8 @@ module.exports = {
     publicHost: (process.env.PUBLIC_HOST || "localhost:3000"),
     requireSsl: (process.env.REQUIRE_SSL !== 'false'),
 
-    graphiql: false
+    graphiql: false,
+    workers: CONCURRENCY,
+    cluster: CONCURRENCY > 1
   },
 };

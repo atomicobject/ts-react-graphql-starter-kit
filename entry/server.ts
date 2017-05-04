@@ -1,4 +1,10 @@
 
 import { startServer } from '../modules/server';
+import * as throng from 'throng';
+import * as config from 'config';
 
-startServer()
+if (config.get<boolean>('server.cluster')) {
+  throng(config.get<number>('server.workers'), startServer)
+} else {
+  startServer();
+}

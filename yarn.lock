@@ -21,6 +21,12 @@
   version "0.22.1"
   resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.1.tgz#740c4cd8c4d3f3074f83b9ab62e711eac2c764ce"
 
+"@types/compression@^0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@types/compression/-/compression-0.0.33.tgz#95dc733a2339aa846381d7f1377792d2553dc27d"
+  dependencies:
+    "@types/express" "*"
+
 "@types/config@^0.0.32":
   version "0.0.32"
   resolved "https://registry.yarnpkg.com/@types/config/-/config-0.0.32.tgz#c106055802d78e234e28374adc4dad460d098558"
@@ -154,6 +160,10 @@
   dependencies:
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
+
+"@types/throng@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/throng/-/throng-4.0.0.tgz#baf75d87f16de95ab01f2421bbe158e26622f94c"
 
 abab@^1.0.3:
   version "1.0.3"
@@ -1035,7 +1045,7 @@ compressible@~2.0.8:
   dependencies:
     mime-db ">= 1.27.0 < 2"
 
-compression@^1.5.2:
+compression@^1.5.2, compression@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/compression/-/compression-1.6.2.tgz#cceb121ecc9d09c52d7ad0c3350ea93ddd402bc3"
   dependencies:
@@ -5584,6 +5594,12 @@ test-exclude@^4.1.0:
 throat@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/throat/-/throat-3.0.0.tgz#e7c64c867cbb3845f10877642f7b60055b8ec0d6"
+
+throng@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/throng/-/throng-4.0.0.tgz#983c6ba1993b58eae859998aa687ffe88df84c17"
+  dependencies:
+    lodash.defaults "^4.0.1"
 
 through2@2.0.1, through2@^2.0.0:
   version "2.0.1"

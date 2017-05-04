@@ -3,5 +3,6 @@ module.exports = {
     server: {
         requireAuth: false,
         requireSsl: false,
+        cluster: false
     }
 }
