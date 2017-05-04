@@ -3,6 +3,11 @@ import * as cors from "cors";
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import * as bodyParser from 'body-parser';
 import * as config from 'config';
+import * as morgan from 'morgan';
+import * as db from '../db';
+
+const knex = db.getConnection();
+const knexLogger = require('knex-logger');
 
 import { makeExecutableSchema } from 'graphql-tools';
 
@@ -15,6 +20,10 @@ export const publicHost = config.get<string>("server.publicHost");
 export const apiHost = config.get<string>("server.apiHost");
 
 export function startServer() {
+  // Logging
+  app.use(morgan('short'));
+  app.use(knexLogger(knex));
+
   app.use(cors());
   app.use(express.static("./dist/"));
 

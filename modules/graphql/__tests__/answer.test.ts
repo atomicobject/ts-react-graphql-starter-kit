@@ -4,8 +4,8 @@ import {uniqWith, isEqual, range} from 'lodash';
 
 describe("answer query", () => {
   it("returns 1, 2, and 3 in some order", () => {
-    var prop = jsv.forall("nat", () => {
-        const result = resolvers.Query.answer();
+    var prop = jsv.forall("nat", async () => {
+        const result = await resolvers.Query.answer();
         result.sort();
         return isEqual([1,2,3], result);
       });

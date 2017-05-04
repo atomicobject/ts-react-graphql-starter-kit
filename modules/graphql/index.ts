@@ -35,7 +35,7 @@ export const resolvers = {
       },
     ],
 
-    answer(): Answer {
+    async answer(): Promise<Answer> {
       return shuffle([1,2,3]) as Answer;
     }
   }
