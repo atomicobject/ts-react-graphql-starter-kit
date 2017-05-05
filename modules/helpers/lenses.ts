@@ -26,9 +26,9 @@ export interface Lens<T,V> {
   /** Given an object and a function that operates on it's value, return an updated object. */
   update(t:T, fn: (v:V) => V): T;
 
-  comp<V2>(l: Lens<V, V2>): Prism<T, V2>;
-  comp<U,V2>(l1: Lens<V, U>, l2: Lens<U, V2>): Prism<T, V2>;
-  comp<U1,U2,V2>(l1: Lens<V, U1>, l2: Lens<U1, U2>, l3: Lens<U2, V2>): Prism<T, V2>;
+  comp<V2>(l: Lens<V, V2>): Lens<T, V2>;
+  comp<U,V2>(l1: Lens<V, U>, l2: Lens<U, V2>): Lens<T, V2>;
+  comp<U1,U2,V2>(l1: Lens<V, U1>, l2: Lens<U1, U2>, l3: Lens<U2, V2>): Lens<T, V2>;
 }
 
 /** Core prism shape. Used to construct Prisms and can be passed to higher-order Prism functions, such as comp */
