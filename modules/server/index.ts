@@ -5,6 +5,7 @@ import * as bodyParser from 'body-parser';
 import * as config from 'config';
 import * as morgan from 'morgan';
 import * as db from '../db';
+import * as compression from 'compression';
 
 const knex = db.getConnection();
 const knexLogger = require('knex-logger');
@@ -21,11 +22,14 @@ export const apiHost = config.get<string>("server.apiHost");
 
 export function startServer() {
   // Logging
+  app.use(compression());
   app.use(morgan('short'));
   app.use(knexLogger(knex));
 
   app.use(cors());
-  app.use(express.static("./dist/"));
+  app.use(express.static("./dist/", {
+    maxAge: '2h'
+  }));
 
   // Force SSL.
   if (config.get("server.requireSsl")) {
