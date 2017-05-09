@@ -12,7 +12,7 @@ const knexLogger = require('knex-logger');
 
 import { makeExecutableSchema } from 'graphql-tools';
 
-import {schema, resolvers} from '../graphql';
+import { schema, resolvers } from '../graphql';
 
 let app = express();
 
@@ -21,15 +21,15 @@ export const publicHost = config.get<string>("server.publicHost");
 export const apiHost = config.get<string>("server.apiHost");
 
 export function startServer() {
-  // Logging
+  // Gzip support
   app.use(compression());
+
+  // Logging
   app.use(morgan('short'));
   app.use(knexLogger(knex));
 
-  app.use(cors());
-  app.use(express.static("./dist/", {
-    maxAge: '2h'
-  }));
+  // app.use(cors());
+  app.use(express.static("./dist/"));
 
   // Force SSL.
   if (config.get("server.requireSsl")) {
@@ -43,7 +43,7 @@ export function startServer() {
   }
 
   app.use("/graphql", bodyParser.json(), graphqlExpress({
-    schema: makeExecutableSchema({typeDefs: schema, resolvers: resolvers})
+    schema: makeExecutableSchema({ typeDefs: schema, resolvers: resolvers })
   }));
 
   if (config.get("server.graphiql")) {
@@ -51,6 +51,10 @@ export function startServer() {
       endpointURL: '/graphql',
     }));
   }
+
+  app.get('/*', function (req, res) {
+    res.sendFile(process.cwd() + '/dist/index.html');
+  });
 
   app.listen(port, () => {
     console.log("up and running on port", port);
