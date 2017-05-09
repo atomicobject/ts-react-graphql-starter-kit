@@ -2,7 +2,7 @@ import {Answer} from './types';
 import {shuffle} from 'lodash';
 import * as fs from 'fs';
 
-export const schema = require('./schema.gql')
+export const schema = require('./schema.graphql')
 
 export const resolvers = {
   Query: {
