@@ -9,15 +9,7 @@ import {History} from 'history';
 function Home() {
   return <div>
     <div>Home</div>
-    <Link to="/foo">Go</Link>
     <Link to="/game">Game</Link>
-  </div>;
-}
-
-function Foo() {
-  return <div>
-    <div>Foo</div>
-    <Link to="/">Go Home</Link>
   </div>;
 }
 
@@ -33,7 +25,6 @@ class App extends React.Component<{},{}> {
     return <div>
       <RedBox> {this.props.children}</RedBox>
     </div>
-    
   }
 }
 
@@ -41,7 +32,6 @@ export default function Root(props: {history: History}) {
   return <ConnectedRouter history={props.history}>
     <App>
       <Route exact path="/" component={Home} />
-      <Route path="/foo" component={Foo} />
       <Route path="/game" component={Game} />
     </App>
   </ConnectedRouter>;
