@@ -1,26 +1,8 @@
 import {Answer} from './types';
 import {shuffle} from 'lodash';
+import * as fs from 'fs';
 
-export const schema = `
-  type Retailer {
-    id: Int,
-    retailerNumber: Int,
-    name: String,
-    address: String,
-    city: String,
-    postalCode: String,
-    latitude: String,
-    longitude: String,
-    retailerTypeId: Int,
-    sellsPokerLotto: Boolean,
-    acceptsCreditOrDebit: Boolean
-  }
-
-  type Query {
-    retailers: [Retailer],
-    answer: [Int]
-  }
-`;
+export const schema = require('./schema.gql')
 
 export const resolvers = {
   Query: {
