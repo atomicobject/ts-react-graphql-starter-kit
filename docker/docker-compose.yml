@@ -1,0 +1,11 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:9.6
+    env_file: "docker.env"
+    ports:
+      - '5432:5432'
+  # redis:
+  #   image: redis:3.2
+  #   ports:
+  #     - "6379:6379"
