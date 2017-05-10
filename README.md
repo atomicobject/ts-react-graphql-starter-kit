@@ -8,13 +8,14 @@ Still to be set up/configured in this starter kit.
 ### Starter kit todos
 - [ ] CoreJS for polyfill support
 - [ ] fetch polyfill for Apollo in non-bleeding edge browser?
-- [x] DB / Docker / migrations
 - [ ] Source maps
 - [ ] Browser testing – nightmare?
-- [x] Node clustering
 - [ ] css prefixing settings
 - [ ] Reselect?
+- [ ] Clean DB between tests – pull in `knex-cleaner`
+- [x] Node clustering
 - [x] GraphQL client
+- [x] DB / Docker / migrations
 
 ### README Todos
 
@@ -22,10 +23,11 @@ Still to be set up/configured in this starter kit.
 - [x] Running tests
 - [x] TSlint
 - [x] Async (redux sagas)
-- [ ] Database
+- [x] Database
 - [x] Selectors/state updates – lens intro
 - [x] Bourbon/neat trello CSS guide
 - [x] Property-based testing
+- [ ] Debugging
 
 
 ## Stack
