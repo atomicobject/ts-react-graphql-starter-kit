@@ -1,6 +1,9 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga'
+
+// tslint chokes on this and thinks it's unused for some reason
+// tslint:disable-next-line no-unused-variable
 import { AnswerQuery } from '../graphql-types';
 
 import {
