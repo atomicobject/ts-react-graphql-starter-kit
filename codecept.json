@@ -1,0 +1,18 @@
+{
+  "tests": "./test/acceptance/**.test.ts",
+  "timeout": 10000,
+  "output": "./test/acceptance/output",
+  "helpers": {
+    "Nightmare": {
+      "url": "http://localhost:3002",
+      "show": false,
+      "restart": false
+    }
+  },
+  "include": {
+    "I": "./test/acceptance/steps_file.js"
+  },
+  "bootstrap": false,
+  "mocha": {},
+  "name": "starter-kit"
+}
