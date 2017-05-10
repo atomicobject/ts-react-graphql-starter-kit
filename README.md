@@ -53,6 +53,14 @@ There are a few key directories:
 * `config` contains configuration files for our various environments. The default config is set up as a twelve-factor app to be hosted in heroku. Most variables can be controlled via the environment – see `config/default.js`.
 * `dist` is where webpack stores compiled slices of the app.
 
+Default modules:
+* `client` – React/redux front-end.
+* `db` – core knex database connection helpers
+* `records` – database record types and repositories, with base record and repository classes in `record`. Depends on `db`
+* `graphql` – Graphql schema and implementation. Depends on `records` and `db`
+* `server` – express.js server that serves the client and graphql api. Depends on `graphql`
+* `helpers` – generic helpers that can be used in any other module – no dependencies
+
 ## Setup
 
 * Install Docker.app. Our database and other services are configured to run in docker.
