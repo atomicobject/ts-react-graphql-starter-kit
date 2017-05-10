@@ -3271,6 +3271,12 @@ jest-snapshot@^20.0.0:
     natural-compare "^1.4.0"
     pretty-format "^20.0.0"
 
+jest-transform-graphql@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jest-transform-graphql/-/jest-transform-graphql-2.0.0.tgz#ee0585a5ef95d5bf8acde0f54479710cb79b2078"
+  dependencies:
+    graphql-tag "^2.0.0"
+
 jest-util@^19.0.0, jest-util@^19.0.2:
   version "19.0.2"
   resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-19.0.2.tgz#e0a0232a2ab9e6b2b53668bdb3534c2b5977ed41"

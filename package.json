@@ -48,7 +48,7 @@
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy",
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(gql|graphql)$": "<rootDir>/__mocks__/fileMock.js"
+      "\\.(gql|graphql)$": "jest-transform-graphql"
     }
   },
   "dependencies": {
@@ -131,6 +131,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^20.0.0",
     "jest-environment-node-debug": "^2.0.0",
+    "jest-transform-graphql": "^2.0.0",
     "nodemon": "^1.11.0",
     "ts-jest": "^19.0.10",
     "webpack-dev-server": "^2.4.4"
