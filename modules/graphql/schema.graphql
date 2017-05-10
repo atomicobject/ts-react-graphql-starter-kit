@@ -14,5 +14,5 @@ type Retailer {
 
 type Query {
   retailers: [Retailer],
-  answer: [Int]
+  answer: [Int!]!
 }

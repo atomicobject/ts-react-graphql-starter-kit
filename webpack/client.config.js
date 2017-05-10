@@ -55,6 +55,14 @@ let compileTypescript = {
     }
   ]
 };
+
+let graphqlToJson =
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader'
+      };
+
 let compileAndExtractSass = {
   test: /\.scss$/,
   use: ExtractTextPlugin.extract({
@@ -201,6 +209,7 @@ module.exports = {
   module: {
     rules: [
       compileTypescript,
+      graphqlToJson,
       compileAndExtractSass,
       minifyCss,
     ].concat(bundleStaticAssets)

@@ -1,8 +1,8 @@
-import {Answer} from './types';
 import {shuffle} from 'lodash';
 import * as fs from 'fs';
 
 export const schema = require('./schema.graphql')
+import {Query} from './schema-types';
 
 export const resolvers = {
   Query: {
@@ -17,8 +17,8 @@ export const resolvers = {
       },
     ],
 
-    async answer(): Promise<Answer> {
-      return shuffle([1,2,3]) as Answer;
+    async answer(): Promise<Query['answer']> {
+      return shuffle([1,2,3]);
     }
   }
 }

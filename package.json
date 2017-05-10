@@ -5,25 +5,23 @@
   "scripts": {
     "heroku:postbuild": "yarn ba",
     "start": "node --optimize_for_size --gc_interval=100 ./dist/server.js",
-
     "build:graphql:schema:json": "apollo-codegen introspect-schema modules/graphql/schema.graphql --output modules/graphql/schema.json",
-    "build:graphql:schema:types": "apollo-codegen generate modules/graphql/**/*.graphql --schema modules/graphql/schema.json --target typescript --output modules/graphql/schema.ts",
-
+    "build:graphql:schema:types": "gql-gen --file modules/graphql/schema.json  --template typescript --out modules/graphql/schema-types.ts modules/graphql/schema.graphql",
+    "build:graphql:client:types": "apollo-codegen generate modules/client/**/*.graphql --schema modules/graphql/schema.json --target typescript --output modules/client/graphql-types.ts",
+    "build:graphql": "yarn build:graphql:schema:json && concurrently 'yarn build:graphql:schema:types' 'yarn build:graphql:client:types'",
     "build:client": "webpack --config ./webpack/client.config.js",
     "build:server": "webpack --config ./webpack/server.config.js",
     "build": "concurrently -p index 'yarn build:client' 'yarn build:server'",
-
-    "dev": "concurrently -p name -n 'webpack-server,nodemon-server,webpack-client' 'yarn dev:server:webpack' 'yarn dev:server:nodemon' 'yarn dev:client'",
+    "dev": "concurrently -p name -n 'webpack-server,nodemon-server,webpack-client,graphql-types' 'yarn dev:server:webpack' 'yarn dev:server:nodemon' 'yarn dev:client' 'yarn dev:graphql'",
     "dev:server": "concurrently -n 'webpack-server,nodemon-server' 'yarn dev:server:webpack' 'yarn dev:server:nodemon'",
     "dev:server:webpack": "webpack --config webpack/server.config.js --watch",
     "dev:server:nodemon": "nodemon --inspect=9229 --watch dist/server.js dist/server.js",
     "dev:client": "node -e 'require(\"./webpack/webpack-dev-server\").startDevServer()'",
-    
+    "dev:graphql": "nodemon -e graphql,gql -w modules/ -x 'yarn build:graphql'",
     "lint": "tslint --type-check -c ./tslint.json -p ./tsconfig.json './modules/**/*.ts*'",
     "pretest": "yarn lint",
     "test": "jest",
     "test:debug": "node --debug-brk ./node_modules/.bin/jest --runInBand",
-
     "db:up": "cd docker; docker-compose up",
     "db:create": "yarn db:create:dev; yarn db:create:test",
     "db:create:dev": "cd docker; docker-compose run  postgres createdb -h postgres development",
@@ -48,7 +46,8 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy",
-      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(gql|graphql)$": "<rootDir>/__mocks__/fileMock.js"
     }
   },
   "dependencies": {
@@ -86,6 +85,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "graphql": "^0.9.3",
+    "graphql-code-generator": "^0.5.2",
     "graphql-server-express": "^0.7.2",
     "graphql-tools": "^0.11.0",
     "html-webpack-plugin": "^2.28.0",

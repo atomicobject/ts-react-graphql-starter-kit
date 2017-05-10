@@ -1,6 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga'
+import {AnswerQuery} from '../graphql-types'
 import {
   ActionTypes,
   GuessSubmittedAction,
@@ -27,9 +28,9 @@ export function* callAFunctionSaga(): SagaIterator {
   yield put({ type: 'gotResult', value: x });
 }
 
-export async function fetchAnswers(): Promise<Answer> {
-  const result = await graphqlClient.query<{ answer: Answer }>({
-    query: gql`{ answer }`,
+export async function fetchAnswers(): Promise<number[]> {
+  const result = await graphqlClient.query<AnswerQuery>({
+    query: require('./Answer.graphql'),
     fetchPolicy: "network-only"
   });
 
@@ -40,7 +41,7 @@ export function* gameSaga(): SagaIterator {
   const getAnswer = State.gameState.comp(GameState.answerSequence)
   while (true) {
     let guessedRight = false;
-    const newAnswer = yield call(fetchAnswers)
+    const newAnswer: Answer = yield call(fetchAnswers)
     yield put(answerChanged(newAnswer))
 
     while (!guessedRight) {
