@@ -1,9 +1,11 @@
 const path = require('path');
 const nodeExternals = require("webpack-node-externals");
+const webpack = require('webpack');
 
 module.exports = {
   entry: './entry/server.ts',
 
+  devtool: 'source-map',
   target: 'node',
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -31,5 +33,9 @@ module.exports = {
       }
     ],
   },
+
+  plugins: [
+    new webpack.BannerPlugin({ banner: 'require("source-map-support").install();', raw: true, entryOnly: false })
+  ]
 
 };

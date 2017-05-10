@@ -8,8 +8,8 @@ Still to be set up/configured in this starter kit.
 ### Starter kit todos
 - [ ] CoreJS for polyfill support
 - [ ] fetch polyfill for Apollo in non-bleeding edge browser?
-- [ ] Source maps
-- [ ] Browser testing – nightmare?
+- [x] Source maps
+- [x] Browser testing – nightmare?
 - [ ] css prefixing settings
 - [ ] Reselect?
 - [ ] Clean DB between tests – pull in `knex-cleaner`
