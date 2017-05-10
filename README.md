@@ -61,6 +61,21 @@ Default modules:
 * `server` – express.js server that serves the client and graphql api. Depends on `graphql`
 * `helpers` – generic helpers that can be used in any other module – no dependencies
 
+## Environment Variables
+
+This app is set up as a 12-factor app, configurable via environment variables.
+
+The supported environment variables are:
+
+* `NODE_ENV` – `test`, `development`, or `production`
+* `DATABASE_URL` – the url of the postgres database.
+* `PORT` – port for the server to bind to. Defaults to `3001`
+* `PUBLIC_HOST` – the public facing domain name to include in e.g. links.
+* `REQUIRE_SSL` – if this is not `false`, all requests are redirected to HTTPS.
+* `WEB_CONCURRENCY` – # of workers to use in clustered mode. Clustering disabled if value is 1.
+* `NODE_MAX_OLD_SIZE` - limit node process size to a given amount. Defaults to `460` MB to work well in 512MB containers, such as heroku.
+
+
 ## Setup
 
 * Install Docker.app. Our database and other services are configured to run in docker.
@@ -93,18 +108,18 @@ Unit tests for a module are located in a `__tests__` directory  in the same dire
 
 ### Running Unit Tests
 
-To run unit tests, run `yarn test`. This simply runs jest in the current directory, which will use config in the `jest` section of `package.json`.
+To run unit tests, run `yarn jest`. This simply runs jest in the current directory, which will use config in the `jest` section of `package.json`.
 
-To  run jest in watch mode, and have it automatically rerun tests when files change:
+To run jest in watch mode, and have it automatically rerun tests when files change:
 
 ```
-yarn test -- --watch
+yarn jest -- --watch
 ```
 
 To see other jest options, you can run:
 
 ```
-yarn test -- --help
+yarn jest -- --help
 ```
 
 ### Property testing
@@ -121,9 +136,9 @@ By building up `Arbitrary` objects for our various types, we will have a library
 
 We are testing react components with [Enzyme](https://github.com/airbnb/enzyme) . See that for more information.
 
-### System tests
+### Acceptance tests
 
-A system test system is **not** in place yet. We’re currently looking at [Nightmare.js](https://github.com/segmentio/nightmare) for full system testing.
+Acceptance tests are written using [Codecept](http://codecept.io), using the [Nightmare.js](http://www.nightmarejs.org) adapter. See the `test:acceptence` tasks for more.
 
 ### Linting
 
