@@ -1,7 +1,8 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga'
-import {AnswerQuery} from '../graphql-types'
+import { AnswerQuery } from '../graphql-types';
+
 import {
   ActionTypes,
   GuessSubmittedAction,
@@ -13,7 +14,6 @@ import {
 import { State,GameState } from '../state'
 
 import { graphqlClient } from '../graphql-client';
-import gql from 'graphql-tag';
 
 import { Answer } from '../../graphql/types';
 

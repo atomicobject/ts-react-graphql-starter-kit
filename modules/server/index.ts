@@ -1,5 +1,5 @@
 import * as express from "express";
-import * as cors from "cors";
+
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import * as bodyParser from 'body-parser';
 import * as config from 'config';

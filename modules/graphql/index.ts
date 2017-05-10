@@ -1,5 +1,4 @@
 import {shuffle} from 'lodash';
-import * as fs from 'fs';
 
 export const schema = require('./schema.graphql')
 import {Query} from './schema-types';
