@@ -6,6 +6,7 @@ const host =
 
 module.exports = {
   server: {
+    cluster: true
   }
 }
 
