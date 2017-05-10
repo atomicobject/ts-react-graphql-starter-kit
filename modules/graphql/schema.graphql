@@ -1,18 +1,13 @@
-type Retailer {
-  id: Int,
-  retailerNumber: Int,
-  name: String,
-  address: String,
-  city: String,
-  postalCode: String,
-  latitude: String,
-  longitude: String,
-  retailerTypeId: Int,
-  sellsPokerLotto: Boolean,
-  acceptsCreditOrDebit: Boolean
+type User {
+  id: Int!,
+  name: String!,
+  email: String!,
 }
 
 type Query {
-  retailers: [Retailer],
+  # Returns all of the users in the system (canned results)
+  users: [User]!,
+
+  # Generates a new answer for the guessing game
   answer: [Int!]!
 }

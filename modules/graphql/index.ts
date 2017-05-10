@@ -5,16 +5,12 @@ import {Query} from './schema-types';
 
 export const resolvers = {
   Query: {
-    retailers: () => [
-      {
-        id: 1,
-        name: "foo",
-      },
-      {
-        id: 2,
-        name: "bar",
-      },
-    ],
+    users(): Query['users'] {
+      return [
+        { id: 1, name: "foo", email: "foo@example.com" },
+        { id: 2, name: "bar", email: "foo@example.com" },
+      ];
+    },
 
     async answer(): Promise<Query['answer']> {
       return shuffle([1,2,3]);

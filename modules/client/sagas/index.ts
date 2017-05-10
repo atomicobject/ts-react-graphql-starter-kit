@@ -1,6 +1,5 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
-import { delay } from 'redux-saga'
 
 // tslint chokes on this and thinks it's unused for some reason
 // tslint:disable-next-line no-unused-variable
@@ -14,24 +13,11 @@ import {
   badGuessOccurred,
   gameWon
 } from '../actions'
-import { State,GameState } from '../state'
 
+import { State,GameState } from '../state'
 import { graphqlClient } from '../graphql-client';
 
-import { Answer } from '../../graphql/types';
-
-export async function foo(x: number): Promise<string> {
-  console.log("called me")
-  return "Howdy!";
-}
-
-export function* callAFunctionSaga(): SagaIterator {
-  const x: string = yield call(foo, 3);
-  yield call(delay, 100);
-  yield put({ type: 'gotResult', value: x });
-}
-
-export async function fetchAnswers(): Promise<number[]> {
+export async function fetchAnswers(): Promise<AnswerQuery['answer']> {
   const result = await graphqlClient.query<AnswerQuery>({
     query: require('./Answer.graphql'),
     fetchPolicy: "network-only"
@@ -44,13 +30,13 @@ export function* gameSaga(): SagaIterator {
   const getAnswer = State.gameState.comp(GameState.answerSequence)
   while (true) {
     let guessedRight = false;
-    const newAnswer: Answer = yield call(fetchAnswers)
+    const newAnswer: AnswerQuery['answer'] = yield call(fetchAnswers)
     yield put(answerChanged(newAnswer))
 
     while (!guessedRight) {
       let currentGuess = 0;
 
-      const rightAnswer: Answer = yield select<State>(getAnswer);
+      const rightAnswer: number[] = yield select<State>(getAnswer);
       for (; currentGuess < rightAnswer.length; currentGuess++) {
         const guess: GuessSubmittedAction = yield take(ActionTypes.GUESS_SUBMITTED);
         if (guess.value === rightAnswer[currentGuess]) {

@@ -1,5 +1,4 @@
 import {strEnum} from '../../helpers'
-import {Answer} from '../../graphql/types'
 
 interface ActionBuilder<T> {
   (): () => T;
@@ -49,7 +48,7 @@ export function actionBuilder<T extends {type: ActionTypeKeys}>(s: T['type']) : 
 
 export type AnswerChangedAction = {
   readonly type: typeof ActionTypes.ANSWER_CHANGED,
-  readonly answer: Answer,
+  readonly answer: number[],
 }
 export const answerChanged = actionBuilder<AnswerChangedAction>(ActionTypes.ANSWER_CHANGED)('answer')
 
