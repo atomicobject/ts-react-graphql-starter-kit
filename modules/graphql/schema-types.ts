@@ -1,8 +1,12 @@
 /* tslint:disable */
 
 export interface Query {
-  users: Array<User>;
+  usersById: Array<User>;
   answer: Array<number>;
+}
+
+export interface UsersByIdQueryArgs {
+  id: number;
 }
 
 export interface User {

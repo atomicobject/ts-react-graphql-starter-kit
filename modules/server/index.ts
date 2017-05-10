@@ -12,7 +12,7 @@ const knexLogger = require('knex-logger');
 
 import { makeExecutableSchema } from 'graphql-tools';
 
-import { schema, resolvers } from '../graphql';
+import { schema, resolvers, buildContext } from '../graphql';
 
 let app = express();
 
@@ -42,9 +42,13 @@ export function startServer() {
     });
   }
 
-  app.use("/graphql", bodyParser.json(), graphqlExpress({
-    schema: makeExecutableSchema({ typeDefs: schema, resolvers: resolvers })
-  }));
+  app.use("/graphql", bodyParser.json(), graphqlExpress((req, res) => ({
+    schema: makeExecutableSchema({ typeDefs: schema, resolvers: resolvers }),
+
+    // Create the context for the request. Get auth info from `req`
+    // if necessary
+    context: buildContext()
+  })));
 
   if (config.get("server.graphiql")) {
     app.use('/graphiql', graphiqlExpress({

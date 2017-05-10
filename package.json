@@ -6,7 +6,7 @@
     "heroku:postbuild": "yarn ba",
     "start": "node --optimize_for_size --gc_interval=100 ./dist/server.js",
     "build:graphql:schema:json": "apollo-codegen introspect-schema modules/graphql/schema.graphql --output modules/graphql/schema.json",
-    "build:graphql:schema:types": "gql-gen --file modules/graphql/schema.json  --template typescript --out modules/graphql/schema-types.ts modules/graphql/schema.graphql",
+    "build:graphql:schema:types": "gql-gen --file modules/graphql/schema.json  --template typescript --out modules/graphql/schema-types.ts modules/graphql/**/*.graphql",
     "build:graphql:client:types": "apollo-codegen generate modules/client/**/*.graphql --schema modules/graphql/schema.json --target typescript --output modules/client/graphql-types.ts",
     "build:graphql": "yarn build:graphql:schema:json && concurrently 'yarn build:graphql:schema:types' 'yarn build:graphql:client:types'",
     "build:client": "webpack --config ./webpack/client.config.js",
