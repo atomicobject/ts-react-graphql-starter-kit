@@ -1,7 +1,7 @@
 import {shuffle} from 'lodash';
 
 export const schema = require('./schema.graphql')
-import {Query} from './schema-types';
+import {Query, UserByIdQueryArgs} from './schema-types';
 
 /** The graphql context type for this app.  */
 export interface Context {
@@ -26,6 +26,11 @@ export const resolvers = {
   Query: {
     async allUsers(obj: {}, args: {}, context: Context): Promise<Query['allUsers']> {
       return await context.users.all();
+    },
+
+    async userById(obj: {}, args: UserByIdQueryArgs, context: Context): Promise<Query['userById']> {
+      const user = await context.users.findById.load(args.id);
+      return user || null;
     },
 
     async answer(): Promise<Query['answer']> {
