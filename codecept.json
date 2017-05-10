@@ -1,5 +1,5 @@
 {
-  "tests": "./test/acceptance/**.test.ts",
+  "tests": "./test/acceptance/**.feature.ts",
   "timeout": 10000,
   "output": "./test/acceptance/output",
   "helpers": {
