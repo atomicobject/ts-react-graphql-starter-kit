@@ -4,6 +4,8 @@ const env = config.get<string>('environment');
 const knexConfig: any = require("../../knexfile")[env];
 
 import * as knexModule from 'knex';
+
+export type Knex = knexModule;
 const knex: typeof knexModule = require("knex");
 
 /** The currently open connection. Set by getConnection and destroyConnection */

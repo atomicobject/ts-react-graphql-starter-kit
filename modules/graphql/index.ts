@@ -1,26 +1,31 @@
 import {shuffle} from 'lodash';
 
 export const schema = require('./schema.graphql')
-import {Query, UsersByIdQueryArgs} from './schema-types';
+import {Query} from './schema-types';
 
 /** The graphql context type for this app.  */
 export interface Context {
   // Add global request context, such as
   // repositories and dataloaders here.
+
+  users: UserRepository
 }
+
+import * as db from '../db';
+import {UserRepository} from '../records/user';
+
 /** Builds a new empty context for a request. */
 export function buildContext() : Context {
-  return {};
+  const conn = db.getConnection();
+  return {
+    users: new UserRepository(conn)
+  };
 }
 
 export const resolvers = {
   Query: {
-    usersById(obj: {}, args: UsersByIdQueryArgs, context: Context): Query['usersById'] {
-      console.log(args.id);
-      return [
-        { id: 1, name: "foo", email: "foo@example.com" },
-        { id: 2, name: "bar", email: "foo@example.com" },
-      ];
+    async allUsers(obj: {}, args: {}, context: Context): Promise<Query['allUsers']> {
+      return await context.users.all();
     },
 
     async answer(): Promise<Query['answer']> {
