@@ -31,7 +31,6 @@ export class RepositoryBase<T extends RecordBase> {
   }
 
   async all(): Promise<Saved<T>[]> {
-    console.log(this.table().all);
     return await this.table();
   }
 
