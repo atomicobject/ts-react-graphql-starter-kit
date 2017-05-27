@@ -59,6 +59,7 @@
     }
   },
   "dependencies": {
+    "@atomic-object/lenses": "^0.1.0",
     "@types/body-parser": "^1.16.3",
     "@types/compression": "^0.0.33",
     "@types/config": "^0.0.32",

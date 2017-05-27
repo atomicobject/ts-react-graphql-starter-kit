@@ -1,4 +1,4 @@
-import {Lens} from '../../helpers';
+import {Lens} from '@atomic-object/lenses';
 import {strEnum} from '../../helpers';
 import {Query} from '../../graphql/schema-types';
 

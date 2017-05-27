@@ -1,6 +1,7 @@
 import {GameState, State} from '../state';
 import {Action} from 'redux';
-import {Arrays, Lens} from '../../helpers';
+import {Lens} from '@atomic-object/lenses';
+import {Arrays} from '@atomic-object/lenses/arrays';
 import {ActionTypes} from '../actions';
 import {GuessResult} from '../state';
 
