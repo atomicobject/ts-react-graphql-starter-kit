@@ -28,6 +28,7 @@ Still to be set up/configured in this starter kit.
 - [x] Bourbon/neat trello CSS guide
 - [x] Property-based testing
 - [ ] Debugging
+- [ ] Repositories/DataLoader/GraphQL Context
 
 
 ## Stack
