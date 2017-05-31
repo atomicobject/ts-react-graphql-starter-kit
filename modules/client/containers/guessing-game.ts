@@ -4,7 +4,7 @@ import {StateProps, DispatchProps, GuessingGame as GuessingGameComponent} from '
 import {State, GameState} from '../state'
 
 import {guessSubmitted} from '../actions'
-import {flow} from 'lodash';
+import flow from 'lodash-es/flow';
 
 function mapStateToProps(state: GameState): StateProps {
   return {

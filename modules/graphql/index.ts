@@ -1,4 +1,4 @@
-import {shuffle} from 'lodash';
+import shuffle from 'lodash-es/shuffle';
 
 export const schema = require('./schema.graphql')
 import {Query, UserByIdQueryArgs} from './schema-types';

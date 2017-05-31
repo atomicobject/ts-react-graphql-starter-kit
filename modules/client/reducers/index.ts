@@ -16,7 +16,7 @@ const defaultState : State = {
   apollo: undefined // provided at startup
 } as any;
 
-import {flow} from 'lodash';
+import flow from 'lodash-es/flow';
 export function gameReducer(state: GameState, action: ActionTypes): GameState {
   switch (action.type) {
 

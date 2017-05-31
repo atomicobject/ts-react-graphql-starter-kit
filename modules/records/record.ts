@@ -1,7 +1,7 @@
 import {Knex} from '../db';
 import * as DataLoader from 'dataloader';
 
-import {keyBy} from 'lodash';
+import keyBy from 'lodash-es/keyBy';
 
 /** Base type for records assumes an incrementing id */
 export interface RecordBase {

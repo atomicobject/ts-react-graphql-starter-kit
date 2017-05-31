@@ -16,7 +16,9 @@ module.exports = {
     extensions: ['.ts', '.tsx','.js'],
   },
 
-  externals: [nodeExternals()],
+  externals: [nodeExternals({
+    whitelist: [/^lodash-es/],
+  })],
   module: {
     loaders: [
       {

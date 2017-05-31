@@ -1,6 +1,8 @@
 import { resolvers } from '../index'
 import * as jsv from 'jsverify';
-import {uniqWith, isEqual, range} from 'lodash';
+import uniqWith from 'lodash-es/uniqWith';
+import isEqual from 'lodash-es/isEqual'; 
+import range from 'lodash-es/range'; 
 
 describe("answer query", () => {
   it("returns 1, 2, and 3 in some order", () => {
