@@ -43,6 +43,8 @@ This project is a single-page webapp using the following technologies:
 * [Redux](http://redux.js.org) for client state management.
 * [Redux Saga](https://redux-saga.js.org) for workflows and asynchronous processes.
 * [JSVerify](http://jsverify.github.io) for property-based testing.
+* [Codecept](http://codecept.io) using [Nightmare.js](http://nightmarejs.org) for acceptance testing.
+* [React Styleguidist](https://react-styleguidist.js.org) for component documentation and style guides.
 
 ## Code Organization
 This repository is structured to encourage a view of the whole repository as one application. The client and server are “just” different entry points, and we use webpack to elide libraries and code that are irrelevant to a particular entry point.
@@ -88,7 +90,14 @@ The supported environment variables are:
 Note: Start `docker-compose up` and leave it running any time you want to run the app/tests.
 
 ## Running locally
-Run `yarn dev` to start up both the server and client at the same time. You can use `yarn dev:server` and `yarn dev:client` to run them in separate terminal windows.
+Run `yarn dev` to start up both the server and client at the same time. 
+
+`yarn dev` runs:
+* webpack in watch mode to hot recompile the server
+* nodemon to run the server on port `3001` and restart the server on recompilation.
+* webpack-dev-server to run the client on port `3000`, with proxy through to the server
+* nodemon processes to regenerate typescript types corresponding to graphql files on change.
+* `styleguidist` to serve the component styleguide on port `6060`.
 
 The dev server watches for changes and restarts `express` each time a dependency file changes.
 
@@ -144,6 +153,14 @@ Acceptance tests are written using [Codecept](http://codecept.io), using the [Ni
 ### Linting
 
 We are using `tslint` for linting. It is run automatically before unit tests.
+
+## Styleguide
+
+We are using [React Styleguidist](https://react-styleguidist.js.org) to generate a styleguide for our react components.
+
+You can create styleguide entries with documentation and examples by simply creating a markdown file in a component directory. See `README.md` files in `modules/client/components` for examples, and browse them on port `6060` when running `yarn dev` (or `yarn dev:styleguide`).
+
+You can build the style guide with `yarn build:styleguide`
 
 ## GraphQL and Code Generation
 

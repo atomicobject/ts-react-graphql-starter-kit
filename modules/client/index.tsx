@@ -15,7 +15,7 @@ function Home() {
 
 function Game() {
   return <div>
-    <GuessingGame/>
+    <GuessingGame />
     <Link to="/">Go Home</Link>
   </div>;
 }

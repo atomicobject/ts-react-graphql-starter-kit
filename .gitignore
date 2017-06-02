@@ -78,6 +78,8 @@ client/src/**/*.jsx
 client/tests/**/*.js
 client/tests/**/*.jsx
 
+styleguide
+
 # DS_Store
 *.DS_Store
 

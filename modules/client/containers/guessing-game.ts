@@ -1,10 +1,15 @@
 import {connect} from 'react-redux'
 import {Dispatch} from 'redux'
-import {StateProps, DispatchProps, GuessingGame as GuessingGameComponent} from '../components/guessing-game'
+import {Props, GuessingGame as GuessingGameComponent} from '../components/guessing-game'
 import {State, GameState} from '../state'
+import {assertAssignable} from '../../helpers';
 
 import {guessSubmitted} from '../actions'
 import flow from 'lodash-es/flow';
+
+type StateProps = Pick<Props, 'showCongratulations'|'currentGuess'|'lastGuess'>
+type DispatchProps = Pick<Props, 'onGuess'>
+assertAssignable<Props, StateProps & DispatchProps>();
 
 function mapStateToProps(state: GameState): StateProps {
   return {

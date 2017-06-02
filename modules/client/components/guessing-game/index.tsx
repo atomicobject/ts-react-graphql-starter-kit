@@ -4,23 +4,23 @@ import {Guess, GuessResult} from '../../state'
 
 require('./styles.scss');
 
-export interface StateProps {
+export interface Props { 
+  /** Toggle whether or not to show the congratulations message for winning the game */
   showCongratulations: boolean,
+  /** The currently accumulated guess (sequence of correct numbers clicked) */
   currentGuess: number[],
+  /** The last guess made by the user – the number and result (good/bad) */
   lastGuess?: Guess, 
-}
-
-export interface DispatchProps {
+  /** Handler for guessing a number. Passed the number clicked. */
   onGuess: (n: number) => void,
 }
-
-export interface Props extends StateProps, DispatchProps{ }
 
 function presentLastGuess(guess: Guess) {
   const correctnessDescription = guess.status === GuessResult.CORRECT ? "RIGHT" : "WRONG"
   return <p> {guess.value} was {correctnessDescription} </p>
 }
 
+/** Presentation component for the guessing game */
 export class GuessingGame extends React.Component<Props,{}> {
   render() {
     const onGuess = this.props.onGuess;
