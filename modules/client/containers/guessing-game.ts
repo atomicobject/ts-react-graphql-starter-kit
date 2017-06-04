@@ -9,23 +9,25 @@ import flow from 'lodash-es/flow';
 
 type StateProps = Pick<Props, 'showCongratulations'|'currentGuess'|'lastGuess'>
 type DispatchProps = Pick<Props, 'onGuess'>
+type OwnProps = {}
 assertAssignable<Props, StateProps & DispatchProps>();
 
-function mapStateToProps(state: GameState): StateProps {
+function mapStateToProps(state: State, ownProps: OwnProps): StateProps {
+  const gameState = State.gameState(state);
   return {
-    showCongratulations: GameState.gameWon(state),
-    currentGuess: GameState.guessSequence(state),
-    lastGuess: GameState.lastGuess(state),
+    showCongratulations: GameState.gameWon(gameState),
+    currentGuess: GameState.guessSequence(gameState),
+    lastGuess: GameState.lastGuess(gameState),
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<any>): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<any>, ownProps: OwnProps): DispatchProps {
   return {
     onGuess: (n: number) => dispatch(guessSubmitted(n)),
   }
 }
 
 export const GuessingGame = connect(
-  flow(State.gameState,mapStateToProps),
+  mapStateToProps,
   mapDispatchToProps
-)(GuessingGameComponent)
+)<OwnProps>(GuessingGameComponent)
