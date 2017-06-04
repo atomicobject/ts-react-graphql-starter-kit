@@ -1,18 +1,18 @@
 import {connect} from 'react-redux'
 import {Dispatch} from 'redux'
-import {Props, GuessingGame as GuessingGameComponent} from '../components/guessing-game'
+import {Props as PresentationProps, GuessingGame as GuessingGameComponent} from '../components/guessing-game'
 import {State, GameState} from '../state'
-import {assertAssignable} from '../../helpers';
+import {AssertAssignable} from '../../helpers';
 
 import {guessSubmitted} from '../actions'
 import flow from 'lodash-es/flow';
 
-type StateProps = Pick<Props, 'showCongratulations'|'currentGuess'|'lastGuess'>
-type DispatchProps = Pick<Props, 'onGuess'>
-type OwnProps = {}
-assertAssignable<Props, StateProps & DispatchProps>();
+type StateProps = Pick<PresentationProps, 'showCongratulations'|'currentGuess'|'lastGuess'>
+type DispatchProps = Pick<PresentationProps, 'onGuess'>
+type Props = {}
+type _check = AssertAssignable<PresentationProps, StateProps & DispatchProps>
 
-function mapStateToProps(state: State, ownProps: OwnProps): StateProps {
+function mapStateToProps(state: State, ownProps: Props): StateProps {
   const gameState = State.gameState(state);
   return {
     showCongratulations: GameState.gameWon(gameState),
@@ -21,7 +21,7 @@ function mapStateToProps(state: State, ownProps: OwnProps): StateProps {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<any>, ownProps: OwnProps): DispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<any>, ownProps: Props): DispatchProps {
   return {
     onGuess: (n: number) => dispatch(guessSubmitted(n)),
   }
@@ -30,4 +30,4 @@ function mapDispatchToProps(dispatch: Dispatch<any>, ownProps: OwnProps): Dispat
 export const GuessingGame = connect(
   mapStateToProps,
   mapDispatchToProps
-)<OwnProps>(GuessingGameComponent)
+)<Props>(GuessingGameComponent)
