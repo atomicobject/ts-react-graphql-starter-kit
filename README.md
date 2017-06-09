@@ -77,6 +77,7 @@ The supported environment variables are:
 * `REQUIRE_SSL` – if this is not `false`, all requests are redirected to HTTPS.
 * `WEB_CONCURRENCY` – # of workers to use in clustered mode. Clustering disabled if value is 1.
 * `NODE_MAX_OLD_SIZE` - limit node process size to a given amount. Defaults to `460` MB to work well in 512MB containers, such as heroku.
+* `DEV_SERVER_DISABLE_HOST_CHECK` - disables the host check in webpack dev server, to allow testing from a VM or other host.
 
 
 ## Setup
