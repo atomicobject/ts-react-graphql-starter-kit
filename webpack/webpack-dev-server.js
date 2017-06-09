@@ -39,6 +39,7 @@ const startDevServer = () => {
       historyApiFallback: true,
       noInfo: noInfo,
       stats: 'errors-only',
+      disableHostCheck: config.get('devServer.disableHostCheck'),
       proxy: {
         '/graphql/*': `http://${PROXY_HOST}`,
         '/graphiql/*': `http://${PROXY_HOST}`

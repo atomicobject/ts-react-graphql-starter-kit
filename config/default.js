@@ -11,6 +11,7 @@ module.exports = {
     hot: true,
     inline: true,
     noInfo: true,
+    disableHostCheck: ['1','true'].includes(process.env.DISABLE_HOST_CHECK)
   },
   server: {
     port: (process.env.PORT || 3001),
