@@ -27,9 +27,6 @@ export function startServer() {
   app.use(morgan('short'));
   app.use(knexLogger(knex));
 
-  app.use(expressStaticGzip("./dist/"))
-  app.use(express.static("./dist/"));
-
   // Force SSL.
   if (config.get("server.requireSsl")) {
     app.use(enforce.HTTPS({
@@ -37,8 +34,14 @@ export function startServer() {
     }));
   }
 
+  // Static assets
+  app.use(expressStaticGzip("./dist/"));
+  app.use(express.static("./dist/"));
+
   // Gzip support
-  // app.use(compression());
+  app.use(compression());
+
+  // GraphQL
   app.use("/graphql", bodyParser.json(), graphqlExpress((req, res) => ({
     schema: makeExecutableSchema({ typeDefs: schema, resolvers: resolvers }),
 
@@ -48,11 +51,13 @@ export function startServer() {
   })));
 
   if (config.get("server.graphiql")) {
+    // GraphQL development web IDE
     app.use('/graphiql', graphiqlExpress({
       endpointURL: '/graphql',
     }));
   }
 
+  // Serve index.html for all unknown URLs
   app.get('/*', function (req, res) {
     res.sendFile(process.cwd() + '/dist/index.html');
   });

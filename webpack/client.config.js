@@ -42,7 +42,7 @@ const environmentPlugins = (() => {
         asset: "[path].gz[query]",
         algorithm: "gzip",
         test: /\.(js|html|css)$/,
-        threshold: 1240,
+        threshold: 10240,
         minRatio: 0.8
       })
     ]
