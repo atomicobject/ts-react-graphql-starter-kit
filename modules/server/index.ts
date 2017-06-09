@@ -9,6 +9,7 @@ import * as compression from 'compression';
 
 const knex = db.getConnection();
 const knexLogger = require('knex-logger');
+const enforce = require('express-sslify')
 
 import { makeExecutableSchema } from 'graphql-tools';
 
@@ -33,13 +34,9 @@ export function startServer() {
 
   // Force SSL.
   if (config.get("server.requireSsl")) {
-    app.use((req, res, next) => {
-      if (req.protocol !== "https" && req.headers["x-forwarded-proto"] !== "https") {
-        return res.status(403).send({ message: "SSL required" });
-      }
-      // allow the request to continue
-      next();
-    });
+    app.use(enforce.HTTPS({
+      trustProtoHeader: true
+    }));
   }
 
   app.use("/graphql", bodyParser.json(), graphqlExpress((req, res) => ({
