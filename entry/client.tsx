@@ -10,7 +10,7 @@ import { rootSaga } from "../modules/client/sagas";
 import { rootReducer } from "../modules/client/reducers";
 import { State } from "../modules/client/state";
 
-import '../modules/client/styles/main.scss';
+require('../modules/client/styles/main.scss');
 
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory';

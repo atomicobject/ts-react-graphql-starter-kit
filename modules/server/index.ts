@@ -10,6 +10,7 @@ import * as compression from 'compression';
 const knex = db.getConnection();
 const knexLogger = require('knex-logger');
 const enforce = require('express-sslify')
+const expressStaticGzip = require("express-static-gzip");
 
 import { makeExecutableSchema } from 'graphql-tools';
 
@@ -22,14 +23,11 @@ export const publicHost = config.get<string>("server.publicHost");
 export const apiHost = config.get<string>("server.apiHost");
 
 export function startServer() {
-  // Gzip support
-  app.use(compression());
-
   // Logging
   app.use(morgan('short'));
   app.use(knexLogger(knex));
 
-  // app.use(cors());
+  app.use(expressStaticGzip("./dist/"))
   app.use(express.static("./dist/"));
 
   // Force SSL.
@@ -39,6 +37,8 @@ export function startServer() {
     }));
   }
 
+  // Gzip support
+  // app.use(compression());
   app.use("/graphql", bodyParser.json(), graphqlExpress((req, res) => ({
     schema: makeExecutableSchema({ typeDefs: schema, resolvers: resolvers }),
 

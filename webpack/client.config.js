@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SplitByPathPlugin = require('webpack-split-by-path');
+const CompressionPlugin = require("compression-webpack-plugin");
 
 ////////////////////////////////////////////////////////////////////////////////
 // per-environment plugins
@@ -12,16 +13,38 @@ const environmentPlugins = (() => {
   if (config.get("minify")) {
     return [
       new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: function (module) {
+          // this assumes your vendor imports exist in the node_modules directory
+          return module.context && module.context.indexOf('node_modules') !== -1;
+        }
+      }),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'manifest' //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
+      }),
       new webpack.optimize.UglifyJsPlugin({
         sourceMap: true,
         minimize: true,
+        comments: false,
+        beautify: false,
+        mangle: {
+          screw_ie8: true,
+        },
         compress: {
+          screw_ie8: true,
           unused: true,
           dead_code: true,
           warnings: false,
         },
       }),
+      new CompressionPlugin({
+        asset: "[path].gz[query]",
+        algorithm: "gzip",
+        test: /\.(js|html|css)$/,
+        threshold: 1240,
+        minRatio: 0.8
+      })
     ]
   }
 
@@ -61,6 +84,7 @@ let compileAndExtractSass = {
   test: /\.scss$/,
   use: ExtractTextPlugin.extract({
     fallback: 'style-loader',
+    allChunks: true,
     use: [
       {
         loader: 'postcss-loader',
@@ -78,34 +102,6 @@ let compileAndExtractSass = {
         }
       },
       { loader: 'sass-loader' },
-    ]
-  })
-};
-
-let minifyCss = {
-  test: /\.css$/,
-  use: ExtractTextPlugin.extract({
-    fallback: 'style-loader',
-    use: [
-      {
-        loader: 'css-loader',
-        options: {
-          minimize: true,
-          importLoaders: 1
-        }
-      },
-      {
-        loader: 'postcss-loader',
-        options: {
-          plugins: [
-            require('cssnano')({
-              safe: true,
-              sourcemap: true,
-              autoprefixer: false,
-            }),
-          ]
-        }
-      },
     ]
   })
 };
@@ -194,7 +190,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
 
     // Extract embedded css into a file
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin(config.get('minify') ? '[name].[chunkhash].css' : '[name].css'),
 
     // Show a nice progress bar on the console.
     new ProgressBarPlugin({ clear: false }),
@@ -203,7 +199,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
-    filename: 'client.js',
+    filename: config.get("minify") ? 'client.[chunkhash].js' : 'client.js',
   },
 
   resolve: {
@@ -215,7 +211,6 @@ module.exports = {
       compileTypescript,
       graphqlToJson,
       compileAndExtractSass,
-      minifyCss,
     ].concat(bundleStaticAssets)
   },
 };
