@@ -6,14 +6,10 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SplitByPathPlugin = require('webpack-split-by-path');
 
-
 ////////////////////////////////////////////////////////////////////////////////
 // per-environment plugins
 const environmentPlugins = (() => {
-  switch (process.env.NODE_ENV) {
-  case "production":
-
-    // Optimize/minify in production
+  if (config.get("minify")) {
     return [
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.optimize.DedupePlugin(),
@@ -26,12 +22,10 @@ const environmentPlugins = (() => {
           warnings: false,
         },
       }),
-      // TODO: split up javascript payload for faster download
-      // new SplitByPathPlugin([
-      //   { name: 'vendor', path: [/*...*/] },
-      // ]),
-    ];
+    ]
+  }
 
+  switch (process.env.NODE_ENV) {
   case "development":
     return [
       // Hot reloading is set up in webpack-dev-server.js
@@ -69,10 +63,18 @@ let compileAndExtractSass = {
     fallback: 'style-loader',
     use: [
       {
-        loader: 'css-loader',
+        loader: 'postcss-loader',
         options: {
-          minimize: true,
-          importLoaders: 1
+          plugins: [
+            ...config.get('minify')
+              ? [require('cssnano')({
+                safe: true,
+                sourcemap: true,
+                autoprefixer: false,
+              })]
+              : [],
+            require('autoprefixer'),
+          ]
         }
       },
       { loader: 'sass-loader' },

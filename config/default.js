@@ -5,6 +5,7 @@ const CONCURRENCY = parseInt(process.env.WEB_CONCURRENCY, 10) || 1
 module.exports = {
   environment: process.env.NODE_ENV,
   databaseUrl: process.env.DATABASE_URL,
+  minify: false,
   devServer: {
     url: 'http://localhost',
     port: 3000,

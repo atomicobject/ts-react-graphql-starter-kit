@@ -5,6 +5,7 @@ const host =
         process.env.PUBLIC_HOST;
 
 module.exports = {
+  minify: true,
   server: {
     cluster: true
   }

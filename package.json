@@ -2,6 +2,10 @@
   "name": "starter-kit",
   "version": "1.0.0",
   "license": "MIT",
+  "browserslist": [
+    "last 2 versions",
+    "IE 11"
+  ],
   "scripts": {
     "start": "nf start",
     "build:graphql:schema:json": "apollo-codegen introspect-schema modules/graphql/schema.graphql --output modules/graphql/schema.json",
@@ -86,6 +90,7 @@
     "@types/throng": "^4.0.0",
     "apollo-client": "^1.0.4",
     "apollo-codegen": "^0.10.13",
+    "autoprefixer": "^7.1.1",
     "awesome-typescript-loader": "^3.1.2",
     "body-parser": "^1.17.1",
     "compression": "^1.6.2",
