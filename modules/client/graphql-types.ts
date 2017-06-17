@@ -3,6 +3,6 @@
 
 export interface AnswerQuery {
   // Generates a new answer for the guessing game
-  answer: Array<number>;
+  answer: Array< number >;
 }
 /* tslint:enable */
