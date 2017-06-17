@@ -1,7 +1,7 @@
-import { ApolloClient, createBatchingNetworkInterface } from 'react-apollo';
+import { ApolloClient, createBatchingNetworkInterface } from "react-apollo";
 
 const networkInterface = createBatchingNetworkInterface({
-  uri: '/graphql',
+  uri: "/graphql",
   batchInterval: 10,
   opts: {
     credentials: "same-origin"

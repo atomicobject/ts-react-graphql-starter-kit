@@ -1,9 +1,9 @@
-import { SagaIterator } from 'redux-saga';
-import { call, put, take, fork, select } from 'redux-saga/effects';
+import { SagaIterator } from "redux-saga";
+import { call, put, take, fork, select } from "redux-saga/effects";
 
 // tslint chokes on this and thinks it's unused for some reason
 // tslint:disable-next-line no-unused-variable
-import { AnswerQuery } from '../graphql-types';
+import { AnswerQuery } from "../graphql-types";
 
 import {
   ActionTypes,
@@ -12,14 +12,14 @@ import {
   goodGuessOccurred,
   badGuessOccurred,
   gameWon
-} from '../actions'
+} from "../actions";
 
-import { State,GameState } from '../state'
-import { graphqlClient } from '../graphql-client';
+import { State, GameState } from "../state";
+import { graphqlClient } from "../graphql-client";
 
-export async function fetchAnswers(): Promise<AnswerQuery['answer']> {
+export async function fetchAnswers(): Promise<AnswerQuery["answer"]> {
   const result = await graphqlClient.query<AnswerQuery>({
-    query: require('./Answer.graphql'),
+    query: require("./Answer.graphql"),
     fetchPolicy: "network-only"
   });
 
@@ -27,18 +27,20 @@ export async function fetchAnswers(): Promise<AnswerQuery['answer']> {
 }
 
 export function* gameSaga(): SagaIterator {
-  const getAnswer = State.gameState.comp(GameState.answerSequence)
+  const getAnswer = State.gameState.comp(GameState.answerSequence);
   while (true) {
     let guessedRight = false;
-    const newAnswer: AnswerQuery['answer'] = yield call(fetchAnswers)
-    yield put(answerChanged(newAnswer))
+    const newAnswer: AnswerQuery["answer"] = yield call(fetchAnswers);
+    yield put(answerChanged(newAnswer));
 
     while (!guessedRight) {
       let currentGuess = 0;
 
       const rightAnswer: number[] = yield select<State>(getAnswer);
       for (; currentGuess < rightAnswer.length; currentGuess++) {
-        const guess: GuessSubmittedAction = yield take(ActionTypes.GUESS_SUBMITTED);
+        const guess: GuessSubmittedAction = yield take(
+          ActionTypes.GUESS_SUBMITTED
+        );
         if (guess.value === rightAnswer[currentGuess]) {
           yield put(goodGuessOccurred(guess.value));
         } else {

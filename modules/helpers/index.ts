@@ -1,3 +1,3 @@
-export {strEnum} from './str-enum';
+export { strEnum } from "./str-enum";
 
-export {AssertAssignable} from './assert-assignable'
+export { AssertAssignable } from "./assert-assignable";

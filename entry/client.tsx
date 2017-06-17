@@ -10,21 +10,22 @@ import { rootSaga } from "../modules/client/sagas";
 import { rootReducer } from "../modules/client/reducers";
 import { State } from "../modules/client/state";
 
-require('../modules/client/styles/main.scss');
+require("../modules/client/styles/main.scss");
 
-import { routerReducer, routerMiddleware } from 'react-router-redux'
-import createHistory from 'history/createBrowserHistory';
+import { routerReducer, routerMiddleware } from "react-router-redux";
+import createHistory from "history/createBrowserHistory";
 
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
-import {graphqlClient} from '../modules/client/graphql-client'
-import {ApolloProvider, createApolloReducer} from 'react-apollo';
+import { graphqlClient } from "../modules/client/graphql-client";
+import { ApolloProvider, createApolloReducer } from "react-apollo";
 
-const history = createHistory()
+const history = createHistory();
 
 const sagaMiddleware = createSagaMiddleware();
-const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ as typeof compose
-      || compose;
+const composeEnhancers =
+  ((window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ as typeof compose) ||
+  compose;
 
 const enhancer = composeEnhancers(
   applyMiddleware(
@@ -35,24 +36,22 @@ const enhancer = composeEnhancers(
 );
 
 const apolloReducer = graphqlClient.reducer();
-function enhancedReducer(s:any, e:any): State {
-  let state = rootReducer(s,e);
-  return {...state, 
+function enhancedReducer(s: any, e: any): State {
+  let state = rootReducer(s, e);
+  return {
+    ...state,
     router: routerReducer(s && s.router, e),
     apollo: apolloReducer(s && s.apollo, e)
   };
 }
 
-let store = createStore(
-  enhancedReducer,
-  enhancer,
-);
+let store = createStore(enhancedReducer, enhancer);
 
 sagaMiddleware.run(rootSaga);
 
 ReactDom.render(
   <ApolloProvider client={graphqlClient} store={store}>
-     <App history={history} />
+    <App history={history} />
   </ApolloProvider>,
-  document.getElementById("msl-app"),
+  document.getElementById("msl-app")
 );

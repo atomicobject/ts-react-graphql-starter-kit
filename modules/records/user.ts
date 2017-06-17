@@ -1,5 +1,5 @@
-import {Knex} from '../db';
-import {RecordBase, RepositoryBase} from './record';
+import { Knex } from "../db";
+import { RecordBase, RepositoryBase } from "./record";
 
 export interface UserRecord extends RecordBase {
   id?: number;
@@ -10,6 +10,6 @@ export interface UserRecord extends RecordBase {
 export class UserRepository extends RepositoryBase<UserRecord> {
   constructor(db: Knex) {
     super(db);
-    this.tableName = 'users';
+    this.tableName = "users";
   }
 }
