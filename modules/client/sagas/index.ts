@@ -6,7 +6,7 @@ import { call, put, take, fork, select } from "redux-saga/effects";
 import { AnswerQuery } from "../graphql-types";
 
 import {
-  ActionTypes,
+  ActionTypeKeys,
   GuessSubmittedAction,
   answerChanged,
   goodGuessOccurred,
@@ -39,7 +39,7 @@ export function* gameSaga(): SagaIterator {
       const rightAnswer: number[] = yield select<State>(getAnswer);
       for (; currentGuess < rightAnswer.length; currentGuess++) {
         const guess: GuessSubmittedAction = yield take(
-          ActionTypes.GUESS_SUBMITTED
+          ActionTypeKeys.GUESS_SUBMITTED
         );
         if (guess.value === rightAnswer[currentGuess]) {
           yield put(goodGuessOccurred(guess.value));

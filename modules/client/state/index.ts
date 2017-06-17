@@ -1,5 +1,4 @@
 import { Lens } from "@atomic-object/lenses";
-import { strEnum } from "../../helpers";
 import { Query } from "../../graphql/schema-types";
 
 import { RouterState } from "react-router-redux";
@@ -29,6 +28,8 @@ export namespace State {
   export const gameState = Lens.from<State>().prop("gameState");
 }
 
-export const GuessResult = strEnum(["CORRECT", "INCORRECT"]);
-export type GuessResult = keyof typeof GuessResult;
+export enum GuessResult {
+  CORRECT = "CORRECT",
+  INCORRECT = "INCORRECT"
+}
 export interface Guess { status: GuessResult; value: number }
