@@ -51,7 +51,8 @@
   },
   "jest": {
     "transform": {
-      ".(js|jsx|ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      ".(js|jsx|ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js",
+      "\\.(gql|graphql)$": "jest-transform-graphql"
     },
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/(?!lodash-es)"
@@ -65,8 +66,7 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy",
-      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(gql|graphql)$": "jest-transform-graphql"
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
     }
   },
   "dependencies": {
@@ -92,6 +92,7 @@
     "@types/throng": "^4.0.0",
     "apollo-client": "^1.0.4",
     "apollo-codegen": "^0.10.13",
+    "apollo-local-query": "^0.3.0",
     "autoprefixer": "^7.1.1",
     "awesome-typescript-loader": "^3.1.2",
     "body-parser": "^1.17.1",
@@ -153,6 +154,7 @@
   "devDependencies": {
     "@types/enzyme": "^2.7.6",
     "@types/jest": "^20.0.0",
+    "apollo-test-utils": "^0.3.2",
     "codeceptjs-nightmare": "^1.0.0",
     "enzyme": "^2.8.2",
     "identity-obj-proxy": "^3.0.0",

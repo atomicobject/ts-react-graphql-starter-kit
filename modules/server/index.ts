@@ -14,7 +14,7 @@ const expressStaticGzip = require("express-static-gzip");
 
 import { makeExecutableSchema } from "graphql-tools";
 
-import { schema, resolvers, buildContext } from "../graphql";
+import { executableSchema, buildContext } from "../graphql";
 
 let app = express();
 
@@ -48,11 +48,11 @@ export function startServer() {
     "/graphql",
     bodyParser.json(),
     graphqlExpress((req, res) => ({
-      schema: makeExecutableSchema({ typeDefs: schema, resolvers: resolvers }),
+      schema: executableSchema,
 
       // Create the context for the request. Get auth info from `req`
       // if necessary
-      context: buildContext()
+      context: buildContext(executableSchema)
     }))
   );
 
