@@ -86,3 +86,6 @@ styleguide
 # .env
 .env
 .vscode
+
+# Generated schema used in typescript type generation
+modules/graphql/schema.json
