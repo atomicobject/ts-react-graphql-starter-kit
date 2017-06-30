@@ -1,11 +1,11 @@
-import { GameState, State } from "../state";
+import * as State from "../state";
+
 import { Action } from "redux";
 import { Lens } from "@atomic-object/lenses";
 import { Arrays } from "@atomic-object/lenses/arrays";
 import { ActionTypeKeys, ActionTypes } from "../actions";
-import { GuessResult } from "../state";
 
-const defaultState: State = {
+const defaultState: State.Type = {
   gameState: {
     answerSequence: [1, 2, 3],
     gameWon: false,
@@ -17,7 +17,12 @@ const defaultState: State = {
 } as any;
 
 import flow from "lodash-es/flow";
-export function gameReducer(state: GameState, action: ActionTypes): GameState {
+import { GuessResult } from "../state/types";
+import * as GameState from "../state/game-state";
+export function gameReducer(
+  state: GameState.Type,
+  action: ActionTypes
+): GameState.Type {
   switch (action.type) {
     case ActionTypeKeys.ANSWER_CHANGED:
       return flow(GameState.answerSequence.set(action.answer))(state);
@@ -63,8 +68,8 @@ function targetReducer<T, U>(
 
 const stateGameReducer = targetReducer(gameReducer, State.gameState);
 export function rootReducer(
-  state: State = defaultState,
+  state: State.Type = defaultState,
   action: Action
-): State {
+): State.Type {
   return stateGameReducer(state, <Action>action);
 }

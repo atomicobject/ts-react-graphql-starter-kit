@@ -1,6 +1,6 @@
 import * as React from "react";
 import partial from "lodash-es/partial";
-import { Guess, GuessResult } from "../../state";
+import { Guess, GuessResult } from "../../state/types";
 
 require("./styles.scss");
 

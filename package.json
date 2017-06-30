@@ -2,7 +2,10 @@
   "name": "starter-kit",
   "version": "1.0.0",
   "license": "MIT",
-  "browserslist": ["last 2 versions", "IE 11"],
+  "browserslist": [
+    "last 2 versions",
+    "IE 11"
+  ],
   "scripts": {
     "start": "nf start",
     "build:graphql:schema:json": "apollo-codegen introspect-schema modules/graphql/schema.graphql --output modules/graphql/schema.json",
@@ -50,9 +53,16 @@
       ".(js|jsx|ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js",
       "\\.(gql|graphql)$": "jest-transform-graphql"
     },
-    "transformIgnorePatterns": ["<rootDir>/node_modules/(?!lodash-es)"],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!lodash-es)"
+    ],
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
-    "moduleFileExtensions": ["js", "jsx", "ts", "tsx"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx"
+    ],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy",
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
@@ -134,7 +144,7 @@
     "ts-node": "^3.0.0",
     "tslint": "^5.1.0",
     "tslint-eslint-rules": "^4.0.0",
-    "typescript": "^2.3.0",
+    "typescript": "^2.4.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.2.1",
     "webpack-node-externals": "^1.5.4",

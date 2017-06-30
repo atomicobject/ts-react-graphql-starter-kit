@@ -14,7 +14,9 @@ import {
   gameWon
 } from "../actions";
 
-import { State, GameState } from "../state";
+import * as State from "../state";
+import * as GameState from "../state/game-state";
+
 import { graphqlClient } from "../graphql-client";
 
 export async function fetchAnswers(): Promise<AnswerQuery["answer"]> {
@@ -36,7 +38,7 @@ export function* gameSaga(): SagaIterator {
     while (!guessedRight) {
       let currentGuess = 0;
 
-      const rightAnswer: number[] = yield select<State>(getAnswer);
+      const rightAnswer: number[] = yield select<State.Type>(getAnswer);
       for (; currentGuess < rightAnswer.length; currentGuess++) {
         const guess: GuessSubmittedAction = yield take(
           ActionTypeKeys.GUESS_SUBMITTED

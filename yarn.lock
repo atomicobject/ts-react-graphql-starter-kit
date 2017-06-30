@@ -364,14 +364,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/storybook__react@*":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/storybook__react/-/storybook__react-3.0.0.tgz#9e750de5903bf1912609b7938bd57cf090aba09f"
-  dependencies:
-    "@types/node" "*"
-    "@types/react" "*"
-
-"@types/storybook__react@^3.0.1":
+"@types/storybook__react@*", "@types/storybook__react@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@types/storybook__react/-/storybook__react-3.0.1.tgz#55e4c16798a35ecaea8d50bdb66dd6242b177cc1"
   dependencies:
@@ -7804,9 +7797,13 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@^2.2.1, typescript@^2.3.0:
+typescript@^2.2.1:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.4.0.tgz#aef5a8d404beba36ad339abf079ddddfffba86dd"
+
+typescript@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.4.1.tgz#c3ccb16ddaa0b2314de031e7e6fee89e5ba346bc"
 
 typify-parser@^1.1.0:
   version "1.1.0"

@@ -3,7 +3,7 @@
   "rules": {
     "block-spacing": [true, "always"],
     "brace-style": [true, "1tbs"],
-    "curly": true,
+    "curly": [true, "ignore-same-line"],
     "handle-callback-err": true,
     "indent": [true, "spaces"],
     "interface-name": [false],
@@ -14,13 +14,12 @@
     "no-multi-spaces": true,
     "no-consecutive-blank-lines": [true],
     "no-constant-condition": false,
-    "no-unused-variable": [ true, {"ignore-pattern": "^_"} ],
+    "no-unused-variable": [true, { "ignore-pattern": "^_" }],
     "no-irregular-whitespace": true,
     "ter-indent": ["error", 2]
   },
   "jsRules": {
     "curly": true
   },
-  "rulesDirectory": [
-  ]
+  "rulesDirectory": []
 }

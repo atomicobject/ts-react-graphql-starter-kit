@@ -4,7 +4,8 @@ import {
   Props as PresentationProps,
   GuessingGame as GuessingGameComponent
 } from "../components/guessing-game";
-import { State, GameState } from "../state";
+import * as State from "../state";
+import * as GameState from "../state/game-state";
 import { AssertAssignable } from "../../helpers";
 
 import { guessSubmitted } from "../actions";
@@ -18,7 +19,7 @@ type DispatchProps = Pick<PresentationProps, "onGuess">;
 type Props = {};
 type _check = AssertAssignable<PresentationProps, StateProps & DispatchProps>;
 
-function mapStateToProps(state: State, ownProps: Props): StateProps {
+function mapStateToProps(state: State.Type, ownProps: Props): StateProps {
   const gameState = State.gameState(state);
   return {
     showCongratulations: GameState.gameWon(gameState),

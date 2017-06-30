@@ -8,7 +8,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 
 import { rootSaga } from "../modules/client/sagas";
 import { rootReducer } from "../modules/client/reducers";
-import { State } from "../modules/client/state";
+import { Type } from "../modules/client/state";
 
 require("../modules/client/styles/main.scss");
 
@@ -36,7 +36,7 @@ const enhancer = composeEnhancers(
 );
 
 const apolloReducer = graphqlClient.reducer();
-function enhancedReducer(s: any, e: any): State {
+function enhancedReducer(s: any, e: any): Type {
   let state = rootReducer(s, e);
   return {
     ...state,
