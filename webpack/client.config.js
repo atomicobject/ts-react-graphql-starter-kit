@@ -75,7 +75,7 @@ module.exports = {
     // Define global letiables in the client to instrument behavior.
     new webpack.DefinePlugin({
       // Flag to detect non-production
-      __DEV__: process.env.NODE_ENV !== "production",
+      __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
 
       // ALlow switching on NODE_ENV in client code
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)

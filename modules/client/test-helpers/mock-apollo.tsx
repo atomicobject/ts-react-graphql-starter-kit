@@ -11,8 +11,15 @@ export { MockList } from "graphql-tools";
 import { ApolloProvider, ApolloClient, getDataFromTree } from "react-apollo";
 
 import { mockNetworkInterfaceWithSchema } from "apollo-test-utils";
+import { GraphQLResolveInfo } from "graphql";
+
 type MockDefinitions<T> = {
-  [K in keyof T]?: MockDefinitions<T[K]> | (() => (T[K] | MockList))
+  [K in keyof T]?: ((
+    obj: any,
+    args: any,
+    context: any,
+    info: GraphQLResolveInfo
+  ) => (T[K] | MockList | MockDefinitions<T[K]>))
 };
 
 export type SchemaMocks = MockDefinitions<SchemaMap>;
@@ -30,16 +37,4 @@ export function mockClient(mocks: MockDefinitions<SchemaMap>): ApolloClient {
     networkInterface: netInterface
   });
   return client;
-}
-
-export async function warmUpClient(props: {
-  client: any;
-  query: any;
-  variables: any;
-}) {
-  // Warm up the cache
-  return await props.client.query({
-    query: props.query,
-    variables: props.variables
-  });
 }
