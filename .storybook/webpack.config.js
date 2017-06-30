@@ -1,4 +1,6 @@
 const path = require("path");
+const loaders = require("../webpack/loaders");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 // Export a function. Accept the base config as the only param.
 module.exports = (storybookBaseConfig, configType) => {
@@ -8,26 +10,19 @@ module.exports = (storybookBaseConfig, configType) => {
 
   // Make whatever fine-grained changes you need
   storybookBaseConfig.module.rules.push(
-    {
-      test: /\.scss$/,
-      loaders: ["style-loader", "css-loader", "sass-loader"],
-      include: path.resolve(__dirname, "../")
-    },
-    {
-      test: /\.tsx?$/,
-
-      use: [
-        {
-          loader: "awesome-typescript-loader",
-          query: {
-            configFileName: "./tsconfig.json"
-          }
-        }
-      ]
-    }
+    // {
+    //   test: /\.scss$/,
+    //   loaders: ["style-loader", "css-loader", "sass-loader"],
+    //   include: path.resolve(__dirname, "../")
+    // },
+    loaders.scss,
+    loaders.typescript,
+    loaders.graphql
   );
+  storybookBaseConfig.module.rules.concat(loaders.allImagesAndFontsArray);
 
   storybookBaseConfig.resolve.extensions.push(".ts", ".tsx");
+  storybookBaseConfig.plugins.push(new ExtractTextPlugin("[name].css"));
 
   // Return the altered config
   return storybookBaseConfig;

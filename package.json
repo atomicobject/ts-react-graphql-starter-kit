@@ -2,10 +2,7 @@
   "name": "starter-kit",
   "version": "1.0.0",
   "license": "MIT",
-  "browserslist": [
-    "last 2 versions",
-    "IE 11"
-  ],
+  "browserslist": ["last 2 versions", "IE 11"],
   "scripts": {
     "start": "nf start",
     "build:graphql:schema:json": "apollo-codegen introspect-schema modules/graphql/schema.graphql --output modules/graphql/schema.json",
@@ -14,7 +11,6 @@
     "build:graphql": "yarn build:graphql:schema:json && concurrently 'yarn build:graphql:schema:types' 'yarn build:graphql:client:types'",
     "build:client": "webpack --config ./webpack/client.config.js",
     "build:server": "webpack --config ./webpack/server.config.js",
-    "build:styleguide": "styleguidist build",
     "build": "yarn build:graphql && concurrently -p index 'yarn build:client' 'yarn build:server' 'yarn build:styleguide'",
     "build:production": "cross-env NODE_ENV=production \"concurrently 'yarn build:client' 'yarn build:server'\"",
     "dev": "concurrently -p name -c \"yellow,red,green,blue,gray\" -n \"webpack-server,nodemon-server,webpack-client,graphql-types,styleguide\" \"yarn dev:server:webpack\" \"yarn dev:server:nodemon\" \"yarn dev:client\" \"yarn dev:graphql\" \"yarn dev:styleguide\"",
@@ -23,7 +19,7 @@
     "dev:server:nodemon": "nodemon --inspect=9229 --watch dist/server.js dist/server.js",
     "dev:client": "node -e 'require(\"./webpack/webpack-dev-server\").startDevServer()'",
     "dev:graphql": "sleep 8 && nodemon -e graphql,gql -w modules/ -x 'yarn build:graphql'",
-    "dev:styleguide": "styleguidist server",
+    "dev:storybook": "start-storybook -p 9001 -c .storybook",
     "lint": "tslint --type-check -c ./tslint.json -p ./tsconfig.json './modules/**/*.ts*'",
     "lint:fix": "tslint --fix --type-check -c ./tslint.json -p ./tsconfig.json './modules/**/*.ts*'",
     "fmt:prettier": "prettier --write 'modules/**/*.{ts,tsx,js,jsx}'",
@@ -54,16 +50,9 @@
       ".(js|jsx|ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js",
       "\\.(gql|graphql)$": "jest-transform-graphql"
     },
-    "transformIgnorePatterns": [
-      "<rootDir>/node_modules/(?!lodash-es)"
-    ],
+    "transformIgnorePatterns": ["<rootDir>/node_modules/(?!lodash-es)"],
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "ts",
-      "tsx"
-    ],
+    "moduleFileExtensions": ["js", "jsx", "ts", "tsx"],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy",
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
@@ -152,10 +141,16 @@
     "webpack-split-by-path": "^2.0.0"
   },
   "devDependencies": {
-    "@storybook/react": "^3.1.3",
+    "@storybook/addon-actions": "^3.1.6",
+    "@storybook/addon-knobs": "^3.1.6",
+    "@storybook/addon-notes": "^3.1.6",
+    "@storybook/react": "^3.1.7",
     "@types/enzyme": "^2.7.6",
     "@types/jest": "^20.0.0",
-    "@types/storybook__react": "^3.0.0",
+    "@types/storybook__addon-actions": "^3.0.0",
+    "@types/storybook__addon-knobs": "^3.0.0",
+    "@types/storybook__addon-notes": "^3.0.0",
+    "@types/storybook__react": "^3.0.1",
     "apollo-test-utils": "^0.3.2",
     "codeceptjs-nightmare": "^1.0.0",
     "enzyme": "^2.8.2",
@@ -166,7 +161,6 @@
     "nodemon": "^1.11.0",
     "prettier": "^1.4.4",
     "react-docgen-typescript": "^0.0.11",
-    "react-styleguidist": "^5.3.2",
     "ts-jest": "^20.0.2",
     "webpack-dev-server": "^2.4.4"
   }
