@@ -41,13 +41,13 @@ export class GuessingGame extends React.Component<Props, {}> {
 
         <div className="guessing-game-buttons">
           <button className="btn guess" onClick={partial(onGuess, 1)}>
-            {" "}1{" "}
+            1
           </button>
           <button className="btn guess" onClick={partial(onGuess, 2)}>
-            {" "}2{" "}
+            2
           </button>
           <button className="btn guess" onClick={partial(onGuess, 3)}>
-            {" "}3{" "}
+            3
           </button>
         </div>
 

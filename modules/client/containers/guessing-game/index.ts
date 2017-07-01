@@ -3,12 +3,12 @@ import { Dispatch } from "redux";
 import {
   Props as PresentationProps,
   GuessingGame as GuessingGameComponent
-} from "../components/guessing-game";
-import * as State from "../state";
-import * as GameState from "../state/game-state";
-import { AssertAssignable } from "../../helpers";
+} from "../../components/guessing-game";
+import * as State from "../../state";
+import * as GameState from "../../state/game-state";
+import { AssertAssignable } from "../../../helpers";
 
-import { guessSubmitted } from "../actions";
+import { guessSubmitted } from "../../actions";
 import flow from "lodash-es/flow";
 
 type StateProps = Pick<
