@@ -1,6 +1,7 @@
 import * as React from "react";
 import { graphql } from "react-apollo";
 import { AnswerQuery } from "../../graphql-types";
+import { PropTypes } from "react";
 
 interface DisplayProps {
   answer: number[];
@@ -21,6 +22,7 @@ const wireToApollo = graphql<
   {},
   DisplayProps
 >(require("../../sagas/Answer.graphql"), {
+  alias: "AnswerDisplay",
   options: { fetchPolicy: "network-only" },
   props: resp => {
     if (!resp.data || resp.data.loading) {

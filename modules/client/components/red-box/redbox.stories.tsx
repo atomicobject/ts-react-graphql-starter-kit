@@ -9,14 +9,17 @@ import { WithNotes } from "@storybook/addon-notes";
 
 storiesOf("RedBox", module)
   .addDecorator(withKnobs)
-  .add("with text", () =>
-    <WithNotes notes="A simple component which puts a red border around its contents">
-      <RedBox>
-        <button onClick={action("clicked")}>
-          {text("inner text", "Click me")}
-        </button>
-      </RedBox>
-    </WithNotes>
+  .addWithInfo(
+    "Wrapping a button",
+    "A simple component which puts a red border around its contents",
+    () =>
+      <WithNotes notes="Click the button to see an action">
+        <RedBox>
+          <button onClick={action("clicked")}>
+            {text("inner text", "Click me")}
+          </button>
+        </RedBox>
+      </WithNotes>
   )
   .add("simple", () => <RedBox>yo</RedBox>);
 // .add("with some emoji", () =>

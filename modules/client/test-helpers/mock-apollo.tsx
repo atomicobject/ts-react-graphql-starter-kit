@@ -67,6 +67,7 @@ export function mockProvider(opts?: MockProviderOpts) {
   const store = createStore<State.Type>(reducer, state);
 
   return class extends React.Component<{}, {}> {
+    static displayName = "MockProvider";
     render() {
       return (
         <ApolloProvider client={apollo} store={store}>
