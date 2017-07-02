@@ -10,12 +10,20 @@ module.exports = (storybookBaseConfig, configType) => {
 
   // Make whatever fine-grained changes you need
   storybookBaseConfig.module.rules.push(
-    // {
-    //   test: /\.scss$/,
-    //   loaders: ["style-loader", "css-loader", "sass-loader"],
-    //   include: path.resolve(__dirname, "../")
-    // },
-    loaders.scss,
+    {
+      test: /\.scss$/,
+      loaders: [
+        "style-loader",
+        "css-loader",
+        {
+          loader: "sass-loader",
+          options: {
+            includePaths: [path.resolve(__dirname, "../modules")]
+          }
+        }
+      ],
+      include: path.resolve(__dirname, "../")
+    },
     loaders.typescript,
     loaders.graphql
   );
