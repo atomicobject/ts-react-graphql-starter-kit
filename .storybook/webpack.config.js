@@ -22,6 +22,10 @@ module.exports = (storybookBaseConfig, configType) => {
   storybookBaseConfig.module.rules.concat(loaders.allImagesAndFontsArray);
 
   storybookBaseConfig.resolve.extensions.push(".ts", ".tsx");
+  storybookBaseConfig.resolve.modules.unshift(
+    path.resolve(__dirname, "../modules")
+  );
+
   storybookBaseConfig.plugins.push(new ExtractTextPlugin("[name].css"));
 
   // Return the altered config
