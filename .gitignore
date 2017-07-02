@@ -86,4 +86,4 @@ client/tests/**/*.jsx
 .vscode
 
 # Generated schema used in typescript type generation
-modules/graphql/schema.json
+modules/graphql-api/schema.json

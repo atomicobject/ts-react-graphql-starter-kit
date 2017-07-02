@@ -17,7 +17,7 @@ import createHistory from "history/createBrowserHistory";
 
 import gql from "graphql-tag";
 
-import { graphqlClient } from "../modules/client/graphql-client";
+import { graphqlClient } from "client/graphql-client";
 import { ApolloProvider, createApolloReducer } from "react-apollo";
 
 const history = createHistory();

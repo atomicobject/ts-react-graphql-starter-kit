@@ -2,21 +2,18 @@
   "name": "starter-kit",
   "version": "1.0.0",
   "license": "MIT",
-  "browserslist": [
-    "last 2 versions",
-    "IE 11"
-  ],
+  "browserslist": ["last 2 versions", "IE 11"],
   "scripts": {
     "start": "nf start",
-    "build:graphql:schema:json": "apollo-codegen introspect-schema modules/graphql/schema.graphql --output modules/graphql/schema.json",
-    "build:graphql:schema:types": "gql-gen --file modules/graphql/schema.json  --template typescript --out modules/graphql/schema-types.ts modules/graphql/**/*.graphql",
-    "build:graphql:client:types": "apollo-codegen generate modules/client/**/*.graphql --schema modules/graphql/schema.json --target typescript --output modules/client/graphql-types.ts",
+    "build:graphql:schema:json": "apollo-codegen introspect-schema modules/graphql-api/schema.graphql --output modules/graphql-api/schema.json",
+    "build:graphql:schema:types": "gql-gen --file modules/graphql-api/schema.json  --template typescript --out modules/graphql-api/schema-types.ts modules/graphql-api/**/*.graphql",
+    "build:graphql:client:types": "apollo-codegen generate modules/client/**/*.graphql --schema modules/graphql-api/schema.json --target typescript --output modules/client/graphql-types.ts",
     "build:graphql": "yarn build:graphql:schema:json && concurrently 'yarn build:graphql:schema:types' 'yarn build:graphql:client:types'",
     "build:client": "webpack --config ./webpack/client.config.js",
     "build:server": "webpack --config ./webpack/server.config.js",
     "build": "yarn build:graphql && concurrently -p index 'yarn build:client' 'yarn build:server'",
     "build:production": "cross-env NODE_ENV=production \"concurrently 'yarn build:client' 'yarn build:server'\"",
-    "dev": "concurrently -p name -c \"yellow,red,green,blue,gray\" -n \"webpack-server,nodemon-server,webpack-client,graphql-types\" \"yarn dev:server:webpack\" \"yarn dev:server:nodemon\" \"yarn dev:client\" \"yarn dev:graphql\"",
+    "dev": "concurrently -p name -c \"yellow,magenta,green,blue,gray\" -n \"webpack-server,nodemon-server,webpack-client,graphql-types\" \"yarn dev:server:webpack\" \"yarn dev:server:nodemon\" \"yarn dev:client\" \"yarn dev:graphql\"",
     "dev:server": "concurrently -n 'webpack-server,nodemon-server' 'yarn dev:server:webpack' 'yarn dev:server:nodemon'",
     "dev:server:webpack": "webpack --config webpack/server.config.js --watch",
     "dev:server:nodemon": "nodemon --inspect=9229 --watch dist/server.js dist/server.js",
@@ -53,20 +50,14 @@
       ".(js|jsx|ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js",
       "\\.(gql|graphql)$": "jest-transform-graphql"
     },
-    "transformIgnorePatterns": [
-      "<rootDir>/node_modules/(?!lodash-es)"
-    ],
+    "transformIgnorePatterns": ["<rootDir>/node_modules/(?!lodash-es)"],
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "ts",
-      "tsx"
-    ],
+    "moduleFileExtensions": ["js", "jsx", "ts", "tsx"],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy",
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
-    }
+    },
+    "moduleDirectories": ["modules", "node_modules"]
   },
   "dependencies": {
     "@atomic-object/lenses": "^0.1.0",

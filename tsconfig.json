@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./modules",
     "jsx": "react",
     "module": "es2015",
     "moduleResolution": "node",
@@ -9,16 +10,7 @@
     "skipLibCheck": true,
     "strict": true,
     "outDir": "./dist/stuff/",
-    "lib": [
-      "dom",
-      "es6",
-      "es2015",
-      "es2016",
-      "es2017"
-    ]
+    "lib": ["dom", "es6", "es2015", "es2016", "es2017"]
   },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "exclude": ["node_modules", "dist"]
 }

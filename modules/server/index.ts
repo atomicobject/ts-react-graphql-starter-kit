@@ -14,7 +14,7 @@ const expressStaticGzip = require("express-static-gzip");
 
 import { makeExecutableSchema } from "graphql-tools";
 
-import { executableSchema, buildContext } from "../graphql";
+import { executableSchema, buildContext } from "graphql-api";
 
 let app = express();
 

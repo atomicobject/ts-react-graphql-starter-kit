@@ -1,5 +1,5 @@
 import { Lens } from "@atomic-object/lenses";
-import { Query } from "../../graphql/schema-types";
+import { Query } from "graphql-api/schema-types";
 import { Guess } from "./types";
 
 export interface Type {

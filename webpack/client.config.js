@@ -106,7 +106,8 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".scss", ".css"]
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".scss", ".css"],
+    modules: [path.resolve(__dirname, "../modules"), "node_modules"]
   },
 
   module: {

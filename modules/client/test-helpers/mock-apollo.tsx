@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SchemaMap, rawSchema } from "../../graphql/schema-base";
+import { SchemaMap, rawSchema } from "graphql-api/schema-base";
 import {
   makeExecutableSchema,
   addMockFunctionsToSchema,
@@ -12,8 +12,8 @@ import { ApolloProvider, ApolloClient, getDataFromTree } from "react-apollo";
 
 import { mockNetworkInterfaceWithSchema } from "apollo-test-utils";
 import { GraphQLResolveInfo } from "graphql";
-import * as State from "../state/index";
-import { rootReducer } from "../reducers/index";
+import * as State from "client/state/index";
+import { rootReducer } from "client/reducers/index";
 import { Reducer } from "redux";
 import { createStore } from "redux";
 import { RenderFunction } from "@storybook/react";

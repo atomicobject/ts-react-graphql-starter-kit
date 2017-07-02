@@ -1,5 +1,6 @@
 const config = require("config");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require("path");
 
 module.exports = {
   typescript: {
@@ -43,7 +44,14 @@ module.exports = {
             ]
           }
         },
-        { loader: "sass-loader" }
+        {
+          loader: "sass-loader",
+          options: {
+            includePaths: [
+              path.resolve(__dirname, "../modules" /*/client/styles"*/)
+            ]
+          }
+        }
       ]
     })
   },
