@@ -26,8 +26,6 @@ module.exports = (storybookBaseConfig, configType) => {
     path.resolve(__dirname, "../modules")
   );
 
-  storybookBaseConfig.plugins.push(new ExtractTextPlugin("[name].css"));
-
   // Return the altered config
   return storybookBaseConfig;
 };
