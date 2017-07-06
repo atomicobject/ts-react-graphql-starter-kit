@@ -71,7 +71,7 @@ export function startServer() {
     res.sendFile(process.cwd() + "/dist/index.html");
   });
 
-  app.listen(port, () => {
+  return app.listen(port, () => {
     console.log("up and running on port", port);
   });
 }

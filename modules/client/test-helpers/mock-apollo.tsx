@@ -17,6 +17,7 @@ import { rootReducer } from "../reducers/index";
 import { Reducer } from "redux";
 import { createStore } from "redux";
 import { RenderFunction } from "@storybook/react";
+import { MemoryRouter } from "react-router";
 type MockDefinitions<T> = {
   [K in keyof T]?: ((
     obj: any,
@@ -69,9 +70,11 @@ export function mockProvider(opts?: MockProviderOpts) {
   return class extends React.Component<{}, {}> {
     render() {
       return (
-        <ApolloProvider client={apollo} store={store}>
-          {this.props.children}
-        </ApolloProvider>
+        <MemoryRouter>
+          <ApolloProvider client={apollo} store={store}>
+            {this.props.children}
+          </ApolloProvider>
+        </MemoryRouter>
       );
     }
   };
