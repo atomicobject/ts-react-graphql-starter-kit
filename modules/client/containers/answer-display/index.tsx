@@ -1,7 +1,6 @@
 import * as React from "react";
 import { graphql } from "react-apollo";
 import { AnswerQuery } from "../../graphql-types";
-import { PropTypes } from "react";
 
 interface DisplayProps {
   answer: number[];

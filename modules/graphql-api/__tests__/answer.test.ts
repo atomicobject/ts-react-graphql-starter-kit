@@ -7,8 +7,6 @@ import range from "lodash-es/range";
 import { buildLocalApollo } from "../context";
 import gql from "graphql-tag";
 
-import { Query } from "../schema-types";
-
 describe("answer query", () => {
   it("returns 1, 2, and 3 in some order", () => {
     var prop = jsv.forall("nat", async () => {

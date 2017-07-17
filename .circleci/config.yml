@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:boron # Node 6 LTS
+      - image: circleci/node:boron-browsers # Node 6 LTS
       - image: circleci/postgres:9.6
         environment:
           POSTGRES_USER: pguser
@@ -48,6 +48,12 @@ jobs:
       - run: 
           name: "Unit tests"
           command: yarn test:unit
+          environment:
+            DATABASE_URL: postgres://pguser:@localhost:5432/app_test
+
+      - run: 
+          name: "Acceptance tests"
+          command: BUILD=1 yarn test:acceptance
           environment:
             DATABASE_URL: postgres://pguser:@localhost:5432/app_test
 
