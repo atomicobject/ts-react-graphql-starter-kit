@@ -1,10 +1,8 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 
 import { AnswerDisplay } from ".";
 
-import { withKnobs, text } from "@storybook/addon-knobs";
 import { WithNotes } from "@storybook/addon-notes";
 import { mockProvider } from "../../test-helpers/mock-apollo";
 

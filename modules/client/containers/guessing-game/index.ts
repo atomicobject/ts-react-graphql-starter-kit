@@ -9,7 +9,6 @@ import * as GameState from "../../state/game-state";
 import { AssertAssignable } from "../../../helpers";
 
 import { guessSubmitted } from "../../actions";
-import flow from "lodash-es/flow";
 
 type StateProps = Pick<
   PresentationProps,

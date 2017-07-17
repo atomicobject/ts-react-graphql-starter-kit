@@ -1,13 +1,8 @@
 import {
-  ApolloProvider,
   ApolloClient,
-  createNetworkInterface,
-  getDataFromTree
 } from "react-apollo";
 
 import { GraphQLSchema } from "graphql";
-
-import resolvers from "./resolvers";
 
 const { createLocalInterface } = require("apollo-local-query");
 

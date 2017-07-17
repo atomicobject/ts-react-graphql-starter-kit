@@ -12,8 +12,6 @@ const knexLogger = require("knex-logger");
 const enforce = require("express-sslify");
 const expressStaticGzip = require("express-static-gzip");
 
-import { makeExecutableSchema } from "graphql-tools";
-
 import { executableSchema, buildContext } from "graphql-api";
 
 let app = express();
