@@ -49,7 +49,7 @@
   },
   "jest": {
     "transform": {
-      ".(js|jsx|ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js",
+      "\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js",
       "\\.(gql|graphql)$": "jest-transform-graphql"
     },
     "transformIgnorePatterns": [
