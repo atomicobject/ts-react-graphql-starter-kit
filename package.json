@@ -2,10 +2,7 @@
   "name": "starter-kit",
   "version": "1.0.0",
   "license": "MIT",
-  "browserslist": [
-    "last 2 versions",
-    "IE 11"
-  ],
+  "browserslist": ["last 2 versions", "IE 11"],
   "scripts": {
     "start": "nf start",
     "build:graphql:schema:json": "apollo-codegen introspect-schema modules/graphql-api/schema.graphql --output modules/graphql-api/schema.json",
@@ -29,13 +26,13 @@
     "fmt": "yarn fmt:prettier; yarn lint:fix",
     "pretest": "yarn lint",
     "test": "yarn test:unit && yarn test:acceptance",
-    "test:unit": "jest modules",
+    "test:unit": "jest",
     "test:unit:debug": "node --debug-brk ./node_modules/.bin/jest --runInBand",
     "test:acceptance": "if [ $BUILD ]; then yarn test:acceptance:build; fi; concurrently --kill-others -s first 'yarn test:acceptance:server' 'yarn test:acceptance:run'",
     "test:acceptance:build-and-run": "yarn test:acceptance:build && yarn test:acceptance",
     "test:acceptance:build": "cross-env NODE_ENV=test yarn build",
     "test:acceptance:server": "NODE_ENV=test node dist/server.js > tests/acceptance/last-run.log",
-    "test:acceptance:run": "while ! nc -z localhost 3002; do sleep 0.1; done; cross-env NODE_ENV=test jest tests/acceptance",
+    "test:acceptance:run": "while ! nc -z localhost 3002; do sleep 0.1; done; cross-env NODE_ENV=test jest -c ./acceptance.jestrc.json",
     "db:up": "cd docker; exec docker-compose up",
     "db:create": "yarn db:create:dev; yarn db:create:test",
     "db:create:dev": "cd docker; docker-compose run  postgres createdb -h postgres development",
@@ -52,25 +49,14 @@
       "\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js",
       "\\.(gql|graphql)$": "jest-transform-graphql"
     },
-    "transformIgnorePatterns": [
-      "<rootDir>/node_modules/(?!lodash-es)"
-    ],
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "ts",
-      "tsx",
-      "json"
-    ],
+    "transformIgnorePatterns": ["<rootDir>/node_modules/(?!lodash-es)"],
+    "testRegex": "/modules/.*/__tests__/.*\\.(test|spec)\\.(ts|tsx)$",
+    "moduleFileExtensions": ["js", "jsx", "ts", "tsx", "json"],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy",
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
     },
-    "moduleDirectories": [
-      "modules",
-      "node_modules"
-    ]
+    "moduleDirectories": ["modules", "node_modules"]
   },
   "dependencies": {
     "@atomic-object/lenses": "^0.1.0",
