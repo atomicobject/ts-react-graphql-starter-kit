@@ -1,5 +1,8 @@
 # SPA Starter Kit
 
+
+
+
 This starter kit is meant as a starting point for single-page webapps using TypeScript, React, Redux, and GraphQL that we use at Atomic Object. Feel free to clone this project and use it to seed any project for which it would be helpful.
 
 ## TODO
