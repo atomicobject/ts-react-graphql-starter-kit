@@ -6,7 +6,7 @@
    query: {
      files: [
        {
-         match: 'modules/client/**/*.ts*',
+         match: 'modules/**/*.ts*',
          parser: ['EmbeddedQueryParser', { startTag: 'gql`', endTag: '`' }],
        },
        {
