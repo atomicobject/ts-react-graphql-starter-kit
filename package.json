@@ -2,7 +2,10 @@
   "name": "starter-kit",
   "version": "1.0.0",
   "license": "MIT",
-  "browserslist": ["last 2 versions", "IE 11"],
+  "browserslist": [
+    "last 2 versions",
+    "IE 11"
+  ],
   "scripts": {
     "start": "nf start",
     "build:graphql:schema:json": "apollo-codegen introspect-schema modules/graphql-api/schema.graphql --output modules/graphql-api/schema.json",
@@ -49,14 +52,25 @@
       "\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js",
       "\\.(gql|graphql)$": "jest-transform-graphql"
     },
-    "transformIgnorePatterns": ["<rootDir>/node_modules/(?!lodash-es)"],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!lodash-es)"
+    ],
     "testRegex": "/modules/.*/__tests__/.*\\.(test|spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": ["js", "jsx", "ts", "tsx", "json"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx",
+      "json"
+    ],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy",
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
     },
-    "moduleDirectories": ["modules", "node_modules"]
+    "moduleDirectories": [
+      "modules",
+      "node_modules"
+    ]
   },
   "dependencies": {
     "@atomic-object/lenses": "^0.1.0",
@@ -141,6 +155,7 @@
     "webpack-split-by-path": "^2.0.0"
   },
   "devDependencies": {
+    "@playlyfe/gql": "^2.3.1",
     "@storybook/addon-actions": "^3.1.6",
     "@storybook/addon-info": "^3.1.6",
     "@storybook/addon-knobs": "^3.1.6",
