@@ -6,11 +6,14 @@ const loaders = require("./loaders");
 module.exports = {
   entry: "./entry/server.ts",
 
-  devtool: "source-map",
+  //devtool: "source-map",
+  devtool: 'inline-source-map',
+
   target: "node",
   output: {
     path: path.resolve(__dirname, "../dist"),
-    filename: "server.js"
+    filename: "server.js",
+    devtoolModuleFilenameTemplate: '[absolute-resource-path]'
   },
 
   resolve: {
