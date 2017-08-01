@@ -12,9 +12,9 @@ const defaultState: State.Type = {
     lastGuess: undefined,
     guessSequence: []
   },
-  router: undefined, // provided at startup
-  apollo: undefined // provided at startup
-} as any;
+  router: undefined as any, // provided at startup
+  apollo: undefined as any // provided at startup
+};
 
 import flow from "lodash-es/flow";
 import { GuessResult } from "../state/types";
