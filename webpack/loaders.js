@@ -4,7 +4,7 @@ const path = require("path");
 
 module.exports = {
   typescript: {
-    test: /\.ts*/,
+    test: /\.tsx?/,
     use: [
       {
         loader: "awesome-typescript-loader",
@@ -22,11 +22,12 @@ module.exports = {
   },
 
   scss: {
-    test: /\.scss$/,
+    test: /\.s?css$/,
     use: ExtractTextPlugin.extract({
       fallback: "style-loader",
       allChunks: true,
       use: [
+        { loader: "css-loader" },
         {
           loader: "postcss-loader",
           options: {
