@@ -1,0 +1,9 @@
+.git
+log
+tmp
+vendor
+bin/deploy
+docker/Dockerfile
+.env
+dist
+node_modules
