@@ -36,6 +36,7 @@ function mapDispatchToProps(
   };
 }
 
-export const GuessingGame = connect(mapStateToProps, mapDispatchToProps)<Props>(
-  GuessingGameComponent
-);
+export const GuessingGame = connect<StateProps, DispatchProps, Props>(
+  mapStateToProps,
+  mapDispatchToProps
+)(GuessingGameComponent);

@@ -41,6 +41,7 @@ const environmentPlugins = (() => {
           warnings: false
         }
       }),
+      new webpack.optimize.ModuleConcatenationPlugin(),
       new CompressionPlugin({
         asset: "[path].gz[query]",
         algorithm: "gzip",
