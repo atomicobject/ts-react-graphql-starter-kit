@@ -18,13 +18,14 @@ import { Reducer } from "redux";
 import { createStore } from "redux";
 import { RenderFunction } from "@storybook/react";
 import { MemoryRouter } from "react-router";
+type DeepPartial<T> = { [P in keyof T]?: DeepPartial<T[P]> };
 type MockDefinitions<T> = {
   [K in keyof T]?: ((
     obj: any,
     args: any,
     context: any,
     info: GraphQLResolveInfo
-  ) => T[K] | MockList | MockDefinitions<T[K]>)
+  ) => DeepPartial<T[K]> | MockList | MockDefinitions<T[K]>)
 };
 
 /** Generate a mock apollo client with a defined set of mocks. If you need to mock a new composite graphql type, update the SchemaMap in the graphql module. */

@@ -566,7 +566,7 @@ apollo-client@^1.4.0, apollo-client@^1.9.0:
     "@types/async" "2.0.40"
     "@types/graphql" "0.9.4"
 
-apollo-codegen@0.10.13, apollo-codegen@^0.10.13:
+apollo-codegen@0.10.13:
   version "0.10.13"
   resolved "https://registry.yarnpkg.com/apollo-codegen/-/apollo-codegen-0.10.13.tgz#337c5ac58c588d3cf6f38a50a7ec6cf824f2dc98"
   dependencies:
@@ -579,6 +579,20 @@ apollo-codegen@0.10.13, apollo-codegen@^0.10.13:
     node-fetch "^1.5.3"
     source-map-support "^0.4.2"
     yargs "^7.0.1"
+
+apollo-codegen@^0.16.3:
+  version "0.16.3"
+  resolved "https://registry.yarnpkg.com/apollo-codegen/-/apollo-codegen-0.16.3.tgz#eb57a0989f843162709718ae60a08651978e734b"
+  dependencies:
+    change-case "^3.0.0"
+    core-js "^2.4.1"
+    glob "^7.0.5"
+    graphql "^0.10.0"
+    inflected "^2.0.2"
+    mkdirp "^0.5.1"
+    node-fetch "^1.5.3"
+    source-map-support "^0.4.15"
+    yargs "^8.0.1"
 
 apollo-link-core@^0.2.0:
   version "0.2.0"
@@ -2224,6 +2238,10 @@ commander@2.9.x, commander@^2.2.0, commander@^2.9.0, commander@~2.9.0:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
+commander@^2.10.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
+
 common-tags@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.4.0.tgz#1187be4f3d4cf0c0427d43f74eef1f73501614c0"
@@ -2376,7 +2394,7 @@ core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
 
-core-js@^2.4.0:
+core-js@^2.4.0, core-js@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.4.1.tgz#4de911e667b0eae9124e34254b53aea6fc618d3e"
 
@@ -3767,7 +3785,7 @@ glob-parent@^2.0.0:
   dependencies:
     is-glob "^2.0.0"
 
-glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@~7.1.1:
+glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@^7.1.2, glob@~7.1.1:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
   dependencies:
@@ -3850,16 +3868,15 @@ graphql-anywhere@^3.0.0, graphql-anywhere@^3.0.1:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-3.1.0.tgz#3ea0d8e8646b5cee68035016a9a7557c15c21e96"
 
-graphql-code-generator@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/graphql-code-generator/-/graphql-code-generator-0.5.2.tgz#6a706f293b15618cbccd71dae7d1ef0c94d5d8ba"
+graphql-code-generator@0.5.5:
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/graphql-code-generator/-/graphql-code-generator-0.5.5.tgz#ad2a3ab2ffae56faf0290f0317dd515213f598e5"
   dependencies:
     camel-case "^3.0.0"
-    commander "^2.9.0"
+    commander "^2.10.0"
     common-tags "^1.4.0"
-    glob "^7.1.1"
-    graphql "^0.9.6"
-    handlebars "^4.0.8"
+    glob "^7.1.2"
+    handlebars "^4.0.10"
     mkdirp "^0.5.1"
     pascal-case "^2.0.1"
     request "^2.81.0"
@@ -3943,7 +3960,7 @@ handle-thing@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-1.2.5.tgz#fd7aad726bf1a5fd16dfc29b2f7a6601d27139c4"
 
-handlebars@^4.0.3, handlebars@^4.0.8:
+handlebars@^4.0.10, handlebars@^4.0.3:
   version "4.0.10"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.0.10.tgz#3d30c718b09a3d96f23ea4cc1f403c4d3ba9ff4f"
   dependencies:
@@ -4299,6 +4316,10 @@ infinity-agent@^2.0.0:
 inflected@^1.1.7:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/inflected/-/inflected-1.1.7.tgz#c393df6e28472d0d77b3082ec3aa2091f4bc96f9"
+
+inflected@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/inflected/-/inflected-2.0.2.tgz#1bc31ac427ca5321b2a16cc56d6ff29fcd2ff80c"
 
 inflight@^1.0.4:
   version "1.0.6"
@@ -8960,13 +8981,9 @@ window-size@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
 
-wordwrap@0.0.2:
+wordwrap@0.0.2, wordwrap@~0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.2.tgz#b79669bb42ecb409f83d583cad52ca17eaa1643f"
-
-wordwrap@~0.0.2:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.3.tgz#a3d5da6cd5c0bc0008d37234bbaf1bed63059107"
 
 wordwrap@~1.0.0:
   version "1.0.0"

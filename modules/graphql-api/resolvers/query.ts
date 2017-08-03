@@ -21,7 +21,7 @@ export const QueryResolvers = {
     return user || null;
   },
 
-  async answer(): Promise<Query["answer"]> {
-    return shuffle([1, 2, 3]);
+  async game(): Promise<Query["game"]> {
+    return { answer: shuffle([1, 2, 3]) };
   }
 };

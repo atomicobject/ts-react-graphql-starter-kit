@@ -19,20 +19,20 @@ import * as GameState from "../state/game-state";
 
 import { graphqlClient } from "../graphql-client";
 
-export async function fetchAnswers(): Promise<AnswerQuery["answer"]> {
+export async function fetchAnswers(): Promise<AnswerQuery["game"]["answer"]> {
   const result = await graphqlClient.query<AnswerQuery>({
     query: require("./Answer.graphql"),
     fetchPolicy: "network-only"
   });
 
-  return result.data.answer;
+  return result.data.game.answer;
 }
 
 export function* gameSaga(): SagaIterator {
   const getAnswer = State.gameState.comp(GameState.answerSequence);
   while (true) {
     let guessedRight = false;
-    const newAnswer: AnswerQuery["answer"] = yield call(fetchAnswers);
+    const newAnswer: AnswerQuery["game"]["answer"] = yield call(fetchAnswers);
     yield put(answerChanged(newAnswer));
 
     while (!guessedRight) {

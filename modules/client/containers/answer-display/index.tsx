@@ -31,7 +31,7 @@ const wireToApollo = graphql<
     if (!resp.data || resp.data.loading) {
       return { answer: [] };
     }
-    return { answer: resp.data.answer };
+    return { answer: resp.data.game.answer };
   }
 });
 

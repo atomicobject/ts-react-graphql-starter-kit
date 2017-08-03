@@ -6,7 +6,7 @@ export interface Type {
   readonly gameWon: boolean;
   readonly lastGuess?: Guess;
   readonly guessSequence: number[];
-  readonly answerSequence: Query["answer"];
+  readonly answerSequence: Query["game"]["answer"];
 }
 
 export const gameWon = Lens.from<Type>().prop("gameWon");

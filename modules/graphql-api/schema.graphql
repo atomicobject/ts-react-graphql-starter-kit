@@ -1,14 +1,16 @@
 type User {
-  id: Int!,
-  name: String!,
-  email: String!,
+  id: Int!
+  name: String!
+  email: String!
+}
+
+type Game {
+  answer: [Int!]!
 }
 
 type Query {
   allUsers: [User]!
-  
   userById(id: Int!): User
 
-  # Generates a new answer for the guessing game
-  answer: [Int!]!
+  game: Game!
 }

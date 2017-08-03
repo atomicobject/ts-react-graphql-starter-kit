@@ -10,7 +10,8 @@ import gql from "graphql-tag";
 describe("answer query", () => {
   it("returns 1, 2, and 3 in some order", () => {
     var prop = jsv.forall("nat", async () => {
-      const result = await resolvers.Query.answer();
+      const game = await resolvers.Query.game()!;
+      const result = game.answer;
       result.sort();
       return isEqual([1, 2, 3], result);
     });
@@ -18,8 +19,9 @@ describe("answer query", () => {
     jsv.check(prop, { tests: 100 });
   });
 
-  it("returns different sequences each time", () => {
-    const answers = range(100).map(resolvers.Query.answer);
+  it("returns different sequences each time", async () => {
+    const games = await Promise.all(range(100).map(resolvers.Query.game));
+    const answers = games.map(g => g.answer);
     const uniqAnswers = uniqWith(answers, isEqual);
     expect(uniqAnswers.length).toBeGreaterThan(1);
   });
@@ -28,10 +30,12 @@ describe("answer query", () => {
     const client = buildLocalApollo();
     const q = gql`
       query getAnswers {
-        answer
+        game {
+          answer
+        }
       }
     `;
     const result = await client.query<any>({ query: q });
-    expect(result.data.answer.length).toEqual(3);
+    expect(result.data.game.answer.length).toEqual(3);
   });
 });

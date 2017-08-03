@@ -21,7 +21,7 @@ storiesOf(
     const Provider = mockProvider({
       mocks: {
         Query: () => ({
-          answer: () => code
+          game: { answer: code }
         })
       }
     });

@@ -3,7 +3,7 @@
 export interface Query {
   allUsers: Array<User>;
   userById: User | null;
-  answer: Array<number>;
+  game: Game;
 }
 
 export interface UserByIdQueryArgs {
@@ -14,4 +14,8 @@ export interface User {
   id: number;
   name: string;
   email: string;
+}
+
+export interface Game {
+  answer: Array<number>;
 }

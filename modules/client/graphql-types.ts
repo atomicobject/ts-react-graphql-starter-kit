@@ -1,8 +1,9 @@
-//  This file was automatically generated and should not be edited.
 /* tslint:disable */
+//  This file was automatically generated and should not be edited.
 
-export interface AnswerQuery {
-  // Generates a new answer for the guessing game
-  answer: Array<number>;
-}
+export type AnswerQuery = {
+  game: {
+    answer: Array<number>;
+  };
+};
 /* tslint:enable */
