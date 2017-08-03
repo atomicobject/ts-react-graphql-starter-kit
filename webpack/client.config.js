@@ -67,9 +67,10 @@ module.exports = {
     app: ["./entry/client.tsx"]
   },
 
-  devtool: process.env.NODE_ENV !== "production"
-    ? "inline-source-map"
-    : "nosources-source-map",
+  devtool:
+    process.env.NODE_ENV !== "production"
+      ? "inline-source-map"
+      : "nosources-source-map",
 
   plugins: [
     // Define global letiables in the client to instrument behavior.
@@ -106,7 +107,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".scss", ".css"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
     modules: [path.resolve(__dirname, "../modules"), "node_modules"]
   },
 
