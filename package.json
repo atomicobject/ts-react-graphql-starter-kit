@@ -2,10 +2,7 @@
   "name": "starter-kit",
   "version": "1.0.0",
   "license": "MIT",
-  "browserslist": [
-    "last 2 versions",
-    "IE 11"
-  ],
+  "browserslist": ["last 2 versions", "IE 11"],
   "scripts": {
     "start": "nf start",
     "build:graphql:schema:json": "apollo-codegen introspect-schema modules/graphql-api/schema.graphql --output modules/graphql-api/schema.json",
@@ -45,32 +42,23 @@
     "db:migrate:latest": "knex migrate:latest",
     "db:migrate:rollback": "knex migrate:rollback",
     "db:seed:make": "knex seed:make",
-    "db:seed:run": "knex seed:run"
+    "db:seed:run": "knex seed:run",
+    "validate": "npm ls"
   },
+  "pre-commit": ["fmt:prettier", "lint:fix"],
   "jest": {
     "transform": {
       "\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js",
       "\\.(gql|graphql)$": "jest-transform-graphql"
     },
-    "transformIgnorePatterns": [
-      "<rootDir>/node_modules/(?!lodash-es)"
-    ],
+    "transformIgnorePatterns": ["<rootDir>/node_modules/(?!lodash-es)"],
     "testRegex": "/modules/.*/__tests__/.*\\.(test|spec)\\.(ts|tsx)$",
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "ts",
-      "tsx",
-      "json"
-    ],
+    "moduleFileExtensions": ["js", "jsx", "ts", "tsx", "json"],
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy",
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
     },
-    "moduleDirectories": [
-      "modules",
-      "node_modules"
-    ]
+    "moduleDirectories": ["modules", "node_modules"]
   },
   "dependencies": {
     "@atomic-object/lenses": "^0.1.0",
@@ -129,6 +117,7 @@
     "pg": "^7.0.2",
     "postcss-loader": "^2.0.3",
     "postcss-modules-local-by-default": "^1.1.1",
+    "precommit-hook": "^3.0.0",
     "progress-bar-webpack-plugin": "^1.10.0",
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",

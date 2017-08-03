@@ -10,7 +10,11 @@ function PureDisplay(props: DisplayProps) {
     <div>
       <p>The answer is:</p>
       <ul>
-        {props.answer.map(n => <li key={n}>{n}</li>)}
+        {props.answer.map(n =>
+          <li key={n}>
+            {n}
+          </li>
+        )}
       </ul>
     </div>
   );

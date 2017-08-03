@@ -16,10 +16,13 @@ export interface Props {
 }
 
 function presentLastGuess(guess: Guess) {
-  const correctnessDescription = guess.status === GuessResult.CORRECT
-    ? "RIGHT"
-    : "WRONG";
-  return <p> {guess.value} was {correctnessDescription} </p>;
+  const correctnessDescription =
+    guess.status === GuessResult.CORRECT ? "RIGHT" : "WRONG";
+  return (
+    <p>
+      {" "}{guess.value} was {correctnessDescription}{" "}
+    </p>
+  );
 }
 
 /** Presentation component for the guessing game */
@@ -52,7 +55,9 @@ export class GuessingGame extends React.Component<Props, {}> {
         </div>
 
         {lastGuessDisplay}
-        <p> Current guess is: {this.props.currentGuess.join(", ")}</p>
+        <p>
+          {" "}Current guess is: {this.props.currentGuess.join(", ")}
+        </p>
         {this.props.children}
       </div>
     );

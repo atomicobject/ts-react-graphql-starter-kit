@@ -8,7 +8,7 @@ import {
 
 export { MockList } from "graphql-tools";
 
-import { ApolloProvider, ApolloClient} from "react-apollo";
+import { ApolloProvider, ApolloClient } from "react-apollo";
 
 import { mockNetworkInterfaceWithSchema } from "apollo-test-utils";
 import { GraphQLResolveInfo } from "graphql";
@@ -83,5 +83,8 @@ export function mockProvider(opts?: MockProviderOpts) {
 
 export function mockProviderDecorator(opts?: MockProviderOpts) {
   const Provider = mockProvider(opts);
-  return (story: RenderFunction) => <Provider>{story()}</Provider>;
+  return (story: RenderFunction) =>
+    <Provider>
+      {story()}
+    </Provider>;
 }

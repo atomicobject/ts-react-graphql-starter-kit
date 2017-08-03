@@ -1,6 +1,4 @@
-import {
-  ApolloClient,
-} from "react-apollo";
+import { ApolloClient } from "react-apollo";
 
 import { GraphQLSchema } from "graphql";
 

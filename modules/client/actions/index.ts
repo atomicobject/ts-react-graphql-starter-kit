@@ -5,11 +5,11 @@ interface ActionBuilder<T> {
     v1: T[K1],
     v2: T[K2]
   ) => T;
-  <
-    K1 extends keyof T,
-    K2 extends keyof T,
-    K3 extends keyof T
-  >(k1: K1, k2: K2, k3: K3): (v1: T[K1], v2: T[K2], v3: T[K3]) => T;
+  <K1 extends keyof T, K2 extends keyof T, K3 extends keyof T>(
+    k1: K1,
+    k2: K2,
+    k3: K3
+  ): (v1: T[K1], v2: T[K2], v3: T[K3]) => T;
 }
 
 export enum ActionTypeKeys {

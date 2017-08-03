@@ -27,7 +27,9 @@ storiesOf(
     });
     return (
       <WithNotes notes={`The code should be ${code.join(", ")}`}>
-        <Provider><AnswerDisplay /></Provider>
+        <Provider>
+          <AnswerDisplay />
+        </Provider>
       </WithNotes>
     );
   }

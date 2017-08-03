@@ -26,7 +26,11 @@ describe("answer query", () => {
 
   it("can be queried with the local apollo client", async () => {
     const client = buildLocalApollo();
-    const q = gql` query getAnswers { answer } `;
+    const q = gql`
+      query getAnswers {
+        answer
+      }
+    `;
     const result = await client.query<any>({ query: q });
     expect(result.data.answer.length).toEqual(3);
   });
