@@ -1,3 +1,1 @@
-import "@storybook/addon-notes/register";
-import "@storybook/addon-actions/register";
-import "@storybook/addon-knobs/register";
+require("@storybook/addon-actions/register");

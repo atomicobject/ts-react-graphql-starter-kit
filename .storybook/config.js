@@ -1,8 +1,4 @@
-import { configure, setAddon } from "@storybook/react";
-
-import infoAddon from "@storybook/addon-info";
-
-setAddon(infoAddon);
+const { configure, setAddon } = require("@storybook/react");
 
 function loadStories() {
   require("../modules/client/stories.ts");

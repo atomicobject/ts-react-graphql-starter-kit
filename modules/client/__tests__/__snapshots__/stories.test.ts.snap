@@ -116,36 +116,6 @@ exports[`Storyshots Component – SnackVoter No votes 1`] = `
 </ul>
 `;
 
-exports[`Storyshots Page – Add Snack Simple example 1`] = `
-<div
-  className="add-snack-page"
->
-  <h2>
-    Add Snack
-  </h2>
-  <fieldset
-    className="add-snack-page-fields"
-  >
-    <label
-      htmlFor="name"
-    >
-      Name
-    </label>
-    <input
-      name="name"
-      onChange={[Function]}
-      type="text"
-      value="some snack name"
-    />
-  </fieldset>
-  <button
-    onClick={[Function]}
-  >
-    Save
-  </button>
-</div>
-`;
-
 exports[`Storyshots Page – Home Count 1`] = `
 <div
   className="home-page"
