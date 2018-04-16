@@ -1,0 +1,285 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Component – SnackVoter Basic count example 1`] = `
+<ul>
+  <li>
+    Guacamole
+      (popularity: 
+    100%
+    ) 
+    <a
+      onClick={[Function]}
+    >
+      Vote
+    </a>
+  </li>
+  <li>
+    Cheese platter
+      (popularity: 
+    33%
+    ) 
+    <a
+      onClick={[Function]}
+    >
+      Vote
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Component – SnackVoter Basic percentage example 1`] = `
+<ul>
+  <li>
+    Guacamole
+      (popularity: 
+    100%
+    ) 
+    <a
+      onClick={[Function]}
+    >
+      Vote
+    </a>
+  </li>
+  <li>
+    Cheese platter
+      (popularity: 
+    33%
+    ) 
+    <a
+      onClick={[Function]}
+    >
+      Vote
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Component – SnackVoter Basic vote count example 1`] = `
+<ul>
+  <li>
+    Guacamole
+      (popularity: 
+    3 votes
+    ) 
+    <a
+      onClick={[Function]}
+    >
+      Vote
+    </a>
+  </li>
+  <li>
+    Cheese platter
+      (popularity: 
+    1 votes
+    ) 
+    <a
+      onClick={[Function]}
+    >
+      Vote
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Component – SnackVoter No snacks 1`] = `
+<ul>
+  <li>
+    There are no snacks in the system
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Component – SnackVoter No votes 1`] = `
+<ul>
+  <li>
+    Guacamole
+      (popularity: 
+    100%
+    ) 
+    <a
+      onClick={[Function]}
+    >
+      Vote
+    </a>
+  </li>
+  <li>
+    Cheese platter
+      (popularity: 
+    100%
+    ) 
+    <a
+      onClick={[Function]}
+    >
+      Vote
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Page – Add Snack Simple example 1`] = `
+<div
+  className="add-snack-page"
+>
+  <h2>
+    Add Snack
+  </h2>
+  <fieldset
+    className="add-snack-page-fields"
+  >
+    <label
+      htmlFor="name"
+    >
+      Name
+    </label>
+    <input
+      name="name"
+      onChange={[Function]}
+      type="text"
+      value="some snack name"
+    />
+  </fieldset>
+  <button
+    onClick={[Function]}
+  >
+    Save
+  </button>
+</div>
+`;
+
+exports[`Storyshots Page – Home Count 1`] = `
+<div
+  className="home-page"
+>
+  <h2>
+    Snacks
+  </h2>
+  <ul>
+    <li>
+      Guacamole
+        (popularity: 
+      3 votes
+      ) 
+      <a
+        onClick={[Function]}
+      >
+        Vote
+      </a>
+    </li>
+    <li>
+      Cheese platter
+        (popularity: 
+      1 votes
+      ) 
+      <a
+        onClick={[Function]}
+      >
+        Vote
+      </a>
+    </li>
+  </ul>
+  <div
+    className="home-page-pop-mode-toggle"
+  >
+    <h4>
+      Show popularity as:
+    </h4>
+    <div>
+      <label
+        htmlFor="home-page-percentage"
+      >
+        <input
+          checked={false}
+          id="home-page-percentage"
+          onChange={[Function]}
+          type="radio"
+        />
+         
+        Percentage
+      </label>
+    </div>
+    <div>
+      <label
+        htmlFor="home-page-vote-count"
+      >
+        <input
+          checked={true}
+          id="home-page-vote-count"
+          onChange={[Function]}
+          type="radio"
+        />
+         
+        Vote Count
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Page – Home Percentage 1`] = `
+<div
+  className="home-page"
+>
+  <h2>
+    Snacks
+  </h2>
+  <ul>
+    <li>
+      Guacamole
+        (popularity: 
+      100%
+      ) 
+      <a
+        onClick={[Function]}
+      >
+        Vote
+      </a>
+    </li>
+    <li>
+      Cheese platter
+        (popularity: 
+      33%
+      ) 
+      <a
+        onClick={[Function]}
+      >
+        Vote
+      </a>
+    </li>
+  </ul>
+  <div
+    className="home-page-pop-mode-toggle"
+  >
+    <h4>
+      Show popularity as:
+    </h4>
+    <div>
+      <label
+        htmlFor="home-page-percentage"
+      >
+        <input
+          checked={true}
+          id="home-page-percentage"
+          onChange={[Function]}
+          type="radio"
+        />
+         
+        Percentage
+      </label>
+    </div>
+    <div>
+      <label
+        htmlFor="home-page-vote-count"
+      >
+        <input
+          checked={false}
+          id="home-page-vote-count"
+          onChange={[Function]}
+          type="radio"
+        />
+         
+        Vote Count
+      </label>
+    </div>
+  </div>
+</div>
+`;

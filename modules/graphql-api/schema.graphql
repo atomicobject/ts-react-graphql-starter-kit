@@ -1,0 +1,19 @@
+type Snack {
+  id: Int!
+  name: String!
+  voteCount: Int!
+}
+
+type Vote {
+  id: Int!
+  snack: Snack!
+}
+
+type Query {
+  allSnacks: [Snack!]
+}
+
+type Mutation {
+  addSnack(name: String!): Snack
+  voteFor(snackId: Int!): Vote
+}

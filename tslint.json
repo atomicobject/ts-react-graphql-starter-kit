@@ -1,0 +1,26 @@
+{
+  "extends": "tslint-eslint-rules",
+  "rules": {
+    "block-spacing": [true, "always"],
+    "brace-style": [true, "1tbs"],
+    "curly": [true, "ignore-same-line"],
+    "handle-callback-err": true,
+    "indent": [true, "spaces"],
+    "interface-name": [false],
+    "no-consecutive-blank-lines": [true],
+    "no-console": [false],
+    "no-constant-condition": false,
+    "no-floating-promises": [true, "Bluebird"],
+    "no-irregular-whitespace": true,
+    "no-multi-spaces": true,
+    "no-unused-variable": [true, { "ignore-pattern": "^_" }],
+    "no-var-requires": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": [false],
+    "ter-indent": ["error", 2]
+  },
+  "jsRules": {
+    "curly": true
+  },
+  "rulesDirectory": []
+}

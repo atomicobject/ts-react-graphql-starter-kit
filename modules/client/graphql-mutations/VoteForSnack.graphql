@@ -1,0 +1,11 @@
+mutation VoteForSnack($snackId: Int!) {
+  voteFor(snackId: $snackId) {
+    __typename
+    id
+    snack {
+      __typename
+      id
+      voteCount
+    }
+  }
+}

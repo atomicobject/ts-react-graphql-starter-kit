@@ -1,0 +1,27 @@
+@import "client/styles/_core";
+
+.munchit-app {
+  width: 1024px;
+  margin: 1em auto;
+
+  &-header {
+    border-bottom: solid 2px black;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &-title {
+    font-size: 250%;
+    font-weight: 900;
+    margin-bottom: 1rem;
+  }
+
+  &-nav {
+    height: 1rem;
+
+    > li {
+      float: left;
+      margin-right: 2rem;
+    }
+  }
+}
