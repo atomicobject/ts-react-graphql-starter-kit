@@ -24,6 +24,7 @@ module.exports = (storybookBaseConfig, configType) => {
       ],
       include: path.resolve(__dirname, "../")
     },
+    loaders.mjs,
     loaders.typescript,
     loaders.graphql
   );

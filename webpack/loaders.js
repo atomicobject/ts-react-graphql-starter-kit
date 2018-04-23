@@ -21,6 +21,12 @@ module.exports = {
     loader: "graphql-tag/loader"
   },
 
+  mjs: {
+    test: /\.mjs$/,
+    include: /node_modules/,
+    type: "javascript/auto"
+  },
+
   scss: {
     test: /\.s?css$/,
     use: ExtractTextPlugin.extract({
