@@ -32,7 +32,3 @@ export function withContext(
     await fn(context);
   });
 }
-
-afterAll(async () => {
-  await db.destroyConnection();
-});
