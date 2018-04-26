@@ -3,41 +3,43 @@
 This starter kit is meant as a starting point for single-page webapps using TypeScript, React, Redux, and GraphQL that we use at Atomic Object. Feel free to clone this project and use it to seed any project for which it would be helpful.
 
 ## TODO
+
 Still to be set up/configured in this starter kit.
 
 ### Starter kit todos
-- [ ] CoreJS for polyfill support
-- [ ] fetch polyfill for Apollo in non-bleeding edge browser?
-- [x] Source maps
-- [x] Browser testing – nightmare?
-- [ ] css prefixing settings
-- [ ] Reselect?
-- [ ] Clean DB between tests – pull in `knex-cleaner`
-- [x] Node clustering
-- [x] GraphQL client
-- [x] DB / Docker / migrations
+
+* [ ] CoreJS for polyfill support
+* [ ] fetch polyfill for Apollo in non-modern browser?
+* [ ] css prefixing settings
+* [ ] Reselect?
+* [x] Clean DB between tests – pull in `knex-cleaner`
+* [x] Source maps
+* [x] Browser testing – nightmare?
+* [x] Node clustering
+* [x] GraphQL client
+* [x] DB / Docker / migrations
 
 ### README Todos
 
-- [x] Module organization
-- [x] Running tests
-- [x] TSlint
-- [x] Async (redux sagas)
-- [x] Database
-- [x] Selectors/state updates – lens intro
-- [x] Bourbon/neat trello CSS guide
-- [x] Property-based testing
-- [ ] Debugging
-- [ ] Repositories/DataLoader/GraphQL Context
-
+* [x] Module organization
+* [x] Running tests
+* [x] TSlint
+* [x] Async (redux sagas)
+* [x] Database
+* [x] Selectors/state updates – lens intro
+* [x] Bourbon/neat trello CSS guide
+* [x] Property-based testing
+* [ ] Debugging
+* [ ] Repositories/DataLoader/GraphQL Context
 
 ## Stack
+
 This project is a single-page webapp using the following technologies:
 
 * [TypeScript](https://www.typescriptlang.org)  – a type-safe variant of JavaScript from Microsoft which reduces errors and improves IDE/editor support over regular JavaScript.
 * Node.js – powers our server, and is pinned to the latest LTS release.
 * [Express](https://expressjs.com) – our HTTP server, which is lightly used only to host our GraphQL API.
-* [GraphQL](http://graphql.org) – an alternative to REST apis which supports a demand-driven architecture.  Our GraphQL server is [Apollo GraphQL server](http://dev.apollodata.com/tools/graphql-server/).
+* [GraphQL](http://graphql.org) – an alternative to REST apis which supports a demand-driven architecture. Our GraphQL server is [Apollo GraphQL server](http://dev.apollodata.com/tools/graphql-server/).
 * [Jest](http://facebook.github.io/jest/#use) – for unit testing.
 * [Webpack](https://webpack.github.io) – builds our application for our various deployment targets.
 * [Redux](http://redux.js.org) for client state management.
@@ -47,16 +49,19 @@ This project is a single-page webapp using the following technologies:
 * [React Storybook](https://storybook.js.org/) for component documentation and style guides.
 
 ## Code Organization
+
 This repository is structured to encourage a view of the whole repository as one application. The client and server are “just” different entry points, and we use webpack to elide libraries and code that are irrelevant to a particular entry point.
 
 There are a few key directories:
-* `entry` – contains the primary entry points of the application. If you want to see what happens when you start up the client or server, start there.  These are also the entry points for webpack.
+
+* `entry` – contains the primary entry points of the application. If you want to see what happens when you start up the client or server, start there. These are also the entry points for webpack.
 * `webpack` contains a webpack configuration for each entry point, as well as `webpack-dev-server.js` which sets up the dev server used during development.
 * `modules` contains all of the code. Each module is a self-contained concept that may be used by other modules, command-line scripts, etc.
 * `config` contains configuration files for our various environments. The default config is set up as a twelve-factor app to be hosted in heroku. Most variables can be controlled via the environment – see `config/default.js`.
 * `dist` is where webpack stores compiled slices of the app.
 
 Default modules:
+
 * `client` – React/redux front-end.
 * `db` – core knex database connection helpers
 * `records` – database record types and repositories, with base record and repository classes in `record`. Depends on `db`
@@ -79,7 +84,6 @@ The supported environment variables are:
 * `NODE_MAX_OLD_SIZE` - limit node process size to a given amount. Defaults to `460` MB to work well in 512MB containers, such as heroku.
 * `DEV_SERVER_DISABLE_HOST_CHECK` - disables the host check in webpack dev server, to allow testing from a VM or other host.
 
-
 ## Setup
 
 * Install Docker.app. Our database and other services are configured to run in docker.
@@ -87,13 +91,14 @@ The supported environment variables are:
 * Start postgres with: `docker-compose up`. This will set up a postgres docker image and start it.
 * Run `yarn db:create` to create development and test databases.
 
-
 Note: Start `docker-compose up` and leave it running any time you want to run the app/tests.
 
 ## Running locally
-Run `yarn dev` to start up both the server and client at the same time. 
+
+Run `yarn dev` to start up both the server and client at the same time.
 
 `yarn dev` runs:
+
 * webpack in watch mode to hot recompile the server
 * nodemon to run the server on port `3001` and restart the server on recompilation.
 * webpack-dev-server to run the client on port `3000`, with proxy through to the server
@@ -112,9 +117,10 @@ NODE_ENV=production yarn build
 This will build the entire app into `./dist/`.
 
 ## Tests
+
 We are using Jest for unit testing, and colocating tests with the modules they’re testing.
 
-Unit tests for a module are located in a `__tests__` directory  in the same directory as the file being tested.  Tests for `module.ts` should be named `module.test.ts`. Index files should be named after their parent directory. `some-module/index.ts` should be tested in `some-module/__tests__/module.test.ts`.
+Unit tests for a module are located in a `__tests__` directory in the same directory as the file being tested. Tests for `module.ts` should be named `module.test.ts`. Index files should be named after their parent directory. `some-module/index.ts` should be tested in `some-module/__tests__/module.test.ts`.
 
 ### Running Unit Tests
 
@@ -134,11 +140,11 @@ yarn jest -- --help
 
 ### Property testing
 
-We are using  [JSVerify](http://jsverify.github.io) for property-based testing. Property-based testing is based on generating arbitrary inputs for functions and asserting that properties are invariant across those inputs. If an input is found which violates the property, the library will automatically simplify it to the minimal case that reproduces the error.
+We are using [JSVerify](http://jsverify.github.io) for property-based testing. Property-based testing is based on generating arbitrary inputs for functions and asserting that properties are invariant across those inputs. If an input is found which violates the property, the library will automatically simplify it to the minimal case that reproduces the error.
 
 ### Generating test data
 
-JSVerify has built-in test data generation helpers called `Arbitrary` values. It comes with built-in generators for various types, and `Arbitryary<T>` values can be composed together into larger types.  See the [JSVerify Readme](https://github.com/jsverify/jsverify).
+JSVerify has built-in test data generation helpers called `Arbitrary` values. It comes with built-in generators for various types, and `Arbitryary<T>` values can be composed together into larger types. See the [JSVerify Readme](https://github.com/jsverify/jsverify).
 
 By building up `Arbitrary` objects for our various types, we will have a library of test data generators which can also be used for property-based testing.
 
@@ -176,17 +182,18 @@ For example, if we have the following schema:
 
 ```graphql
 type User {
-  id: Int!,
-  name: String!,
-  email: String!,
+  id: Int!
+  name: String!
+  email: String!
 }
 
 type Query {
-  usersById(id: Int!): [User]!,
+  usersById(id: Int!): [User]!
 }
 ```
 
 `schema-types.ts` will contain definitions for:
+
 * `Query` – containing the return types for each query
 * `UsersByIdQueryArgs` – the expected arguments for the `usersById` query
 * `User` – the straightforward typescript definition for `User`.
@@ -209,7 +216,7 @@ Similarly, we define the return type to be `Promise<Query['usersById']>`. `Query
 
 ### GraphQL in the client
 
-In the client we generate types for our graphql queries and mutations. 
+In the client we generate types for our graphql queries and mutations.
 
 Given a `.graphql` file containing the query:
 
@@ -231,22 +238,22 @@ export interface UsersQueryVariables {
 
 export interface UsersQuery {
   // Returns all of the users in the system (canned results)
-  usersById: Array< {
-    id: number,
-    name: string,
-  } >;
+  usersById: Array<{
+    id: number;
+    name: string;
+  }>;
 }
 ```
 
 The types and query can be used with Apollo by `require`-ing the `.grahql` file directly from typescript and passing it in where a query is expected. The `UsersQuery`
 
 ```typescript
-export async function fetchUsers(id: number): Promise<UsersQuery['usersById']> {
+export async function fetchUsers(id: number): Promise<UsersQuery["usersById"]> {
   const vars: UsersQueryVariables = {
     foo: id
-  }
+  };
   const result = await graphqlClient.query<UsersQuery>({
-    query: require('./Answer.graphql'),
+    query: require("./Answer.graphql"),
     variables: vars
   });
 
@@ -258,9 +265,9 @@ export async function fetchUsers(id: number): Promise<UsersQuery['usersById']> {
 
 The `build:graphql` task generates all type files. It:
 
-1. Generates `modules/graphql/schema.json` from the `schema.graphql`. This is used by subsequent steps.
-2. Generates `schema-types.ts` in the graphql module
-3. Generates `graphql-types.ts` in the client
+1.  Generates `modules/graphql/schema.json` from the `schema.graphql`. This is used by subsequent steps.
+2.  Generates `schema-types.ts` in the graphql module
+3.  Generates `graphql-types.ts` in the client
 
 The `dev:graphql` task – which is run automatically by `dev` – watches for changes to any `.graphql` file and reruns `build:graphql`
 
@@ -284,15 +291,15 @@ This starter-kit includes a library of functional lenses which are simple read/w
 
 The lens library is defined in `modules/helpers/lenses.ts`. See the tests for examples, as well as use in `sagas/index.ts` and `reducers/index.ts`.
 
-
 ## CSS
+
 CSS is implemented using the [Trello CSS Guide](https://github.com/trello/trellisheets/blob/master/styleguide.md) naming conventions.
 
 We are using the [Bourbon stack](bourbon.io) as our CSS framework.
 
 ### Organization
 
-Instead of one monolithic stylesheet, each component should have its own `styles.css` which  it requires in it’s main module. This approach eases maintainability, as each react component has its own stylesheet, and webpack will only package up CSS for the components we actually use.
+Instead of one monolithic stylesheet, each component should have its own `styles.css` which it requires in it’s main module. This approach eases maintainability, as each react component has its own stylesheet, and webpack will only package up CSS for the components we actually use.
 
 React components should be named with semantic, specific names. However, the CSS classes used for a React component should be as generic as possible.
 
@@ -302,18 +309,19 @@ For example, it is better to have one `btn` class that has a different `mod-foo`
 
 See the Trello CSS guide for more info.
 
-
 ## DB
 
 The database is postgres and is preconfigured to run in Docker.
 
 To connect via a postgres client:
+
 * Host: 127.0.0.1
 * Port: 5432
 * Username: root
-* No Password 
+* No Password
 
 Database names:
+
 * `development`
 * `test`
 
