@@ -5,8 +5,6 @@ import { GraphQLSchema } from "graphql";
 import * as db from "../db";
 
 import { executableSchema } from "./index";
-import { SnackRepository } from "records/snack-record";
-import { VoteRepository } from "records/vote-record";
 import { Transaction } from "knex";
 
 import { SchemaLink } from "apollo-link-schema";
@@ -32,16 +30,9 @@ export class Context {
     });
   }
 
-  // Add global request context, such as
-  // repositories and dataloaders here.
-  // someRepo = new SomeRepository()
-
   /** An ApolloClient which can be used for local graphql queries. Does not hit the network. */
   apolloClient: ApolloClient<NormalizedCacheObject>;
 
-  // TODO: Perhaps compose this in?
-  snackRepository = new SnackRepository(this.pg);
-  voteRepository = new VoteRepository(this.pg);
   repos = new Repositories(this.pg);
 }
 
@@ -64,6 +55,6 @@ export class Repositories {
     });
   }
 
-  snacks = new SnackRepository(this.pg);
-  votes = new VoteRepository(this.pg);
+  // Add repositories here.
+  // someRepo = new SomeRepository()
 }

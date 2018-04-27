@@ -1,7 +1,0 @@
-query DashboardSnacks {
-  allSnacks {
-    id
-    name
-    voteCount
-  }
-}

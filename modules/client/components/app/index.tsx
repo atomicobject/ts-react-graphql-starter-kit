@@ -5,13 +5,10 @@ require("./styles.scss");
 export function AppHeader() {
   return (
     <div className="app-header">
-      <h1 className="app-title">Munchit</h1>
+      <h1 className="app-title">App</h1>
       <ul className="app-nav">
         <li>
           <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/add-snack">Add Snack</Link>
         </li>
       </ul>
     </div>

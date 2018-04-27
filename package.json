@@ -1,8 +1,8 @@
 {
-  "name": "munchit",
+  "name": "your-app",
   "private": true,
   "version": "1.0.0",
-  "liense": "MIT",
+  "license": "MIT",
   "browserslist": ["last 2 versions", "IE 11"],
   "scripts": {
     "start": "nf start",

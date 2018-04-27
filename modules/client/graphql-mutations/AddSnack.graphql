@@ -1,7 +1,0 @@
-mutation AddSnack($name: String!) {
-  addSnack(name: $name) {
-    id
-    name
-    voteCount
-  }
-}

@@ -5,7 +5,6 @@ import { Route } from "react-router-dom";
 import { History } from "history";
 import { AppShell } from "client/components/app";
 import { HomePage } from "client/pages/home";
-import { AddSnackPage } from "client/pages/add-snack";
 import { Switch } from "react-router";
 import { ApolloClient } from "apollo-client";
 import { applyMiddleware, createStore, compose } from "redux";
@@ -68,7 +67,6 @@ export function App(props: {}) {
     <AppShell>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/add-snack" component={AddSnackPage} />
       </Switch>
     </AppShell>
   );
