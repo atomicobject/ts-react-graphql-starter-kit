@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 require("./styles.scss");
 export function AppHeader() {
   return (
-    <div className="munchit-app-header">
-      <h1 className="munchit-app-title">Munchit</h1>
-      <ul className="munchit-app-nav">
+    <div className="app-header">
+      <h1 className="app-title">Munchit</h1>
+      <ul className="app-nav">
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -21,7 +21,7 @@ export function AppHeader() {
 export function AppShell(props: { children: JSX.Element }) {
   const { children } = props;
   return (
-    <div className="munchit-app">
+    <div className="app">
       <AppHeader />
       {children}
     </div>
