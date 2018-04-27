@@ -22,7 +22,7 @@
     "pretest": "yarn lint",
     "test": "yarn test:unit && yarn test:acceptance",
     "test:truncate": "NODE_ENV=test node dist/scripts/truncate-database.js",
-    "test:unit": "cross-env NODE_ENV=test jest --forceExit",
+    "test:unit": "cross-env NODE_ENV=test jest",
     "test:unit:debug": "node --debug-brk ./node_modules/.bin/jest --runInBand",
     "test:acceptance":
       "if [ $BUILD ]; then yarn test:acceptance:build; fi; concurrently --kill-others -s first 'yarn test:acceptance:server' 'yarn test:acceptance:run'",
