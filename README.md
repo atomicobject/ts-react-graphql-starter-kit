@@ -2,35 +2,28 @@
 
 This starter kit is meant as a starting point for single-page webapps using TypeScript, React, Redux, and GraphQL that we use at Atomic Object. Feel free to clone this project and use it to seed any project for which it would be helpful.
 
-## TODO
+## Setup
 
-Still to be set up/configured in this starter kit.
+* Install Node 8 LTS and yarn. Older or newer versions may or may not work. (Recommend `nvm` and `brew install yarn --without-node` on mac.)
+* Install Docker.app. Our database and other services are configured to run in docker.
+* Symlink `.env.example` to `.env`, which sets up your environment to run from Docker. You can copy and modify `.env.example` to `.env` if the defaults won't work for you.
+* Start postgres with: `docker-compose up`. This will set up a postgres docker image and start it.
+* Run `yarn` to install dependencies.
+* Run `yarn db:create` to create development and test databases.
+* Run `yarn build` to build the application, including supporting scripts.
 
-### Starter kit todos
+Note: Start `docker-compose up` and leave it running any time you want to run the app/tests.
 
-* [ ] CoreJS for polyfill support
-* [ ] fetch polyfill for Apollo in non-modern browser?
-* [ ] css prefixing settings
-* [ ] Reselect?
-* [x] Clean DB between tests – pull in `knex-cleaner`
-* [x] Source maps
-* [x] Browser testing – nightmare?
-* [x] Node clustering
-* [x] GraphQL client
-* [x] DB / Docker / migrations
+## Running your app
 
-### README Todos
+To see a more fleshed out example, check out the `example-munchit` branch of this repository.
 
-* [x] Module organization
-* [x] Running tests
-* [x] TSlint
-* [x] Async (redux sagas)
-* [x] Database
-* [x] Selectors/state updates – lens intro
-* [x] Bourbon/neat trello CSS guide
-* [x] Property-based testing
-* [ ] Debugging
-* [ ] Repositories/DataLoader/GraphQL Context
+This repository includes a simple redux/graphql-based app. If you'd like to play around with this example, here's how to start it up:
+
+* Run `yarn db:migrate:latest` to migrate your development database.
+* Run `NODE_ENV=test yarn db:migrate:latest` to migrate your test database
+* Run `yarn dev` to start the hot-reloading dev server, which can be visited on port 3000.
+* To run unit tests, run `yarn test:unit` or `yarn test:unit --watch` for the interactive jest-based test runner.
 
 ## Stack
 
@@ -83,15 +76,6 @@ The supported environment variables are:
 * `WEB_CONCURRENCY` – # of workers to use in clustered mode. Clustering disabled if value is 1.
 * `NODE_MAX_OLD_SIZE` - limit node process size to a given amount. Defaults to `460` MB to work well in 512MB containers, such as heroku.
 * `DEV_SERVER_DISABLE_HOST_CHECK` - disables the host check in webpack dev server, to allow testing from a VM or other host.
-
-## Setup
-
-* Install Docker.app. Our database and other services are configured to run in docker.
-* Copy `.env.example` to `.env`. You can set any environment variables you want here to influence the application.
-* Start postgres with: `docker-compose up`. This will set up a postgres docker image and start it.
-* Run `yarn db:create` to create development and test databases.
-
-Note: Start `docker-compose up` and leave it running any time you want to run the app/tests.
 
 ## Running locally
 
