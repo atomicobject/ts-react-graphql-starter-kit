@@ -14,16 +14,17 @@ This starter kit is meant as a starting point for single-page webapps using Type
 
 Note: Start `docker-compose up` and leave it running any time you want to run the app/tests.
 
-## Running your app
-
-To see a more fleshed out example, check out the `example-munchit` branch of this repository.
+## Running the app
 
 This repository includes a simple redux/graphql-based app. If you'd like to play around with this example, here's how to start it up:
 
 * Run `yarn db:migrate:latest` to migrate your development database.
 * Run `NODE_ENV=test yarn db:migrate:latest` to migrate your test database
 * Run `yarn dev` to start the hot-reloading dev server, which can be visited on port 3000.
+* See the interactive style guide and component tests by running `yarn dev:storybook` and visit `localhost:9001`.
 * To run unit tests, run `yarn test:unit` or `yarn test:unit --watch` for the interactive jest-based test runner.
+
+The `example-munchit` branch on this repo has a more fleshed out example with database connectivity and graphql queries set up.
 
 ## Stack
 
@@ -37,9 +38,9 @@ This project is a single-page webapp using the following technologies:
 * [Webpack](https://webpack.github.io) – builds our application for our various deployment targets.
 * [Redux](http://redux.js.org) for client state management.
 * [Redux Saga](https://redux-saga.js.org) for workflows and asynchronous processes.
-* [JSVerify](http://jsverify.github.io) for property-based testing.
 * [Nightmare.js](http://nightmarejs.org) for acceptance testing.
 * [React Storybook](https://storybook.js.org/) for component documentation and style guides.
+* [JSVerify](http://jsverify.github.io) for property-based testing.
 
 ## Code Organization
 
@@ -113,7 +114,7 @@ To run unit tests, run `yarn jest`. This simply runs jest in the current directo
 To run jest in watch mode, and have it automatically rerun tests when files change:
 
 ```
-yarn jest -- --watch
+yarn jest --watch
 ```
 
 To see other jest options, you can run:
@@ -122,15 +123,7 @@ To see other jest options, you can run:
 yarn jest -- --help
 ```
 
-### Property testing
-
-We are using [JSVerify](http://jsverify.github.io) for property-based testing. Property-based testing is based on generating arbitrary inputs for functions and asserting that properties are invariant across those inputs. If an input is found which violates the property, the library will automatically simplify it to the minimal case that reproduces the error.
-
-### Generating test data
-
-JSVerify has built-in test data generation helpers called `Arbitrary` values. It comes with built-in generators for various types, and `Arbitryary<T>` values can be composed together into larger types. See the [JSVerify Readme](https://github.com/jsverify/jsverify).
-
-By building up `Arbitrary` objects for our various types, we will have a library of test data generators which can also be used for property-based testing.
+`yarn test:unit` is an alias for running `jest` directly.
 
 ### Component tests
 
@@ -143,6 +136,10 @@ Acceptance tests are written using [Nightmare](http://codecept.io). See the `tes
 ### Linting
 
 We are using `tslint` for linting. It is run automatically before unit tests.
+
+### Property testing
+
+We have experimentally included [JSVerify](http://jsverify.github.io) for property-based testing. Property-based testing is based on generating arbitrary inputs for functions and asserting that properties are invariant across those inputs. If an input is found which violates the property, the library will automatically simplify it to the minimal case that reproduces the error.
 
 ## Styleguide
 
