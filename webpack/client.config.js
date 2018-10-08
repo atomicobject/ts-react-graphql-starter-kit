@@ -14,7 +14,6 @@ const environmentPlugins = (() => {
   if (config.get("minify")) {
     return [
       new CompressionPlugin({
-        asset: "[path].gz[query]",
         algorithm: "gzip",
         test: /\.(js|html|css)$/,
         threshold: 10240,
