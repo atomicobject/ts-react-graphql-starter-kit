@@ -14,7 +14,6 @@ import { ApolloProvider } from "react-apollo";
 import { GraphQLResolveInfo } from "graphql";
 import * as State from "client/state/index";
 import { Reducer } from "redux";
-import { createStore, compose, applyMiddleware } from "redux";
 import { RenderFunction } from "@storybook/react";
 import { MemoryRouter } from "react-router";
 import { SchemaMap } from "graphql-api";

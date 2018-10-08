@@ -13,7 +13,6 @@
     "no-floating-promises": [true, "Bluebird"],
     "no-irregular-whitespace": true,
     "no-multi-spaces": true,
-    "no-unused-variable": [true, { "ignore-pattern": "^_" }],
     "no-var-requires": false,
     "object-literal-sort-keys": false,
     "ordered-imports": [false],
