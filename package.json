@@ -56,7 +56,7 @@
   "dependencies": {
     "@atomic-object/lenses": "^0.1.0",
     "@atomic-object/records": "^0.1.0-1",
-    "@atomic-object/tscli": "^0.0.3",
+    "@atomic-object/tscli": "^0.1.0",
     "@types/body-parser": "^1.16.4",
     "@types/compression": "^0.0.34",
     "@types/config": "^0.0.32",
