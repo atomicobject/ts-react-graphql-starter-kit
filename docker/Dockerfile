@@ -1,4 +1,4 @@
-FROM node:boron-alpine
+FROM node:10-alpine
 
 RUN apk update && apk add git supervisor && rm -rf /var/run/apk/*
 

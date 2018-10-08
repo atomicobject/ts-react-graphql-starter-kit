@@ -63,6 +63,7 @@
     "@types/cors": "^2.8.1",
     "@types/dotenv": "^4.0.0",
     "@types/express": "^4.0.35",
+    "@types/graphql": "^14.0.1",
     "@types/knex": "^0.0.61",
     "@types/lodash-es": "^4.17.1",
     "@types/morgan": "^1.7.32",

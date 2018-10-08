@@ -7,12 +7,12 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:carbon-browsers
+      - image: circleci/node:10-browsers
       - image: circleci/postgres:10.3
         environment:
           POSTGRES_USER: pguser
           POSTGRES_DB: app_test
-      
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -30,7 +30,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - node-
 
-      - run: 
+      - run:
           name: "Install deps"
           command: yarn install
 
@@ -38,28 +38,28 @@ jobs:
           paths:
             - node_modules
           key: node-{{ .Branch }}-{{ checksum "yarn.lock" }}
-        
-      - run: 
+
+      - run:
           command: yarn db:migrate:latest
           environment:
             DATABASE_URL: postgres://pguser:@localhost:5432/app_test
 
-      - run: 
+      - run:
           name: "Build"
           command: yarn test:acceptance:build
 
-      - run: 
+      - run:
           name: "Unit tests"
           command: yarn test:unit
           environment:
             DATABASE_URL: postgres://pguser:@localhost:5432/app_test
 
-      - run: 
+      - run:
           name: "Acceptance tests"
           command: yarn test:acceptance
           environment:
             DATABASE_URL: postgres://pguser:@localhost:5432/app_test
 
-      - run: 
+      - run:
           name: "Lint"
           command: yarn lint
