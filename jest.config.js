@@ -1,7 +1,7 @@
 module.exports = {
   forceExit: true,
   transform: {
-    "\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js",
+    "\\.(js|jsx|ts|tsx)$": "ts-jest",
     "\\.(gql|graphql)$": "jest-transform-graphql"
   },
   transformIgnorePatterns: ["node_modules\\/(?!(lodash-es|react-apollo)\\/)"],
