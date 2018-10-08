@@ -4,5 +4,6 @@
     "**/dist": true,
     "**/node_modules": true,
     "**/bower_components": true
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
