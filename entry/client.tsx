@@ -3,6 +3,12 @@ import * as ReactDom from "react-dom";
 
 import { buildCore, App } from "../modules/client";
 
+declare function blah(): Promise<"spaghetti">;
+
+async function foo() {
+  await blah();
+}
+
 require("../modules/client/styles/main.scss");
 
 import createHistory from "history/createBrowserHistory";

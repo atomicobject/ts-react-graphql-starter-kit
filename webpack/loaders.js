@@ -15,6 +15,18 @@ module.exports = {
     ]
   },
 
+  clientSideTypeScript: {
+    test: /\.tsx?/,
+    use: [
+      {
+        loader: "awesome-typescript-loader",
+        query: {
+          configFileName: path.join(__dirname, "../tsconfig.client.json")
+        }
+      }
+    ]
+  },
+
   graphql: {
     test: /\.(graphql|gql)$/,
     exclude: /node_modules/,

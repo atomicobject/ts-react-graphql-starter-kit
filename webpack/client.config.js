@@ -87,7 +87,7 @@ module.exports = {
   },
 
   module: {
-    rules: [loaders.typescript, loaders.graphql, loaders.scss].concat(
+    rules: [loaders.clientSideTypeScript, loaders.graphql, loaders.scss].concat(
       loaders.allImagesAndFontsArray
     )
   }
