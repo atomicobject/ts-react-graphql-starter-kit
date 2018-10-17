@@ -1,0 +1,3 @@
+query Test2 {
+  test
+}

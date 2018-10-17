@@ -3,20 +3,23 @@
   "private": true,
   "version": "1.0.0",
   "license": "MIT",
-  "browserslist": ["last 2 versions", "IE 11"],
+  "browserslist": [
+    "last 2 versions",
+    "IE 11"
+  ],
   "scripts": {
     "start": "nf start",
     "build:graphql": "cli build:graphql",
     "build:client": "webpack --config ./webpack/client.config.js",
     "build:server": "webpack --config ./webpack/server.config.js",
+    "build:graphql:client:types": "gql-gen --schema modules/graphql-api/schema.graphql  --template graphql-codegen-typescript-react-apollo-template --out modules/client/graphql/types.tsx 'modules/client/graphql/**/*.graphql'",
+    "build:graphql:server:types": "gql-gen --schema modules/graphql-api/schema.graphql  --template graphql-codegen-typescript-template --out modules/graphql-api/schema-types.ts",
     "build": "cli build",
     "build:production": "cross-env NODE_ENV=production cli build",
     "dev": "cli dev",
     "dev:storybook": "start-storybook -p 9001 -c .storybook",
-    "lint":
-      "tslint -c ./tslint.json -p ./tsconfig.json './modules/**/*.{ts,tsx}'",
-    "lint:fix":
-      "tslint --fix -c ./tslint.json -p ./tsconfig.json './modules/**/*.{ts,tsx}'",
+    "lint": "tslint -c ./tslint.json -p ./tsconfig.json './modules/**/*.{ts,tsx}'",
+    "lint:fix": "tslint --fix -c ./tslint.json -p ./tsconfig.json './modules/**/*.{ts,tsx}'",
     "fmt:prettier": "prettier --write 'modules/**/*.{ts,tsx,js,jsx}'",
     "fmt": "yarn fmt:prettier; yarn lint:fix",
     "pretest": "yarn lint",
@@ -24,19 +27,14 @@
     "test:truncate": "NODE_ENV=test node dist/scripts/truncate-database.js",
     "test:unit": "cross-env NODE_ENV=test jest",
     "test:unit:debug": "node --debug-brk ./node_modules/.bin/jest --runInBand",
-    "test:acceptance":
-      "if [ $BUILD ]; then yarn test:acceptance:build; fi; concurrently --kill-others -s first 'yarn test:acceptance:server' 'yarn test:acceptance:run'",
-    "test:acceptance:build-and-run":
-      "yarn test:acceptance:build && yarn test:acceptance",
+    "test:acceptance": "if [ $BUILD ]; then yarn test:acceptance:build; fi; concurrently --kill-others -s first 'yarn test:acceptance:server' 'yarn test:acceptance:run'",
+    "test:acceptance:build-and-run": "yarn test:acceptance:build && yarn test:acceptance",
     "test:acceptance:build": "cross-env NODE_ENV=test yarn build",
-    "test:acceptance:server":
-      "NODE_ENV=test node dist/server.js > tests/acceptance/last-run.log",
-    "test:acceptance:run":
-      "while ! nc -z localhost 3002; do sleep 0.1; done; cross-env NODE_ENV=test jest -w1 -c ./acceptance.jestrc.json",
+    "test:acceptance:server": "NODE_ENV=test node dist/server.js > tests/acceptance/last-run.log",
+    "test:acceptance:run": "while ! nc -z localhost 3002; do sleep 0.1; done; cross-env NODE_ENV=test jest -w1 -c ./acceptance.jestrc.json",
     "docker:up": "exec docker-compose up",
     "db:create": "yarn db:create:dev; yarn db:create:test",
-    "db:create:dev":
-      "docker-compose exec  postgres createdb -h postgres development",
+    "db:create:dev": "docker-compose exec  postgres createdb -h postgres development",
     "db:create:test": "docker-compose exec  postgres createdb -h postgres test",
     "db:run": "docker-compose exec  postgres psql -h postgres",
     "db:migrate:make": "knex migrate:make",
@@ -133,7 +131,9 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^2.0",
     "foreman": "^3.0.0",
-    "graphql-code-generator": "0.5.5",
+    "graphql-code-generator": "0.12",
+    "graphql-codegen-typescript-react-apollo-template": "^0.13.0-alpha.c5ee0f70",
+    "graphql-codegen-typescript-template": "^0.13.0-alpha.c5ee0f70",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.0.0",
