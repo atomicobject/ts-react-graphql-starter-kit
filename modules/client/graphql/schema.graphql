@@ -1,0 +1,12 @@
+scalar IsoDate
+scalar IsoTime
+
+type Query {
+  localName: String!
+  localDate: IsoDate!
+}
+
+type Mutation {
+  # TODO: delete me:
+  setLocalName(newName: String!): String!
+}

@@ -1,0 +1,15 @@
+{
+  "transform": {
+    "\\.(gql|graphql)$": "jest-transform-graphql",
+    "\\.(js|jsx|ts|tsx)$": "ts-jest"
+  },
+  "transformIgnorePatterns": ["<rootDir>/node_modules/(?!lodash-es)"],
+  "testRegex": "(/tests/acceptance/.*\\.(test|spec))\\.(ts|tsx)$",
+  "moduleFileExtensions": ["js", "jsx", "ts", "tsx", "json"],
+  "moduleNameMapper": {
+    "\\.(css|less|scss)$": "identity-obj-proxy",
+    "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+  },
+  "moduleDirectories": ["modules", "node_modules"],
+  "reporters": ["default", "jest-junit"]
+}

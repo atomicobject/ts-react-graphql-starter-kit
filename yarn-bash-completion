@@ -1,0 +1,22 @@
+_yarn() {
+  local cur prev opts base
+  _get_comp_words_by_ref -n : cur
+  cur=${COMP_WORDS[COMP_CWORD]}
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+  if [[ "$cur" == -* ]]; then
+    COMPREPLY=( $(compgen -W "$(yarn -h | grep -- '--' | sed 's/,.*$//' | awk '{print $1}')" -- $cur ) )
+  else
+    COMPREPLY=( $(compgen -W "$(cat package.json | jq -r '.scripts | keys | .[]') $(yarn -h | grep -- '- ' | awk '{print $2}')" -- $cur ) )
+  fi
+
+  __ltrim_colon_completions "$cur"
+  return 0
+
+}
+
+if which -s jq; then
+  complete -F _yarn yarn
+else
+  >&2 echo "command completion for yarn requires jq; try 'brew install jq'"
+fi

@@ -1,0 +1,119 @@
+# Validate from CLI with circleci config process ./.circleci/config.yml
+
+version: 2.1
+
+# To continuously deploy your feature branch to a review server,
+# fill in the 'review_branch' and 'review_server' fields below.
+aliases:
+  - &review_branch feature/some-feature
+  - &review_server my-app-dev-1
+  - &staging_branch master
+  - &staging_server my-app-staging
+
+jobs:
+  build:
+    environment:
+      NODE_ENV: test
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10-browsers
+      - image: circleci/redis:4
+      - image: circleci/postgres:10.5
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: test
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - node-
+
+      - run:
+          name: "Install deps"
+          command: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
+      - run:
+          command: yarn db:migrate:latest
+          environment:
+            DATABASE_URL: postgres://root@127.0.0.1:5432/test
+      - run:
+          name: "Build"
+          command: yarn test:acceptance:build
+          environment:
+            DATABASE_URL: postgres://root@127.0.0.1:5432/test
+            REDIS_URL: redis://localhost:6379
+
+      - run:
+          name: "Unit tests"
+          command: yarn test:unit:ci
+          environment:
+            DATABASE_URL: postgres://root@127.0.0.1:5432/test
+            REDIS_URL: redis://localhost:6379
+            JEST_JUNIT_OUTPUT: "test-results/unit/unit-test-results.xml"
+
+      - run:
+          name: "Acceptance tests"
+          command: yarn test:acceptance
+          environment:
+            DATABASE_URL: postgres://root@127.0.0.1:5432/test
+            REDIS_URL: redis://localhost:6379
+            JEST_JUNIT_OUTPUT: "test-results/acceptance/acceptance-test-results.xml"
+
+      - run:
+          name: "Lint"
+          command: yarn lint
+
+      - store_test_results:
+          path: test-results
+
+  deploy_heroku:
+    description: "Deploy current branch to specified heroku app"
+    parameters:
+      heroku_app:
+        description: "Where to deploy"
+        type: string
+      extra_git_push_args:
+        description: "More git push flags (e.g. -f)"
+        default: ""
+        type: string
+    docker:
+      - image: circleci/node:10-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Deploy branch to Heroku
+          command: git push << parameters.extra_git_push_args >> https://heroku:$HEROKU_API_KEY@git.heroku.com/<< parameters.heroku_app >>.git $CIRCLE_BRANCH:master
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy_heroku:
+          heroku_app: *review_server
+          extra_git_push_args: -f
+          requires:
+            - build
+          filters:
+            branches:
+              only: *review_branch
+      - deploy_heroku:
+          heroku_app: *staging_server
+          requires:
+            - build
+          filters:
+            branches:
+              only: *staging_branch

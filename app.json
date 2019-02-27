@@ -1,0 +1,7 @@
+{
+  "name": "my-app",
+  "scripts": {},
+  "env": {},
+  "formation": {},
+  "addons": ["heroku-postgresql", "heroku-redis"]
+}

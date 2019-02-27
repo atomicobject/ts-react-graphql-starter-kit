@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "mikestead.dotenv",
+    "kumar-harsh.graphql-for-vscode",
+    "eamodio.gitlens",
+    "christian-kohler.npm-intellisense",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "tobermory.es6-string-html",
+    "tberman.json-schema-validator"
+  ]
+}

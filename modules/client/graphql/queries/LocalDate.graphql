@@ -1,0 +1,3 @@
+query LocalDate {
+  localDate: localDate @client
+}

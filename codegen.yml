@@ -1,0 +1,55 @@
+generates:
+  modules/client/graphql/types.gen.tsx:
+    config:
+      # Todo: Enable this setting once it doesn't cause type errors.
+      noGraphqlTag: false
+    schema:
+      - "modules/graphql-api/schema.graphql"
+      - "modules/client/graphql/schema.graphql"
+    documents:
+      - "modules/client/graphql/*/*.graphql"
+    plugins:
+      - add:
+          - 'import * as DateIso from "core/date-iso";'
+          - 'import * as TimeIso from "core/time-iso";'
+      - "typescript-common":
+          scalars:
+            IsoDate: DateIso.Type
+            IsoTime: TimeIso.Type
+      - "typescript-client"
+      - "typescript-server"
+      - "typescript-react-apollo"
+      - "./scripts/codegen-type-constants.js"
+
+  modules/client/graphql/client-types.gen.ts:
+    schema:
+      - "modules/client/graphql/schema.graphql"
+    plugins:
+      - add:
+          - 'import * as DateIso from "core/date-iso";'
+          - 'import * as TimeIso from "core/time-iso";'
+      - "typescript-common":
+          scalars:
+            IsoDate: DateIso.Type
+            IsoTime: TimeIso.Type
+      - "typescript-resolvers":
+          contextType: client/graphql/client-context#ClientContext
+      - "typescript-server"
+
+  modules/graphql-api/server-types.gen.ts:
+    schema:
+      - "modules/graphql-api/schema.graphql"
+    plugins:
+      - add:
+          - 'import * as DateIso from "core/date-iso";'
+          - 'import * as TimeIso from "core/time-iso";'
+      - "typescript-common":
+          scalars:
+            IsoDate: DateIso.Type
+            IsoTime: TimeIso.Type
+      - "typescript-resolvers":
+          contextType: graphql-api/context#ApiContext
+          defaultMapper: any
+          mappers:
+            User: "./resolvers/user#MinimalUser"
+      - "typescript-server"

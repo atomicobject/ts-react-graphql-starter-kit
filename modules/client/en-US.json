@@ -1,0 +1,16 @@
+{
+  "core": {
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "accept": "Accept",
+    "getMeOutOfHere": "Get me out of here!",
+    "somethingWentWrong": "Something went wrong.",
+    "takeMeBack": "Take me back!",
+    "404NotFound": "404 Not Found",
+    "contactUsAt": "Contact us at {email}",
+    "unknownUser": "Unknown User"
+  },
+  "header": {
+    "productTitle": "My App"
+  }
+}

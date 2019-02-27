@@ -1,0 +1,3 @@
+mutation ChangeLocalName {
+  setLocalName(newName: "Foo") @client
+}

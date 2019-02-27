@@ -1,0 +1,13 @@
+version: "2"
+services:
+  postgres:
+    image: postgres:10.5
+    env_file: "./docker/docker.env"
+    ports:
+      - "5432:5432"
+    command: -c log_statement='all'
+
+  redis:
+    image: redis:4
+    ports:
+      - "6379:6379"

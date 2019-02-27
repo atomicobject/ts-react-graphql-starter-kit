@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["dom", "es6", "es2015", "esnext.asynciterable"]
+  }
+}

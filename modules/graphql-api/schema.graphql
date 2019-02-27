@@ -1,0 +1,16 @@
+scalar IsoDate
+scalar IsoTime
+
+type Query {
+  loggedInUser: User!
+}
+
+type User {
+  id: Int!
+  firstName: String!
+  lastName: String!
+}
+
+type Mutation {
+  exampleMutation: String
+}
