@@ -144,11 +144,6 @@ export class I18nProfile<TProps> {
     const self: any = new I18nProfile();
     return self.with(k, args);
   }
-  static withProfile<TP extends I18nProfile<PropsOf<TP>>>(
-    otherTp: TP
-  ): I18nProfile<TP> {
-    return otherTp;
-  }
 }
 
 export type PropsOf<TP extends I18nProfile<any>> = TP["_propsType"];

@@ -34,7 +34,7 @@ const bootstrapClient = () => {
     history.push("/error");
   };
 
-  window.onunhandledrejection = event => {
+  window.onunhandledrejection = (event: any) => {
     const error = event.reason;
     console.error("OnUnhandledRejection: ", error);
     ErrorNotifier.error(error);

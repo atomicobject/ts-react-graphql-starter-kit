@@ -4,5 +4,6 @@
     "lib": ["dom", "es2018", "esnext.asynciterable"],
     "module": "commonjs",
     "target": "es2018",
+    "allowSyntheticDefaultImports": true
   }
 }

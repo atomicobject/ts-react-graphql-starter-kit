@@ -21,8 +21,6 @@ import { PlacementTheme } from "../styles/mui-theme";
 import { TranslationProvider, ENGLISH } from "client/translations";
 import { ThemeProvider } from "@material-ui/styles";
 import * as uuid from "uuid";
-import { SectionProvider } from "client/components/section-provider";
-import { Section } from "client/core";
 import { mapValues as _mapValues } from "lodash-es";
 
 export { MockList } from "graphql-tools";
@@ -212,18 +210,11 @@ export function mockProvider(opts?: MockProviderOpts) {
           <TranslationProvider value={ENGLISH}>
             <ThemeProvider theme={PlacementTheme}>
               <MemoryRouter initialEntries={[initialUrl]} initialIndex={0}>
-                <SectionProvider
-                  value={{
-                    selected: null as Section,
-                    setSelected: () => {},
-                  }}
-                >
-                  <ApolloProvider client={apollo}>
-                    <ApolloHooksProvider client={apollo}>
-                      {this.props.children}
-                    </ApolloHooksProvider>
-                  </ApolloProvider>
-                </SectionProvider>
+                <ApolloProvider client={apollo}>
+                  <ApolloHooksProvider client={apollo}>
+                    {this.props.children}
+                  </ApolloHooksProvider>
+                </ApolloProvider>
               </MemoryRouter>
             </ThemeProvider>
           </TranslationProvider>
