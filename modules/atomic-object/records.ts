@@ -110,7 +110,7 @@ export class LoaderFactory<
     type SourceRecord = SavedR<typeof record>;
     type FkType = SavedDestType[ForeignKey];
     return new DataLoader<SourceRecord | FkType, SavedDestType>(async args => {
-      const ids: any = args.map(arg =>
+      const ids: FkType[] = args.map(arg =>
         typeof arg === "object"
           ? ((arg as SourceRecord)[record.idKey] as FkType)
           : arg
@@ -119,7 +119,7 @@ export class LoaderFactory<
         await this.repo.table().whereIn(foreignKey as any, ids as any[])
       );
       const table = keyBy<SavedDestType>(records, foreignKey as any);
-      const ordered = ids.map((id: any) => table[(id as any).toString()]);
+      const ordered = ids.map(id => table[(id as any).toString()]);
       return ordered;
     });
   }
@@ -288,7 +288,7 @@ export abstract class TableHelpers<
   findById = new DataLoader<SavedR[IdKeyT], SavedR | undefined>(async ids => {
     const rows: SavedR[] = await this.table().whereIn("id", ids as any);
     const byId = keyBy(rows, "id");
-    return ids.map(id => byId[(id as any).toString()]);
+    return ids.map(id => byId[id.toString()]);
   });
 }
 

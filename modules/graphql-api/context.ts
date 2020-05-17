@@ -9,6 +9,8 @@ import * as config from "config";
 import { GraphQLSchema } from "graphql";
 import { Repositories } from "records";
 import { UserId, SavedUser } from "records/user";
+import { ALL_SERVICE_ACTIONS, GlobalDispatch } from "services";
+import { Dispatcher } from "atomic-object/cqrs/dispatch";
 import { JobQueuer, JobRunner } from "atomic-object/jobs/mapping";
 import * as db from "../db";
 import { executableSchema } from "./index";
@@ -33,6 +35,7 @@ export class Context {
   private _userId: number | null;
   readonly db: db.Knex;
 
+  dispatch: GlobalDispatch;
   repos: Repositories;
   _jobs: undefined | JobQueuer;
 
@@ -54,6 +57,8 @@ export class Context {
         }),
       ]),
     });
+
+    this.dispatch = new Dispatcher(this, ALL_SERVICE_ACTIONS);
 
     this._userId = opts.userId || null;
 

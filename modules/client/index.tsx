@@ -47,14 +47,6 @@ function RoutesWithHeader() {
             name: "Home Page",
           })}
         />
-        <Route
-          exact
-          path="/table"
-          component={asyncComponent({
-            resolve: async () => (await import("client/pages/table")).TablePage,
-            name: "Table",
-          })}
-        />
         <Route exact path="/error" component={ServerErrorPageRouteLoader} />
         <Route component={NotFoundErrorPageRouteLoader} />
       </Switch>

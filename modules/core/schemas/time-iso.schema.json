@@ -1,0 +1,5 @@
+{
+  "type": "string",
+  "tsType": "TimeIso.Type",
+  "pattern": "^\\d{2}:\\d{2}:\\d{2}$"
+}
